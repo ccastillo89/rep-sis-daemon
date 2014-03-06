@@ -74,5 +74,12 @@ public class Personas {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+	public CentroFormacion getCentroFormacion() {
+		return centroFormacion;
+	}
+	public void setCentroFormacion(CentroFormacion centroFormacion) {
+		this.centroFormacion = centroFormacion;
+	}
+	
     
 }
