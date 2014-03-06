@@ -19,7 +19,7 @@ public class Personas {
     private String numeroDoc;
     private String celular;
     private CentroFormacion centroFormacion;
-    
+    //Solo estoy Comentado para prueba
 	public int getIdPersonas() {
 		return idPersonas;
 	}
