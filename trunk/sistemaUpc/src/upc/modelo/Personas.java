@@ -20,6 +20,7 @@ public class Personas {
     private String celular;
     private CentroFormacion centroFormacion;
     //Solo estoy Comentado para prueba
+    //Prueba nro 2
 	public int getIdPersonas() {
 		return idPersonas;
 	}
