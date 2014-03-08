@@ -1,9 +1,7 @@
 package upc.negocio;
 
 import java.util.Collection;
-import trastienda.dao.CategoriaDAO;
-import trastienda.excepcion.DAOExcepcion;
-import trastienda.modelo.Categoria;
+
 
 public class GestionCategorias {
 
