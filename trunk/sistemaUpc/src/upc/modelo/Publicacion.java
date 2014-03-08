@@ -5,7 +5,6 @@ import java.util.Date;
 public class Publicacion {
 	
     private int idPublicacion;
-    private int idComentario;
     private String titulo;
     private String descripcion;
     private String archivo;
@@ -15,18 +14,15 @@ public class Publicacion {
     private Date fechaCreacion;
     private String palabraClave;
     private Date fechaPublicacion;
+    
+    
 	public int getIdPublicacion() {
 		return idPublicacion;
 	}
 	public void setIdPublicacion(int idPublicacion) {
 		this.idPublicacion = idPublicacion;
 	}
-	public int getIdComentario() {
-		return idComentario;
-	}
-	public void setIdComentario(int idComentario) {
-		this.idComentario = idComentario;
-	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -88,7 +84,6 @@ public class Publicacion {
 			Date fechaPublicacion) {
 		
 		this.idPublicacion = idPublicacion;
-		this.idComentario = idComentario;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.archivo = archivo;
