@@ -4,6 +4,7 @@ public class UsuarioPermitido {
 	private Comentario Comentario;
 	private Usuario usuario;
 	private int puntos;
+	
 	public Comentario getComentario() {
 		return Comentario;
 	}
