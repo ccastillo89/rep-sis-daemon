@@ -1,6 +1,5 @@
 package upc.modelo;
 
-
 public class Usuario {
 
     private int idUsuario;
