@@ -6,6 +6,7 @@ package upc.modelo;
 
 import java.util.Collection;
 
+
 /**
  *
  * @author proyecto
@@ -19,12 +20,25 @@ public class CentroFormacion {
 	private String url;
 	private String logo;
 	private Collection<Personas> personas;
+	
+	
+	
+	
+	
+	public Collection<Personas> getPersonas() {
+		return personas;
+	}
+	public void setPersonas(Collection<Personas> personas) {
+		this.personas = personas;
+	}
 	public int getIdCentroInformacion() {
 		return idCentroInformacion;
 	}
 	public void setIdCentroInformacion(int idCentroInformacion) {
 		this.idCentroInformacion = idCentroInformacion;
 	}
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -49,15 +63,12 @@ public class CentroFormacion {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public Collection<Personas> getPersonas() {
-		return personas;
-	}
-	public void setPersonas(Collection<Personas> personas) {
-		this.personas = personas;
-	}
+
+
+	
 	public CentroFormacion(int idCentroInformacion, String nombre, int tipo,
 			String url, String logo, Collection<Personas> personas) {
-		
+		super();
 		this.idCentroInformacion = idCentroInformacion;
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -66,7 +77,7 @@ public class CentroFormacion {
 		this.personas = personas;
 	}
 	public CentroFormacion() {
-		
+		super();
 	}
 	
 	
