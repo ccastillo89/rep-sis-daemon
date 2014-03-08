@@ -6,52 +6,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import upc.excepcion.DAOExcepcion;
+import upc.modelo.Publicacion;
+import upc.util.ConexionBD;
 
 
 
 public class PublicacionDAO extends BaseDAO {
-/*
-	public Collection<Categoria> buscarPorNombre(String nombre)
-			throws DAOExcepcion {
-		String query = "select id_categoria, nombre, descripcion from categoria where nombre like ?";
-		Collection<Categoria> lista = new ArrayList<Categoria>();
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			con = ConexionBD.obtenerConexion();
-			stmt = con.prepareStatement(query);
-			stmt.setString(1, "%" + nombre + "%");
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				Categoria vo = new Categoria();
-				vo.setIdCategoria(rs.getInt("id_categoria"));
-				vo.setNombre(rs.getString("nombre"));
-				vo.setDescripcion(rs.getString("descripcion"));
-				lista.add(vo);
-			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			throw new DAOExcepcion(e.getMessage());
-		} finally {
-			this.cerrarResultSet(rs);
-			this.cerrarStatement(stmt);
-			this.cerrarConexion(con);
-		}
-		System.out.println(lista.size());
-		return lista;
-	}
 
-	public Categoria insertar(Categoria vo) throws DAOExcepcion {
-		String query = "insert into categoria(nombre,descripcion) values (?,?)";
+
+	public Publicacion insertar(Publicacion vo) throws DAOExcepcion {
+		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,usuario_acesor,fecha_creacion,palabra_clave,fecha_publicacion) values (?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
+			
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, vo.getNombre());
+			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
+			stmt.setString(3, vo.getArchivo());
+			stmt.setInt(4, vo.getIdUsuario());
+			stmt.setInt(5, vo.getEstado());
+			stmt.setInt(6, vo.getUsuarioAsesor());
+			stmt.setDate(7, (java.sql.Date) vo.getFechaCreacion());
+			stmt.setString(8, vo.getPalabraClave());
+			stmt.setDate(9, (java.sql.Date) vo.getFechaPublicacion());
+			
+				
+			
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo insertar");
@@ -64,7 +49,7 @@ public class PublicacionDAO extends BaseDAO {
 			if (rs.next()) {
 				id = rs.getInt(1);
 			}
-			vo.setIdCategoria(id);
+			vo.setIdPublicacion(id);
 
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -76,7 +61,7 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return vo;
 	}
-
+/*
 	public Categoria obtener(int idCategoria) throws DAOExcepcion {
 		Categoria vo = new Categoria();
 		Connection con = null;
