@@ -6,20 +6,19 @@ public class Comentario {
     }
 	
 	public Comentario(int idComentario, String descripcion, int idUsuario,
-			int idPublicacion, int puntos) {
+			int idPublicacion) {
 		super();
 		this.idComentario = idComentario;
 		this.descripcion = descripcion;
 		this.idUsuario = idUsuario;
 		this.idPublicacion = idPublicacion;
-		this.puntos = puntos;
+	 
 	}
 	
 	private int idComentario;
 	private String descripcion;
 	private int idUsuario;
 	private int idPublicacion;
-	private int puntos;
 	
 	public int getIdComentario() {
 		return idComentario;
@@ -45,11 +44,6 @@ public class Comentario {
 	public void setIdPublicacion(int idPublicacion) {
 		this.idPublicacion = idPublicacion;
 	}
-	public int getPuntos() {
-		return puntos;
-	}
-	public void setPuntos(int puntos) {
-		this.puntos = puntos;
-	}
+ 
 	
 }
