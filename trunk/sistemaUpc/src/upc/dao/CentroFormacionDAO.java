@@ -15,7 +15,7 @@ public class CentroFormacionDAO extends BaseDAO {
 
 	
 	public CentroFormacion insertar(CentroFormacion vo) throws DAOExcepcion {
-		String query = "insert into CentroInformacion (nombre,tipo,url,logo) values (?,?,?,?)";
+		String query = "insert into Centro_Formacion (nombre,tipo,url,logo) values (?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -46,7 +46,7 @@ public class CentroFormacionDAO extends BaseDAO {
 	
 
 	public void eliminar(int idCentroFormacion) throws DAOExcepcion {
-		String query = "delete from CentroFormacion WHERE idcentro_formacion=?";
+		String query = "delete from Centro_Formacion WHERE idcentro_formacion=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -67,7 +67,7 @@ public class CentroFormacionDAO extends BaseDAO {
 	}
 
 	public CentroFormacion actualizar(CentroFormacion vo) throws DAOExcepcion {
-		String query = "update CentroFormacion set nombre=?,tipo=?,url=?,logo=? where idcentro_formacion=?";
+		String query = "update Centro_Formacion set nombre=?,tipo=?,url=?,logo=? where idcentro_formacion=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -103,7 +103,7 @@ public class CentroFormacionDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select idcentro_formacion,nombre,tipo,url,logo from CentroFormacion order by nombre";
+			String query = "select idcentro_formacion,nombre,tipo,url,logo from Centro_Formacion order by nombre";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
