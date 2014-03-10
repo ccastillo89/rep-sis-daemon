@@ -127,6 +127,30 @@ public class CentroFormacionDAO extends BaseDAO {
 		}
 		return c;
 	}
+	
+	public Int buscarPorNombre(CentroFormacion vo) throws DAOExcepcion {
+		String query = "Select count(nombre) From centro_formacion where nombre = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+	
+			stmt.setString(1, vo.getNombre());
+						
+			int i = stmt.executeQuery();
+			//if (i != 0) {
+				//throw new SQLException("Centro de formación ya registrado.");
+			//}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return i;
+	}
 
 
 	
