@@ -17,7 +17,7 @@ public class PublicacionDAO extends BaseDAO {
 
 
 	public Publicacion insertar(Publicacion vo) throws DAOExcepcion {
-		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,usuario_acesor,fecha_creacion,palabra_clave,fecha_publicacion) values (?,?,?,?,?,?,?,?,?)";
+		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,fecha_creacion,palabra_clave) values (?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -30,10 +30,8 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setString(3, vo.getArchivo());
 			stmt.setInt(4, vo.getIdUsuario());
 			stmt.setInt(5, vo.getEstado());
-			stmt.setInt(6, vo.getUsuarioAsesor());
-			stmt.setDate(7, (java.sql.Date) vo.getFechaCreacion());
-			stmt.setString(8, vo.getPalabraClave());
-			stmt.setDate(9, (java.sql.Date) vo.getFechaPublicacion());
+			stmt.setDate(6, (java.sql.Date) vo.getFechaCreacion());
+			stmt.setString(7, vo.getPalabraClave());
 					
 			
 			int i = stmt.executeUpdate();
@@ -79,6 +77,34 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 	}
 
+	
+	public Publicacion Publicar(Publicacion vo) throws DAOExcepcion {
+		String query = "update publicacion set estado=? where idpublicacion=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, vo.getEstado());
+			stmt.setInt(2, vo.getIdPublicacion());
+						
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo Publicar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}
+
+	
+	
+	
 	public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion {
 		Collection<Publicacion> c = new ArrayList<Publicacion>();
 		Connection con = null;
