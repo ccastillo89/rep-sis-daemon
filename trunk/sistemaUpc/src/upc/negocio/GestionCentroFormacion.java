@@ -26,7 +26,7 @@ public class GestionCentroFormacion {
 	public CentroFormacion actualizar(CentroFormacion ci) throws DAOExcepcion {
 		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
-		return dao.insertar(ci);
+		return dao.actualizar(ci);
 		
 	}
 
