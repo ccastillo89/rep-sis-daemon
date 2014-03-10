@@ -10,20 +10,13 @@ public class GestionCentroFormacion {
 	
 	
 	
-	public CentroFormacion insertar(CentroFormacion ci)	throws DAOExcepcion {
+	public CentroFormacion insertar(CentroFormacion ci)	throws  DAOExcepcion {
 		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
 		
-		if (dao.buscarPorNombre(ci) == 0)
-		{
-			return dao.insertar(ci);				
-		}
-		else
-		{
-			
-			throw new SQLException("Centro de formación ya registrado.");
-		}
-				
+		dao.buscarPorNombre(ci); 
+		return dao.insertar(ci);				
+						
 		
 	}
 
