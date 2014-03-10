@@ -10,15 +10,26 @@ public class GestionCentroFormacion {
 	
 	
 	
-	public CentroFormacion insertar(CentroFormacion ci)
-			throws DAOExcepcion {
+	public CentroFormacion insertar(CentroFormacion ci)	throws DAOExcepcion {
 		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
-		return dao.insertar(ci);
+		
+		if (dao.buscarPorNombre(ci) == 0)
+		{
+			return dao.insertar(ci);				
+		}
+		else
+		{
+			
+			throw new SQLException("Centro de formación ya registrado.");
+		}
+				
+		
 	}
 
 
 	public void eliminar(int idCentroFormacion) throws DAOExcepcion {
+		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
 		dao.eliminar(idCentroFormacion);
 	}
@@ -30,7 +41,9 @@ public class GestionCentroFormacion {
 		
 	}
 
+	
 	public Collection<CentroFormacion> listar() throws DAOExcepcion {
+		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
 		return dao.listar();
 	}
