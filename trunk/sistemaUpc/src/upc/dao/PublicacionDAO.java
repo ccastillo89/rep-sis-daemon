@@ -105,21 +105,25 @@ public class PublicacionDAO extends BaseDAO {
 	
 	
 	
-	public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion {
+	public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion {
 		Collection<Publicacion> c = new ArrayList<Publicacion>();
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select * from publicacion";
+			String query = "select * from publicacion where titulo like ? and fecha_creacion>? and fecha_creacion<?";
 			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%"+ pbePublicacion.getTitulo()+"%");
+			stmt.setDate(2, (java.sql.Date) pbePublicacion.getFechainicio());
+			stmt.setDate(3,  (java.sql.Date) pbePublicacion.getFechafin());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Publicacion vo = new Publicacion();
 				vo.setIdPublicacion(rs.getInt("idpublicacion"));
 				vo.setTitulo(rs.getString("titulo"));
 				vo.setDescripcion(rs.getString("descripcion"));
+				vo.setFechaPublicacion(rs.getDate("fecha_publicacion"));
 				c.add(vo);
 			}
 
