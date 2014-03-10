@@ -1,6 +1,11 @@
 package upc.test;
 
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,18 +51,26 @@ public class GestionPublicacionesTest {
 		}
 	}
 	*/
+
 	@Test
-	public void ReportedePublicacionesTest() {
+	public void ReportedePublicacionesTest() throws ParseException {
 
 		GestionPublicaciones negocio = new GestionPublicaciones();
+		Publicacion publi=new Publicacion();
 
 		try {
-			Collection<Publicacion> listado = negocio.ReportedePublicaciones();
+			publi.setTitulo("");
+			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("01/03/2014");
+			publi.setFechainicio(fecha);
+			
+			Collection<Publicacion> listado = negocio.ReportedePublicaciones(publi);
 
 			System.out.println("Total de registros: "+ listado.size());
-			
+			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaPublicacion");
+			System.out.println("--------------------------------------------------------------------------------");
 			for (Publicacion publicacion : listado) {
-				System.out.println(publicacion.getTitulo());
+				
+				System.out.println(publicacion.getTitulo()+"\t\t"+publicacion.getDescripcion()+"\t"+publicacion.getFechaPublicacion());
 			}
 			
 			Assert.assertTrue(listado.size() > 0);			
