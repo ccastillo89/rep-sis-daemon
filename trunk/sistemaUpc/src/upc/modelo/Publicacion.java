@@ -15,6 +15,10 @@ public class Publicacion {
     private String palabraClave;
     private Date fechaPublicacion;
     
+    //Campos Adicionales
+    private Date fechainicio;
+    private Date fechafin;
+    
     
 	public int getIdPublicacion() {
 		return idPublicacion;
@@ -97,6 +101,18 @@ public class Publicacion {
 	
 	public Publicacion() {
 		
+	}
+	public Date getFechafin() {
+		return fechafin;
+	}
+	public void setFechafin(Date fechafin) {
+		this.fechafin = fechafin;
+	}
+	public Date getFechainicio() {
+		return fechainicio;
+	}
+	public void setFechainicio(Date fechainicio) {
+		this.fechainicio = fechainicio;
 	}
 	
 	
