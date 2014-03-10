@@ -14,7 +14,7 @@ import upc.excepcion.DAOExcepcion;
 public class GestionCentroFormacionTest {
 
 	
-	//@Test
+	@Test
 	public void insertarTest() {
 
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
@@ -35,7 +35,7 @@ public class GestionCentroFormacionTest {
 		}
 	}
 
-	@Test
+	//@Test
 	public void actualizarTest() {
 
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
