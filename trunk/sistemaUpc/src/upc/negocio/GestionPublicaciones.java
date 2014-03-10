@@ -2,6 +2,10 @@ package upc.negocio;
 
 import java.util.Collection;
 
+import upc.dao.PublicacionDAO;
+import upc.excepcion.DAOExcepcion;
+import upc.modelo.Publicacion;
+
 public class GestionPublicaciones {
 
 	/*
@@ -30,8 +34,8 @@ public class GestionPublicaciones {
 	 * vo.setNombre(nombre); vo.setDescripcion(descripcion);
 	 * 
 	 * return dao.actualizar(vo); }
-	 * 
-	 * public Collection<Categoria> listar() throws DAOExcepcion { CategoriaDAO
-	 * dao = new CategoriaDAO(); return dao.listar(); }
-	 */
+	 */ 
+	  public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion { PublicacionDAO
+	  dao = new PublicacionDAO(); return dao.ReportedePublicaciones(); }
+	 
 }
