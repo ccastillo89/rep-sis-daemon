@@ -34,23 +34,13 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setDate(7, (java.sql.Date) vo.getFechaCreacion());
 			stmt.setString(8, vo.getPalabraClave());
 			stmt.setDate(9, (java.sql.Date) vo.getFechaPublicacion());
-			
-				
+					
 			
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo insertar");
 			}
-			// Obtener el ultimo id
-			int id = 0;
-			query = "select last_insert_id()";
-			stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				id = rs.getInt(1);
-			}
-			vo.setIdPublicacion(id);
-
+					
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
@@ -61,65 +51,20 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return vo;
 	}
-/*
-	public Categoria obtener(int idCategoria) throws DAOExcepcion {
-		Categoria vo = new Categoria();
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			String query = "select id_categoria, nombre, descripcion from categoria where id_categoria=?";
-			con = ConexionBD.obtenerConexion();
-			stmt = con.prepareStatement(query);
-			stmt.setInt(1, idCategoria);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				vo.setIdCategoria(rs.getInt(1));
-				vo.setNombre(rs.getString(2));
-				vo.setDescripcion(rs.getString(3));
-			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			throw new DAOExcepcion(e.getMessage());
-		} finally {
-			this.cerrarResultSet(rs);
-			this.cerrarStatement(stmt);
-			this.cerrarConexion(con);
-		}
-		return vo;
-	}
-
-	public void eliminar(int idCategoria) throws DAOExcepcion {
-		String query = "delete from categoria WHERE id_categoria=?";
+	
+	public Publicacion actualizar(Publicacion vo) throws DAOExcepcion {
+		String query = "update publicacion set titulo=?,descripcion=?,archivo=?,palabra_clave=? where idpublicacion=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, idCategoria);
-			int i = stmt.executeUpdate();
-			if (i != 1) {
-				throw new SQLException("No se pudo eliminar");
-			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			throw new DAOExcepcion(e.getMessage());
-		} finally {
-			this.cerrarStatement(stmt);
-			this.cerrarConexion(con);
-		}
-	}
-
-	public Categoria actualizar(Categoria vo) throws DAOExcepcion {
-		String query = "update categoria set nombre=?,descripcion=? where id_categoria=?";
-		Connection con = null;
-		PreparedStatement stmt = null;
-		try {
-			con = ConexionBD.obtenerConexion();
-			stmt = con.prepareStatement(query);
-			stmt.setString(1, vo.getNombre());
+			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
-			stmt.setInt(3, vo.getIdCategoria());
+			stmt.setString(3, vo.getArchivo());
+			stmt.setString(4, vo.getPalabraClave());
+			stmt.setInt(5, vo.getIdPublicacion());
+						
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo actualizar");
@@ -133,7 +78,7 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return vo;
 	}
-*/
+
 	public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion {
 		Collection<Publicacion> c = new ArrayList<Publicacion>();
 		Connection con = null;
