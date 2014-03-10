@@ -2,6 +2,13 @@ package upc.test;
 
 import java.util.Collection;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import upc.excepcion.DAOExcepcion;
+import upc.modelo.Publicacion;
+import upc.negocio.GestionPublicaciones;
+
 /*import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,19 +45,19 @@ public class GestionPublicacionesTest {
 			Assert.fail("Falló la actualización: " + e.getMessage());
 		}
 	}
-	
+	*/
 	@Test
-	public void listarTest() {
+	public void ReportedePublicacionesTest() {
 
-		GestionCategorias negocio = new GestionCategorias();
+		GestionPublicaciones negocio = new GestionPublicaciones();
 
 		try {
-			Collection<Categoria> listado = negocio.listar();
+			Collection<Publicacion> listado = negocio.ReportedePublicaciones();
 
 			System.out.println("Total de registros: "+ listado.size());
 			
-			for (Categoria categoria : listado) {
-				System.out.println(categoria.getNombre());
+			for (Publicacion publicacion : listado) {
+				System.out.println(publicacion.getTitulo());
 			}
 			
 			Assert.assertTrue(listado.size() > 0);			
@@ -60,7 +67,7 @@ public class GestionPublicacionesTest {
 		}
 	}
 	
-	
+	/*
 
 //	@Test
 	public void eliminarTest() {
@@ -73,6 +80,6 @@ public class GestionPublicacionesTest {
 			Assert.fail("Falló la eliminición: " + e.getMessage());
 		}
 	}
-*/
 
+*/
 }

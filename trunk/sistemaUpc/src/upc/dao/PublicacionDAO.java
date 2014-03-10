@@ -133,21 +133,21 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return vo;
 	}
-
-	public Collection<Categoria> listar() throws DAOExcepcion {
-		Collection<Categoria> c = new ArrayList<Categoria>();
+*/
+	public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion {
+		Collection<Publicacion> c = new ArrayList<Publicacion>();
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select id_categoria,nombre,descripcion from categoria order by nombre";
+			String query = "select * from publicacion";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				Categoria vo = new Categoria();
-				vo.setIdCategoria(rs.getInt("id_categoria"));
-				vo.setNombre(rs.getString("nombre"));
+				Publicacion vo = new Publicacion();
+				vo.setIdPublicacion(rs.getInt("idpublicacion"));
+				vo.setTitulo(rs.getString("titulo"));
 				vo.setDescripcion(rs.getString("descripcion"));
 				c.add(vo);
 			}
@@ -162,5 +162,5 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return c;
 	}
-*/
+
 }
