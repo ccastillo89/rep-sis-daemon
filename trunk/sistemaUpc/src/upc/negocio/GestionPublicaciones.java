@@ -54,7 +54,9 @@ public class GestionPublicaciones {
 				return dao.actualizar(vo);
 			}
 	
-	  public Collection<Publicacion> ReportedePublicaciones() throws DAOExcepcion { PublicacionDAO
-	  dao = new PublicacionDAO(); return dao.ReportedePublicaciones(); }
+	  public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion
+	  { PublicacionDAO dao = new PublicacionDAO();
+	  return dao.ReportedePublicaciones(pbePublicacion); 
+	  }
 	 
 }
