@@ -14,6 +14,7 @@ public class Publicacion {
     private Date fechaCreacion;
     private String palabraClave;
     private Date fechaPublicacion;
+    private Usuario usuario;
     
     //Campos Adicionales
     private Date fechainicio;
@@ -85,7 +86,7 @@ public class Publicacion {
 	public Publicacion(int idPublicacion, int idComentario, String titulo,
 			String descripcion, String archivo, int idUsuario, int estado,
 			int usuarioAsesor, Date fechaCreacion, String palabraClave,
-			Date fechaPublicacion) {
+			Date fechaPublicacion,Usuario usuario) {
 		
 		this.idPublicacion = idPublicacion;
 		this.titulo = titulo;
@@ -97,6 +98,7 @@ public class Publicacion {
 		this.fechaCreacion = fechaCreacion;
 		this.palabraClave = palabraClave;
 		this.fechaPublicacion = fechaPublicacion;
+		this.usuario=usuario;
 	}
 	
 	public Publicacion() {
@@ -113,6 +115,12 @@ public class Publicacion {
 	}
 	public void setFechainicio(Date fechainicio) {
 		this.fechainicio = fechainicio;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
