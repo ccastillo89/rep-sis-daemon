@@ -11,6 +11,7 @@ public class Persona {
     private String numeroDoc;
     private String celular;
     private CentroFormacion centroFormacion;
+    
 
     
 	public Persona() {
