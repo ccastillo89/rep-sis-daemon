@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
 
@@ -60,17 +61,19 @@ public class GestionPublicacionesTest {
 
 		try {
 			publi.setTitulo("");
-			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("01/03/2014");
+			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2014");
 			publi.setFechainicio(fecha);
-			
+			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("11/03/2014");
+			publi.setFechafin(fecha);
+			publi.setEstado(1); //Creada
 			Collection<Publicacion> listado = negocio.ReportedePublicaciones(publi);
 
 			System.out.println("Total de registros: "+ listado.size());
-			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaPublicacion");
-			System.out.println("--------------------------------------------------------------------------------");
+			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaCreacion \t \t \t Institución \t \t \t Persona");
+			System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 			for (Publicacion publicacion : listado) {
-				
-				System.out.println(publicacion.getTitulo()+"\t\t"+publicacion.getDescripcion()+"\t"+publicacion.getFechaPublicacion());
+				Persona person=publicacion.getUsuario().getPersona();
+				System.out.println(publicacion.getTitulo()+"\t\t"+publicacion.getDescripcion()+"\t"+publicacion.getFechaCreacion()+"\t"+person.getCentroFormacion().getNombre()+"\t\t"+person.getNombres());
 			}
 			
 			Assert.assertTrue(listado.size() > 0);			
