@@ -6,6 +6,7 @@ public class Usuario {
     private String correo;
     private String password;
     private int tipoUsuario;
+    private Persona persona;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -40,15 +41,24 @@ public class Usuario {
     }
 
     public Usuario(int idUsuario, String correo, String password,
-            int tipoUsuario) {
+            int tipoUsuario,Persona persona) {
         this.idUsuario = idUsuario;
         this.correo = correo;
         this.password = password;
         this.tipoUsuario = tipoUsuario;
+        this.persona=persona;
     }
 
 	public Usuario() {
 		super();
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
     
 }
