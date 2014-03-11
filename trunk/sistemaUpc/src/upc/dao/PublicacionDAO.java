@@ -7,8 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.CentroFormacion;
+import upc.modelo.Persona;
 import upc.modelo.Publicacion;
+import upc.modelo.Usuario;
 import upc.util.ConexionBD;
 
 
@@ -112,18 +116,34 @@ public class PublicacionDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select * from publicacion where titulo like ? and fecha_creacion>? and fecha_creacion<?";
+			String query = "select pu.idpublicacion,pu.titulo,pu.descripcion,pu.fecha_creacion,pu.fecha_publicacion,u.correo,p.nombres,p.paterno,p.materno,cf.nombre as institucion from publicacion pu inner join usuario u on u.idusuario=pu.idusuario inner join persona p on u.idusuario=p.usuario_idusuario inner join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion where pu.titulo like ? and (pu.fecha_creacion>=? and pu.fecha_creacion<=?) and pu.estado=?";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%"+ pbePublicacion.getTitulo()+"%");
-			stmt.setDate(2, (java.sql.Date) pbePublicacion.getFechainicio());
-			stmt.setDate(3,  (java.sql.Date) pbePublicacion.getFechafin());
+			stmt.setDate(2, new java.sql.Date(pbePublicacion.getFechainicio().getTime()));
+			stmt.setDate(3, new java.sql.Date(pbePublicacion.getFechafin().getTime()));
+			stmt.setInt(4, pbePublicacion.getEstado());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Publicacion vo = new Publicacion();
 				vo.setIdPublicacion(rs.getInt("idpublicacion"));
 				vo.setTitulo(rs.getString("titulo"));
 				vo.setDescripcion(rs.getString("descripcion"));
+				vo.setFechaCreacion(rs.getDate("fecha_creacion"));
 				vo.setFechaPublicacion(rs.getDate("fecha_publicacion"));
+				
+				Usuario usuario=new Usuario();
+				Persona persona=new Persona();
+				CentroFormacion centroformacion=new CentroFormacion();
+				usuario.setCorreo(rs.getString("correo"));
+				persona.setNombres(rs.getString("nombres"));
+				persona.setPaterno(rs.getString("paterno"));
+				persona.setMaterno(rs.getString("materno"));
+				centroformacion.setNombre(rs.getString("institucion"));
+				persona.setCentroFormacion(centroformacion);
+				usuario.setPersona(persona);
+				vo.setUsuario(usuario);
+				
+				
 				c.add(vo);
 			}
 
