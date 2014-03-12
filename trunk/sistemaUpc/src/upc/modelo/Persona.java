@@ -1,8 +1,7 @@
 package upc.modelo;
 
 public class Persona {
-    private int idPersonas; 
-    private int idUsuario;
+    private int idPersona;
     private String nombres;
     private String paterno;
     private String materno;
@@ -18,12 +17,11 @@ public class Persona {
 		super();
 	}
 	
-	public Persona(int idPersonas, int idUsuario, String nombres,
+	public Persona(int idPersona, String nombres,
 			String paterno, String materno, int sexo, int tipoDocumento,
 			String numeroDoc, String celular, CentroFormacion centroFormacion) {
 		super();
-		this.idPersonas = idPersonas;
-		this.idUsuario = idUsuario;
+		this.idPersona = idPersona;
 		this.nombres = nombres;
 		this.paterno = paterno;
 		this.materno = materno;
@@ -34,17 +32,11 @@ public class Persona {
 		this.centroFormacion = centroFormacion;
 	}
 	
-	public int getIdPersonas() {
-		return idPersonas;
+	public int getIdPersona() {
+		return idPersona;
 	}
-	public void setIdPersonas(int idPersonas) {
-		this.idPersonas = idPersonas;
-	}
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdPersona(int idPersona) {
+		this.idPersona = idPersona;
 	}
 	public String getNombres() {
 		return nombres;
