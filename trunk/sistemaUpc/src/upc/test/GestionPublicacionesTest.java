@@ -14,6 +14,7 @@ import upc.excepcion.DAOExcepcion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
+//import upc.util.fechas;
 
 /*import org.junit.Assert;
 import org.junit.Test;
@@ -23,14 +24,14 @@ import trastienda.modelo.Categoria;
 import trastienda.negocio.GestionCategorias;*/
 
 public class GestionPublicacionesTest {
-/*//	@Test
+	@Test
 	public void insertarTest() {
 
-		GestionCategorias negocio = new GestionCategorias();
+		GestionPublicaciones negocio = new GestionPublicaciones();
 
 		try {
-			Categoria c = negocio.insertar("TV Led", "Televisores");
-			System.out.println("Se insertó el id: " + c.getIdCategoria());
+			Publicacion p = negocio.insertar("Idea1", "xxx", "archivo", 1, 1, fecha.getFecha(10, 03, 2014), "palabra1,palabra2,palabra3,palabra4");
+			System.out.println("Se insertó la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
 			Assert.fail("Fallo la inserción: " + e.getMessage());
@@ -38,6 +39,7 @@ public class GestionPublicacionesTest {
 	}
 
 	//@Test
+	/*
 	public void actualizarTest() {
 
 		GestionCategorias negocio = new GestionCategorias();
@@ -53,7 +55,8 @@ public class GestionPublicacionesTest {
 	}
 	*/
 
-	@Test
+	//@Test
+	
 	public void ReportedePublicacionesTest() throws ParseException {
 
 		GestionPublicaciones negocio = new GestionPublicaciones();
