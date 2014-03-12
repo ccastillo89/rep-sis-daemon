@@ -1,7 +1,7 @@
 package upc.negocio;
 
 import java.sql.Date;
-import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Collection;
 
 import upc.dao.PublicacionDAO;
@@ -12,7 +12,7 @@ public class GestionPublicaciones {
 
 	public Publicacion insertar(String titulo, String descripcion,String archivo,int idUsuario,
 				int estado,Date fechaCreacion,String palabraClave)
-			throws DAOExcepcion {
+			throws DAOExcepcion, ParseException {
 		
 		PublicacionDAO dao = new PublicacionDAO();
 		Publicacion vo = new Publicacion();
