@@ -1,7 +1,9 @@
 package upc.negocio;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Collection;
+
 import upc.dao.PublicacionDAO;
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Publicacion;
@@ -53,6 +55,39 @@ public class GestionPublicaciones {
 												
 				return dao.actualizar(vo);
 			}
+	
+	public boolean validarDatosIncompletos(String titulo, String descripcion,String archivo,int idUsuario,
+	int estado,String palabraClave){
+        boolean estadovalido=true ;
+        if (titulo.trim().length()==0  ){
+        	estadovalido =false;          
+       }
+        if (descripcion.trim().length()==0  ){
+        	estadovalido =false;          
+         }
+        if (archivo.trim().length()==0 ){
+        	estadovalido =false;          
+         }
+        if (idUsuario ==0  ){
+        	estadovalido =false;          
+         }
+        if (palabraClave.trim().length()==0 ){
+        	estadovalido =false;          
+         }
+        
+        return estadovalido;
+        
+    }  
+	public boolean validarTitulo(String titulo) throws DAOExcepcion{
+		        boolean estadovalido=true ;
+		        PublicacionDAO dao = new PublicacionDAO();
+				Publicacion vo = new Publicacion();
+				vo.setTitulo(titulo);
+				estadovalido =dao.obtener(vo);
+			    return estadovalido;
+		        
+		    }  
+	
 	
 	  public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion
 	  { PublicacionDAO dao = new PublicacionDAO();
