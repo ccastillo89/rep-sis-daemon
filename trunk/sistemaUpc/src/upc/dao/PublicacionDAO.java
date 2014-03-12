@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
+//import java.util.Date;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
@@ -20,21 +22,29 @@ import upc.util.ConexionBD;
 public class PublicacionDAO extends BaseDAO {
 
 
-	public Publicacion insertar(Publicacion vo) throws DAOExcepcion {
-		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,fecha_creacion,palabra_clave) values (?,?,?,?,?,?,?,?)";
+	
+
+
+
+	public Publicacion insertar(Publicacion vo) throws DAOExcepcion, ParseException {
+		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,fecha_creacion,palabra_clave) values (?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			
-			stmt = con.prepareStatement(query);
+			
+			java.sql.Date fechaCreacion = new java.sql.Date(vo.getFechaCreacion().getTime());
+			
+			
+            stmt = con.prepareStatement(query);
 			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
 			stmt.setString(3, vo.getArchivo());
 			stmt.setInt(4, vo.getIdUsuario());
 			stmt.setInt(5, vo.getEstado());
-			stmt.setDate(6, (java.sql.Date) vo.getFechaCreacion());
+			stmt.setDate(6,  fechaCreacion);
 			stmt.setString(7, vo.getPalabraClave());
 					
 			
