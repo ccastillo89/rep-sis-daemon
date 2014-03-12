@@ -94,4 +94,39 @@ public class GestionPublicaciones {
 	  return dao.ReportedePublicaciones(pbePublicacion); 
 	  }
 	 
+ 
+	public Collection<Publicacion> buscarPublicacion(String texto,int estado)
+			throws DAOExcepcion {
+		String query = "select idpublicacion, titulo, descripcion,estado from publicacion where (titulo LIKE ? or descripcion like ? or palabra_clave like ?)  and estado=?";
+		Collection<Publicacion> lista = new ArrayList<Publicacion>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + texto + "%");
+			stmt.setString(2, "%" + texto + "%");
+			stmt.setString(3, "%" + texto + "%");
+			stmt.setInt(4,  estado );
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Publicacion vo = new Publicacion();
+				vo.setIdPublicacion(rs.getInt("idpublicacion"));
+				vo.setTitulo(rs.getString("titulo"));
+				vo.setDescripcion(rs.getString("estado")); 
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}   
+    
 }
