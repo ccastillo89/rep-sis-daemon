@@ -16,7 +16,7 @@ public class PersonaDAO extends BaseDAO {
 	
 	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(String nombre, int IdCentroFormacion)
 			throws DAOExcepcion {
-		String query = "select idpersona,  from categoria where nombre like ?";
+		String query = "select idpersona, nombres, paterno, materno, sexo, tipo_documento, numero_doc, celular, idcentro_formacion from persona where nombres like ? and idcentro_formacion = ?";
 		Collection<Persona> lista = new ArrayList<Persona>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -25,11 +25,19 @@ public class PersonaDAO extends BaseDAO {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%" + nombre + "%");
+			stmt.setInt(2, IdCentroFormacion);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Persona vo = new Persona();
-				vo.setNombres(rs.getString("Nombres"));
-				vo.setPaterno(rs.getString("ApellidoPaterno"));
+				vo.setIdPersona(rs.getInt("idpersona"));
+				vo.setNombres(rs.getString("nombres"));
+				vo.setPaterno(rs.getString("paterno"));
+				vo.setMaterno(rs.getString("materno"));
+				vo.setSexo(rs.getInt("sexo"));
+				vo.setTipoDocumento(rs.getInt("tipo_documento"));
+				vo.setNumeroDoc(rs.getString("numero_doc"));
+				vo.setCelular(rs.getString("celular"));
+				
 				lista.add(vo);
 			}
 		} catch (SQLException e) {
