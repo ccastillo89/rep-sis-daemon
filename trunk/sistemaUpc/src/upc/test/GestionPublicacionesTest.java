@@ -37,10 +37,10 @@ public class GestionPublicacionesTest {
 	
 		try {
 			Publicacion p = negocio.insertar("Idea2", "xxx", "archivo", 1, 1,  fechaCreacion, "palabra1,palabra2,palabra3,palabra4");
-			System.out.println("Se insertÛ la Idea " + p.getTitulo());
+			System.out.println("Se insert√≥ la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
-			Assert.fail("Fallo la inserciÛn: " + e.getMessage());
+			Assert.fail("Fallo la inserci√≥n: " + e.getMessage());
 		}
 	}
 
@@ -56,7 +56,7 @@ public class GestionPublicacionesTest {
 
 
 		} catch (DAOExcepcion e) {
-			Assert.fail("FallÛ la actualizaciÛn: " + e.getMessage());
+			Assert.fail("Fall√≥ la actualizaci√≥n: " + e.getMessage());
 		}
 	}
 	*/
@@ -78,7 +78,7 @@ public class GestionPublicacionesTest {
 			Collection<Publicacion> listado = negocio.ReportedePublicaciones(publi);
 
 			System.out.println("Total de registros: "+ listado.size());
-			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaCreacion \t \t \t InstituciÛn \t \t \t Persona");
+			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaCreacion \t \t \t Instituci√≥n \t \t \t Persona");
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 			for (Publicacion publicacion : listado) {
 				Persona person=publicacion.getUsuario().getPersona();
@@ -88,7 +88,7 @@ public class GestionPublicacionesTest {
 			Assert.assertTrue(listado.size() > 0);			
 			
 		} catch (DAOExcepcion e) {
-			Assert.fail("FallÛ el listado: " + e.getMessage());
+			Assert.fail("Fall√≥ el listado: " + e.getMessage());
 		}
 	}
 	
@@ -102,9 +102,34 @@ public class GestionPublicacionesTest {
 			Categoria nuevo = negocio.obtener(5);
 			Assert.assertEquals(null, nuevo.getDescripcion());
 		} catch (DAOExcepcion e) {
-			Assert.fail("FallÛ la eliminiciÛn: " + e.getMessage());
+			Assert.fail("Fall√≥ la eliminici√≥n: " + e.getMessage());
 		}
 	}
 
 */
+
+   // @Test
+    public void listarPublicacionTest() {
+
+        GestionPublicaciones negocio = new GestionPublicaciones();
+
+        try {
+            Collection<Publicacion> listado = negocio.buscarPublicacion("descripcion", 1);
+
+            System.out.println("Total de registros: " + listado.size());
+
+            for (Publicacion publicacion : listado) {
+                System.out.println(publicacion.getTitulo());
+                System.out.println(publicacion.getEstado());
+                System.out.println(publicacion.getIdUsuario());
+
+            }
+
+            Assert.assertTrue(listado.size() > 0);
+
+        } catch (DAOExcepcion e) {
+            Assert.fail("Fall√≥ el listado: " + e.getMessage());
+        }
+    }
+
 }
