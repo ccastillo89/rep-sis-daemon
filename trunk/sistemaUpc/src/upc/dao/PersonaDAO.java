@@ -14,9 +14,9 @@ import upc.util.ConexionBD;
 public class PersonaDAO extends BaseDAO {
 	
 	
-	public Collection<Persona> buscarPorNombre(String nombre)
+	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(String nombre, int IdCentroFormacion)
 			throws DAOExcepcion {
-		String query = "select id_categoria, nombre, descripcion from categoria where nombre like ?";
+		String query = "select idpersona,  from categoria where nombre like ?";
 		Collection<Persona> lista = new ArrayList<Persona>();
 		Connection con = null;
 		PreparedStatement stmt = null;
