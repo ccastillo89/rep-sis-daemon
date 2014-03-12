@@ -106,6 +106,32 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 	}
 
+	public boolean obtener(Publicacion vo) throws DAOExcepcion {
+		boolean estado = true; 
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "select titulo from publicacion where titulo=?";
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, vo.getTitulo());
+			rs = stmt.executeQuery();
+			
+			if (rs == null) {
+				estado = false;
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return estado;
+	}
 	
 	
 	
