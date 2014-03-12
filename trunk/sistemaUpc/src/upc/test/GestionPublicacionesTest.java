@@ -1,7 +1,5 @@
 package upc.test;
 
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -14,7 +12,7 @@ import upc.excepcion.DAOExcepcion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
-//import upc.util.fechas;
+import upc.util.utilfechas;
 
 /*import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +28,7 @@ public class GestionPublicacionesTest {
 		GestionPublicaciones negocio = new GestionPublicaciones();
 
 		try {
-			Publicacion p = negocio.insertar("Idea1", "xxx", "archivo", 1, 1, fecha.getFecha(10, 03, 2014), "palabra1,palabra2,palabra3,palabra4");
+			Publicacion p = negocio.insertar("Idea1", "xxx", "archivo", 1, 1, utilfechas.getFecha(10, 03, 2014), "palabra1,palabra2,palabra3,palabra4");
 			System.out.println("Se insertó la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
