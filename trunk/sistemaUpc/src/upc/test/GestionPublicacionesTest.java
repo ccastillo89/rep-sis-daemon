@@ -1,9 +1,6 @@
 package upc.test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,7 +9,12 @@ import upc.excepcion.DAOExcepcion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
-import upc.util.utilfechas;
+//import upc.util.utilfechas;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
 
 /*import org.junit.Assert;
 import org.junit.Test;
@@ -22,13 +24,19 @@ import trastienda.modelo.Categoria;
 import trastienda.negocio.GestionCategorias;*/
 
 public class GestionPublicacionesTest {
+	
+	
 	@Test
-	public void insertarTest() {
+	public void insertarTest() throws ParseException {
 
 		GestionPublicaciones negocio = new GestionPublicaciones();
-
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha = formatoFecha.parse("2013-01-01");
+		java.sql.Date fechaCreacion = new java.sql.Date(fecha.getTime());
+		
+	
 		try {
-			Publicacion p = negocio.insertar("Idea1", "xxx", "archivo", 1, 1, utilfechas.getFecha(10, 03, 2014), "palabra1,palabra2,palabra3,palabra4");
+			Publicacion p = negocio.insertar("Idea2", "xxx", "archivo", 1, 1,  fechaCreacion, "palabra1,palabra2,palabra3,palabra4");
 			System.out.println("Se insertó la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
