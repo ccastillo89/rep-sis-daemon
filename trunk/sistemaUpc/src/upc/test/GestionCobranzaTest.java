@@ -27,6 +27,8 @@ public class GestionCobranzaTest {
 			Collection<CentroFormacion> listado = negocio.ListaCobranza(cf);
 
 			System.out.println("Total de registros: "+ listado.size());
+			System.out.println("El Costo por Usuario es: "+ cf.getCostoporusuario());
+			System.out.println("-------------------------------------------");
 			System.out.println("Nombre \t \t \t \t Tipo \t \t \t Cant.Usuarios \t \t \t Pago");
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 			for (CentroFormacion centroformacion : listado) {
