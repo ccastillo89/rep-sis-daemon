@@ -26,7 +26,7 @@ import trastienda.negocio.GestionCategorias;*/
 public class GestionPublicacionesTest {
 	
 	
-	@Test
+	//@Test
 	public void insertarTest() throws ParseException {
 
 		GestionPublicaciones negocio = new GestionPublicaciones();
@@ -61,7 +61,7 @@ public class GestionPublicacionesTest {
 	}
 	*/
 
-	//@Test
+	@Test
 	
 	public void ReportedePublicacionesTest() throws ParseException {
 
@@ -72,13 +72,13 @@ public class GestionPublicacionesTest {
 			publi.setTitulo("");
 			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2014");
 			publi.setFechainicio(fecha);
-			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("11/03/2014");
+			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2014");
 			publi.setFechafin(fecha);
 			publi.setEstado(1); //Creada
 			Collection<Publicacion> listado = negocio.ReportedePublicaciones(publi);
 
 			System.out.println("Total de registros: "+ listado.size());
-			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaCreacion \t \t \t Institución \t \t \t Persona");
+			System.out.println("Titulo \t \t \t \t Descripcion \t \t \t FechaCreacion \t \t \t Institucion \t \t \t Persona");
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 			for (Publicacion publicacion : listado) {
 				Persona person=publicacion.getUsuario().getPersona();
