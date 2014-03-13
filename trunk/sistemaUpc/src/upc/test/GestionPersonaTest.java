@@ -26,8 +26,8 @@ public class GestionPersonaTest {
 			modelo.setPaterno("Castillo");
 			modelo.setMaterno("Calderon");
 			modelo.setNumeroDoc("545454444");
-			modelo.setTipoDocumento(1);
-			modelo.setSexo(1);
+			//modelo.setTipoDocumento(1);
+			//modelo.setSexo(1);
 			modelo.setCelular("98754521");
 			
 			modeloCF.setIdCentroInformacion(1);
@@ -40,11 +40,13 @@ public class GestionPersonaTest {
 				System.out.println("Ingrese Apellido Paterno");
 			}else if(modelo.getMaterno() == ""){
 				System.out.println("Ingrese Apellido Materno");
-			}else if(modelo.getSexo() == 0){
-				System.out.println("Ingrese Sexo");
-			}else if(modelo.getTipoDocumento() == 0){
-				System.out.println("Ingrese Tipo Documento");
-			}else if(modelo.getNumeroDoc() == ""){
+			}
+			//else if(modelo.getSexo() == 0){
+			//	System.out.println("Ingrese Sexo");
+			//}else if(modelo.getTipoDocumento() == 0){
+			//	System.out.println("Ingrese Tipo Documento");
+			//}
+			else if(modelo.getNumeroDoc() == ""){
 				System.out.println("Ingrese Nro documento");
 			}else if(modelo.getCelular() == ""){
 				System.out.println("Ingrese numero de celular");
@@ -73,8 +75,8 @@ public class GestionPersonaTest {
 			modelo.setPaterno("Castillo");
 			modelo.setMaterno("Calderon");
 			modelo.setNumeroDoc("545454444");
-			modelo.setTipoDocumento(1);
-			modelo.setSexo(1);
+			//modelo.setTipoDocumento(1);
+			//modelo.setSexo(1);
 			modelo.setCelular("98754521");
 			
 			modeloCF.setIdCentroInformacion(1);
@@ -87,10 +89,10 @@ public class GestionPersonaTest {
 				System.out.println("Ingrese Apellido Paterno");
 			}else if(modelo.getMaterno() == ""){
 				System.out.println("Ingrese Apellido Materno");
-			}else if(modelo.getSexo() == 0){
-				System.out.println("Ingrese Sexo");
-			}else if(modelo.getTipoDocumento() == 0){
-				System.out.println("Ingrese Tipo Documento");
+			//}else if(modelo.getSexo() == 0){
+			//	System.out.println("Ingrese Sexo");
+			//}else if(modelo.getTipoDocumento() == 0){
+			//	System.out.println("Ingrese Tipo Documento");
 			}else if(modelo.getNumeroDoc() == ""){
 				System.out.println("Ingrese Nro documento");
 			}else if(modelo.getCelular() == ""){

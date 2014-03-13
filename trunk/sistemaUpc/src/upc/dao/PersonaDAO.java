@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
+import upc.modelo.Codigo;
 import upc.modelo.Persona;
 import upc.util.ConexionBD;
 
@@ -31,14 +32,16 @@ public class PersonaDAO extends BaseDAO {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Persona vo = new Persona();
-				CentroFormacion cf = new CentroFormacion();				
+				CentroFormacion cf = new CentroFormacion();
+				Codigo sexo = new Codigo();
+				Codigo tipoDocumento = new Codigo();
 				cf.setNombre(rs.getString("CentroFormacion"));
 				vo.setIdPersona(rs.getInt("idpersona"));
 				vo.setNombres(rs.getString("nombres"));
 				vo.setPaterno(rs.getString("paterno"));
 				vo.setMaterno(rs.getString("materno"));
-				vo.setSexo(rs.getInt("sexo"));
-				vo.setTipoDocumento(rs.getInt("tipo_documento"));
+				sexo.setIdCodigo(rs.getInt("sexo"));
+				tipoDocumento.setIdCodigo(rs.getInt("tipo_documento"));
 				vo.setNumeroDoc(rs.getString("numero_doc"));
 				vo.setCelular(rs.getString("celular"));
 				vo.setCentroFormacion(cf);
@@ -105,8 +108,8 @@ public class PersonaDAO extends BaseDAO {
 			stmt.setString(1, vo.getNombres());
 			stmt.setString(2, vo.getPaterno());
 			stmt.setString(3, vo.getMaterno());
-			stmt.setInt(4, vo.getSexo());
-			stmt.setInt(5, vo.getTipoDocumento());
+			stmt.setInt(4, vo.getSexo().getIdCodigo());
+			stmt.setInt(5, vo.getTipoDocumento().getIdCodigo());
 			stmt.setString(6, vo.getNumeroDoc());
 			stmt.setString(7, vo.getCelular());
 			stmt.setInt(8, vo.getCentroFormacion().getIdCentroInformacion());
@@ -160,8 +163,8 @@ public class PersonaDAO extends BaseDAO {
 			stmt.setString(1, vo.getNombres());
 			stmt.setString(2, vo.getPaterno());
 			stmt.setString(3, vo.getMaterno());
-			stmt.setInt(4, vo.getSexo());
-			stmt.setInt(5, vo.getTipoDocumento());
+			stmt.setInt(4, vo.getSexo().getIdCodigo());
+			stmt.setInt(5, vo.getTipoDocumento().getIdCodigo());
 			stmt.setString(6, vo.getNumeroDoc());
 			stmt.setString(7, vo.getCelular());
 			stmt.setInt(8, vo.getCentroFormacion().getIdCentroInformacion());

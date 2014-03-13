@@ -1,21 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package upc.modelo;
 
-/**
- *
- * @author proyecto
- */
+
 public class Codigo {
     private  int  idCodigo;
     private  String  descripcionCodigo;
     private  int  idGrupo;
     private  String  grupo;
 
-    public Codigo(int idCodigos, String descripcionCodigo, int idGrupo, String grupo) {
-        this.idCodigo = idCodigos;
+    public Codigo(int idCodigo, String descripcionCodigo, int idGrupo, String grupo) {
+        this.idCodigo = idCodigo;
         this.descripcionCodigo = descripcionCodigo;
         this.idGrupo = idGrupo;
         this.grupo = grupo;
@@ -25,12 +18,12 @@ public class Codigo {
 		super();
 	}
 
-    public int getIdCodigos() {
+    public int getIdCodigo() {
         return idCodigo;
     }
 
-    public void setIdCodigos(int idCodigos) {
-        this.idCodigo = idCodigos;
+    public void setIdCodigo(int idCodigo) {
+        this.idCodigo = idCodigo;
     }
 
     public String getDescripcionCodigo() {

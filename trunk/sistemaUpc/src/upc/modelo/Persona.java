@@ -5,8 +5,8 @@ public class Persona {
     private String nombres;
     private String paterno;
     private String materno;
-    private int sexo;
-    private int tipoDocumento;
+    private Codigo sexo;
+    private Codigo tipoDocumento;
     private String numeroDoc;
     private String celular;
     private CentroFormacion centroFormacion;
@@ -18,7 +18,7 @@ public class Persona {
 	}
 	
 	public Persona(int idPersona, String nombres,
-			String paterno, String materno, int sexo, int tipoDocumento,
+			String paterno, String materno, Codigo sexo, Codigo tipoDocumento,
 			String numeroDoc, String celular, CentroFormacion centroFormacion) {
 		super();
 		this.idPersona = idPersona;
@@ -56,18 +56,6 @@ public class Persona {
 	public void setMaterno(String materno) {
 		this.materno = materno;
 	}
-	public int getSexo() {
-		return sexo;
-	}
-	public void setSexo(int sexo) {
-		this.sexo = sexo;
-	}
-	public int getTipoDocumento() {
-		return tipoDocumento;
-	}
-	public void setTipoDocumento(int tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
 	public String getNumeroDoc() {
 		return numeroDoc;
 	}
@@ -93,6 +81,22 @@ public class Persona {
 
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
+	}
+
+	public Codigo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Codigo sexo) {
+		this.sexo = sexo;
+	}
+
+	public Codigo getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(Codigo tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 	
 }
