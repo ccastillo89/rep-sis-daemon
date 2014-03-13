@@ -20,6 +20,10 @@ public class Codigo {
         this.idGrupo = idGrupo;
         this.grupo = grupo;
     }
+    
+	public Codigo() {
+		super();
+	}
 
     public int getIdCodigos() {
         return idCodigo;
