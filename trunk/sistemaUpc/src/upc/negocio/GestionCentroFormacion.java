@@ -15,6 +15,7 @@ public class GestionCentroFormacion {
 		CentroFormacionDAO dao = new CentroFormacionDAO();
 		
 		dao.buscarPorNombre(ci); 
+		dao.buscarPorURL(ci); 
 		return dao.insertar(ci);				
 						
 		
