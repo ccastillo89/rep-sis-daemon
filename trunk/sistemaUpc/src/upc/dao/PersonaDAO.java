@@ -14,9 +14,9 @@ import upc.util.ConexionBD;
 
 public class PersonaDAO extends BaseDAO {
 		
-	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(String nombre, int IdCentroFormacion)
+	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(Persona ps)
 			throws DAOExcepcion {
-		String query = "select idpersona, nombres, paterno, materno, sexo, tipo_documento, numero_doc, celular, idcentro_formacion from persona where nombres like ? and idcentro_formacion = ?";
+		String query = "select idpersona, nombres, paterno, materno, sexo, tipo_documento, numero_doc, celular, idcentro_formacion from persona where (nombres like ? or paterno like ? materno like ?) and idcentro_formacion = ?";
 		Collection<Persona> lista = new ArrayList<Persona>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -24,8 +24,10 @@ public class PersonaDAO extends BaseDAO {
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, "%" + nombre + "%");
-			stmt.setInt(2, IdCentroFormacion);
+			stmt.setString(1, "%" + ps.getNombreCompleto() + "%");
+			stmt.setString(2, "%" + ps.getNombreCompleto() + "%");
+			stmt.setString(3, "%" + ps.getNombreCompleto() + "%");
+			stmt.setInt(4, ps.getCentroFormacion().getIdCentroInformacion());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Persona vo = new Persona();

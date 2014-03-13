@@ -10,7 +10,7 @@ public class Persona {
     private String numeroDoc;
     private String celular;
     private CentroFormacion centroFormacion;
-    
+	private String nombreCompleto;
 
     
 	public Persona() {
@@ -85,6 +85,14 @@ public class Persona {
 	}
 	public void setCentroFormacion(CentroFormacion centroFormacion) {
 		this.centroFormacion = centroFormacion;
+	}
+	
+    public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 	
 }
