@@ -151,7 +151,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,1,NULL,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,1,NULL,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,1,NULL,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
+INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,6,NULL,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,6,NULL,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,7,NULL,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `codigo` (
 
 LOCK TABLES `codigo` WRITE;
 /*!40000 ALTER TABLE `codigo` DISABLE KEYS */;
-INSERT INTO `codigo` VALUES (1,'Administrador',1,'Roles'),(2,'Supervisor',1,'Roles'),(3,'Asesor',1,'Roles'),(4,'Estudiante',1,'Roles'),(5,'Evaluador de Innovador',1,'Roles'),(6,'Publicada',2,'Estado_Publicacion'),(7,'Aprobada',2,'Estado_Publicacion'),(8,'Rechazada',2,'Estado_Publicacion'),(9,'Universidad',3,'Tipo_CentroFormacion'),(10,'Instituto',3,'Tipo_CentroFormacion'),(11,'DNI',4,'Tipo_Documento'),(12,'RUC',4,'Tipo_Documento');
+INSERT INTO `codigo` VALUES (1,'Administrador',1,'Roles'),(2,'Supervisor',1,'Roles'),(3,'Asesor',1,'Roles'),(4,'Estudiante',1,'Roles'),(5,'Evaluador de Innovador',1,'Roles'),(6,'Creada',2,'Estado_Publicacion'),(7,'Publicada',2,'Estado_Publicacion'),(8,'Aprobada',2,'Estado_Publicacion'),(9,'Rechazada',2,'Estado_Publicacion'),(10,'Universidad',3,'Tipo_CentroFormacion'),(11,'Instituto',3,'Tipo_CentroFormacion'),(12,'DNI',4,'Tipo_Documento'),(13,'RUC',4,'Tipo_Documento');
 /*!40000 ALTER TABLE `codigo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-12 20:29:59
+-- Dump completed on 2014-03-12 20:39:56
