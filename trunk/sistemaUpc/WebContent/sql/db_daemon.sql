@@ -44,11 +44,9 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',1,11,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',1,11,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderón',1,11,'45896325','LE ROBARON',1),(4,'Saul','Ramos','Llerena',1,11,'14521454','65478941',2),(5,'Ivan','Juárez','Sevilla',2,11,'45874521','987924525',3),('Juan', 'Sebastian', 'Asesor', 1, 11, '45874521', '9772324525', 3);
+INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',1,11,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',1,11,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderón',1,11,'45896325','LE ROBARON',1),(4,'Saul','Ramos','Llerena',1,11,'14521454','65478941',2),(5,'Ivan','Juárez','Sevilla',2,11,'45874521','987924525',2);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
 
 --
 -- Table structure for table `respuesta`
@@ -98,7 +96,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,'smlflores18@gmail.com','123',1),(2,2,'manuela@manuelita.com','123',2),(3,3,'carlos@gmail.com','123',1),(4,4,'vagul@gmail.com','123',1),(5,5,'chivan@gmail.com','123',2), (6, 'sebastian@gmail.com', '213', 3);
+INSERT INTO `usuario` VALUES (1,1,'smlflores18@gmail.com','123',1),(2,2,'manuela@manuelita.com','123',2),(3,3,'carlos@gmail.com','123',1),(4,4,'vagul@gmail.com','123',1),(5,5,'chivan@gmail.com','123',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +151,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,6,6,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,6,6,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,7,6,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
+INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,6,NULL,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,6,NULL,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,7,NULL,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +255,7 @@ CREATE TABLE `centro_formacion` (
 
 LOCK TABLES `centro_formacion` WRITE;
 /*!40000 ALTER TABLE `centro_formacion` DISABLE KEYS */;
-INSERT INTO `centro_formacion` VALUES (1,'Universidad Peruana de Ciencias Aplicadas',9,'www.upc.edu.pe',NULL),(2,'Cybertec',10,'www.cybertec.edu.pe',NULL),(3,'Universidad San Ignacio de Loyola',9,'www.usil.edu.pe',NULL),(4,'Universidad Cesar Vallejo',9,'www.ucv.com',NULL),(5,'Universidad San Martin de Porres',9,'www.usmp.com',NULL);
+INSERT INTO `centro_formacion` VALUES (1,'Universidad Peruana de Ciencias Aplicadas',10,'www.upc.edu.pe',NULL),(2,'Cybertec',11,'www.cybertec.edu.pe',NULL),(3,'Universidad San Ignacio de Loyola',10,'www.usil.edu.pe',NULL),(4,'Universidad Cesar Vallejo',10,'www.ucv.com',NULL),(5,'Universidad San Martin de Porres',10,'www.usmp.com',NULL);
 /*!40000 ALTER TABLE `centro_formacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -270,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-12 20:39:56
+-- Dump completed on 2014-03-12 22:02:48
