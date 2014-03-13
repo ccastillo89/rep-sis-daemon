@@ -23,9 +23,6 @@ public class PublicacionDAO extends BaseDAO {
 
 
 	
-
-
-
 	public Publicacion insertar(Publicacion vo) throws DAOExcepcion, ParseException {
 		String query = "insert into Publicacion(titulo,descripcion,archivo,idUsuario,estado,fecha_creacion,palabra_clave) values (?,?,?,?,?,?,?)";
 		Connection con = null;
@@ -116,13 +113,13 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 	}
 
-	public boolean obtener(Publicacion vo) throws DAOExcepcion {
+	public boolean existenciaIdea(Publicacion vo) throws DAOExcepcion {
 		boolean estado = true; 
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String query = "select titulo from publicacion where titulo=?";
+			String query = "select titulo from publicacion where titulo=? and idusuario=?";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, vo.getTitulo());
