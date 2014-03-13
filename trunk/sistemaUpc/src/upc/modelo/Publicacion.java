@@ -7,27 +7,39 @@ public class Publicacion {
     private int idPublicacion;
     private String titulo;
     private String descripcion;
-    private String archivo;
-    private int idUsuario;
-    private int estado;
-    private int usuarioAsesor;
+    private String archivo; 
+    private Codigo estado; 
     private Date fechaCreacion;
     private String palabraClave;
     private Date fechaPublicacion;
     private Usuario usuario;
-    
-    //Campos Adicionales
-    private Date fechainicio;
-    private Date fechafin;
-    
-    
+    private Usuario usuarioAsesor;
+	public Publicacion(int idPublicacion, String titulo, String descripcion,
+			String archivo, Codigo estado, Date fechaCreacion,
+			String palabraClave, Date fechaPublicacion, Usuario usuario,
+			Usuario usuarioAsesor) {
+		super();
+		this.idPublicacion = idPublicacion;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.archivo = archivo;
+		this.estado = estado;
+		this.fechaCreacion = fechaCreacion;
+		this.palabraClave = palabraClave;
+		this.fechaPublicacion = fechaPublicacion;
+		this.usuario = usuario;
+		this.usuarioAsesor = usuarioAsesor;
+	}
+	public Publicacion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdPublicacion() {
 		return idPublicacion;
 	}
 	public void setIdPublicacion(int idPublicacion) {
 		this.idPublicacion = idPublicacion;
 	}
-	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -46,23 +58,11 @@ public class Publicacion {
 	public void setArchivo(String archivo) {
 		this.archivo = archivo;
 	}
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public int getEstado() {
+	public Codigo getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(Codigo estado) {
 		this.estado = estado;
-	}
-	public int getUsuarioAsesor() {
-		return usuarioAsesor;
-	}
-	public void setUsuarioAsesor(int usuarioAsesor) {
-		this.usuarioAsesor = usuarioAsesor;
 	}
 	public Date getFechaCreacion() {
 		return fechaCreacion;
@@ -82,51 +82,18 @@ public class Publicacion {
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-	
-	public Publicacion(int idPublicacion, int idComentario, String titulo,
-			String descripcion, String archivo, int idUsuario, int estado,
-			int usuarioAsesor, Date fechaCreacion, String palabraClave,
-			Date fechaPublicacion,Usuario usuario) {
-		
-		this.idPublicacion = idPublicacion;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.archivo = archivo;
-		this.idUsuario = idUsuario;
-		this.estado = estado;
-		this.usuarioAsesor = usuarioAsesor;
-		this.fechaCreacion = fechaCreacion;
-		this.palabraClave = palabraClave;
-		this.fechaPublicacion = fechaPublicacion;
-		this.usuario=usuario;
-	}
-	
-	public Publicacion() {
-		
-	}
-	public Date getFechafin() {
-		return fechafin;
-	}
-	public void setFechafin(Date fechafin) {
-		this.fechafin = fechafin;
-	}
-	public Date getFechainicio() {
-		return fechainicio;
-	}
-	public void setFechainicio(Date fechainicio) {
-		this.fechainicio = fechainicio;
-	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
+	public Usuario getUsuarioAsesor() {
+		return usuarioAsesor;
+	}
+	public void setUsuarioAsesor(Usuario usuarioAsesor) {
+		this.usuarioAsesor = usuarioAsesor;
+	}
     
-    
-    
-
 
 }
