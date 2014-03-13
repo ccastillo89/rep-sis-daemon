@@ -24,6 +24,8 @@ public class CentroFormacion {
 	
 	//campos adicionales
 	private String strTipo;
+	private double pago;
+	private double costoporusuario;
 	
 	
 	
@@ -89,6 +91,18 @@ public class CentroFormacion {
 	}
 	public void setStrTipo(String strTipo) {
 		this.strTipo = strTipo;
+	}
+	public double getPago() {
+		return pago;
+	}
+	public void setPago(double pago) {
+		this.pago = pago;
+	}
+	public double getCostoporusuario() {
+		return costoporusuario;
+	}
+	public void setCostoporusuario(double costoporusuario) {
+		this.costoporusuario = costoporusuario;
 	}
 	
 	
