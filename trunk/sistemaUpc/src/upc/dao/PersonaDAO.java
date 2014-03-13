@@ -16,7 +16,7 @@ public class PersonaDAO extends BaseDAO {
 		
 	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(Persona ps)
 			throws DAOExcepcion {
-		String query = "select idpersona, nombres, paterno, materno, sexo, tipo_documento, numero_doc, celular, idcentro_formacion from persona where (nombres like ? or paterno like ? materno like ?) and idcentro_formacion = ?";
+		String query = "select A.idpersona, A.nombres, A.paterno, A.materno, A.sexo, A.tipo_documento, A.numero_doc, A.celular, A.idcentro_formacion , B.nombre as CentroFormacion from persona as A inner join centro_formacion as B on A.idcentro_formacion = B.idcentro_formacion  where (A.nombres like ? or A.paterno like ? or A.materno like ?) and A.idcentro_formacion = ?";
 		Collection<Persona> lista = new ArrayList<Persona>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -31,6 +31,8 @@ public class PersonaDAO extends BaseDAO {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Persona vo = new Persona();
+				CentroFormacion cf = new CentroFormacion();				
+				cf.setNombre(rs.getString("CentroFormacion"));
 				vo.setIdPersona(rs.getInt("idpersona"));
 				vo.setNombres(rs.getString("nombres"));
 				vo.setPaterno(rs.getString("paterno"));
@@ -39,6 +41,7 @@ public class PersonaDAO extends BaseDAO {
 				vo.setTipoDocumento(rs.getInt("tipo_documento"));
 				vo.setNumeroDoc(rs.getString("numero_doc"));
 				vo.setCelular(rs.getString("celular"));
+				vo.setCentroFormacion(cf);
 				
 				lista.add(vo);
 			}
@@ -54,9 +57,45 @@ public class PersonaDAO extends BaseDAO {
 		return lista;
 	}
 	
+	public Boolean validarDocumentoIdentidad(Persona ps) throws DAOExcepcion {
+		Boolean resultado = false;
+		
+		String query = "select count(1) as Cantidad from persona where numero_doc = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int cantidad = 0;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, ps.getNumeroDoc());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				cantidad += rs.getInt("Cantidad");
+			}
+			
+			if (cantidad > 0){
+				resultado = false;
+			}else
+			{
+				resultado = true;
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+		return resultado;
+	}
+	
 	
 	public Persona insertar(Persona vo) throws DAOExcepcion {
-		String query = "insert into Personas (nombres,paterno,materno,sexo, tipo_documento, numero_doc, celular, idcentro_formacion) values (?,?,?,?,?,?,?,?)";
+		String query = "insert into Persona (nombres,paterno,materno,sexo, tipo_documento, numero_doc, celular, idcentro_formacion) values (?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
