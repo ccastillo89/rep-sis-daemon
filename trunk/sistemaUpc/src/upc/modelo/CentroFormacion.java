@@ -29,10 +29,10 @@ public class CentroFormacion {
 	
 	
 	
-	public Collection<Persona> getPersonas() {
+	public Collection<Persona> getPersona() {
 		return persona;
 	}
-	public void setPersonas(Collection<Persona> persona) {
+	public void setPersona(Collection<Persona> persona) {
 		this.persona = persona;
 	}
 	public int getIdCentroInformacion() {
