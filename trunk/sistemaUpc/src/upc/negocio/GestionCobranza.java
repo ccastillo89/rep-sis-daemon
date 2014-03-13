@@ -1,5 +1,6 @@
 package upc.negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import upc.dao.CobranzaDAO;
@@ -10,6 +11,14 @@ public class GestionCobranza {
 
 	  public Collection<CentroFormacion> ListaCobranza(CentroFormacion pbeCentroformacion) throws DAOExcepcion
 	  { CobranzaDAO dao = new CobranzaDAO();
-	  return dao.ListaCobranza(pbeCentroformacion); 
+	  Collection<CentroFormacion> listacf=new ArrayList<CentroFormacion>();
+	  
+	  listacf= dao.ListaCobranza(pbeCentroformacion); 
+	  
+	  for (CentroFormacion centroFormacion : listacf) {
+		centroFormacion.setPago(centroFormacion.getPersona().size()*pbeCentroformacion.getCostoporusuario());
+	}
+	  
+	  return listacf;
 	  }
 }
