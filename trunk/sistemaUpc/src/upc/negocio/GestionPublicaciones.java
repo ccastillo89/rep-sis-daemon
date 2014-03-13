@@ -83,7 +83,7 @@ public class GestionPublicaciones {
 		        PublicacionDAO dao = new PublicacionDAO();
 				Publicacion vo = new Publicacion();
 				vo.setTitulo(titulo);
-				estadovalido =dao.obtener(vo);
+				estadovalido =dao.existenciaIdea(vo);
 			    return estadovalido;
 		        
 		    }  
