@@ -19,17 +19,21 @@ public class CentroFormacion {
 	private int tipo;
 	private String url;
 	private String logo;
-	private Collection<Personas> personas;
+	private Collection<Persona> persona;
+	
+	
+	//campos adicionales
+	private String strTipo;
 	
 	
 	
 	
 	
-	public Collection<Personas> getPersonas() {
-		return personas;
+	public Collection<Persona> getPersonas() {
+		return persona;
 	}
-	public void setPersonas(Collection<Personas> personas) {
-		this.personas = personas;
+	public void setPersonas(Collection<Persona> persona) {
+		this.persona = persona;
 	}
 	public int getIdCentroInformacion() {
 		return idCentroInformacion;
@@ -67,17 +71,24 @@ public class CentroFormacion {
 
 	
 	public CentroFormacion(int idCentroInformacion, String nombre, int tipo,
-			String url, String logo, Collection<Personas> personas) {
+			String url, String logo, Collection<Persona> persona) {
 		super();
 		this.idCentroInformacion = idCentroInformacion;
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.url = url;
 		this.logo = logo;
-		this.personas = personas;
+		this.persona = persona;
 	}
 	public CentroFormacion() {
 		super();
+	
+	}
+	public String getStrTipo() {
+		return strTipo;
+	}
+	public void setStrTipo(String strTipo) {
+		this.strTipo = strTipo;
 	}
 	
 	
