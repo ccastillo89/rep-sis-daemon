@@ -152,7 +152,7 @@ public class PublicacionDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select pu.idpublicacion,pu.titulo,pu.descripcion,pu.fecha_creacion,pu.fecha_publicacion,u.correo,p.nombres,p.paterno,p.materno,cf.nombre as institucion from publicacion pu inner join usuario u on u.idusuario=pu.idusuario inner join persona p on u.idusuario=p.usuario_idusuario inner join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion where pu.titulo like ? and (pu.fecha_creacion>=? and pu.fecha_creacion<=?) and pu.estado=?";
+			String query = "select pu.idpublicacion,pu.titulo,pu.descripcion,pu.fecha_creacion,pu.fecha_publicacion,u.correo,p.nombres,p.paterno,p.materno,cf.nombre as institucion from publicacion pu inner join usuario u on u.idusuario=pu.idusuario inner join persona p on u.idpersona=p.idpersona inner join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion where pu.titulo like ? and (pu.fecha_creacion>=? and pu.fecha_creacion<=?) and pu.estado=?";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%"+ pbePublicacion.getTitulo()+"%");
 			stmt.setDate(2, new java.sql.Date(pbePublicacion.getFechainicio().getTime()));
