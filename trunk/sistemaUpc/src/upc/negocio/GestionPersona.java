@@ -29,7 +29,7 @@ public class GestionPersona {
 	
 	public Collection<Persona> buscarPersonaPorNombreCentroFormacion(Persona ps) throws DAOExcepcion {
 		PersonaDAO dao = new PersonaDAO();
-		return dao.buscarPersonaPorNombreCentroFormacion(ps.getNombres(), ps.getCentroFormacion().getIdCentroInformacion());
+		return dao.buscarPersonaPorNombreCentroFormacion(ps);
 	}
 
 	
