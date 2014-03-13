@@ -13,7 +13,7 @@ import upc.excepcion.DAOExcepcion;
 
 public class GestionPersonaTest {
 	
-	@Test
+	//@Test
 	public void insertarTest() {
 
 		GestionPersona negocio = new GestionPersona();
@@ -33,7 +33,26 @@ public class GestionPersonaTest {
 			modeloCF.setIdCentroInformacion(1);
 			modelo.setCentroFormacion(modeloCF);
 			
-			negocio.insertar(modelo);
+			if (modelo.getNombres() == "")
+			{
+				System.out.println("Ingrese nombre");
+			}else if(modelo.getPaterno() == ""){
+				System.out.println("Ingrese Apellido Paterno");
+			}else if(modelo.getMaterno() == ""){
+				System.out.println("Ingrese Apellido Materno");
+			}else if(modelo.getSexo() == 0){
+				System.out.println("Ingrese Sexo");
+			}else if(modelo.getTipoDocumento() == 0){
+				System.out.println("Ingrese Tipo Documento");
+			}else if(modelo.getNumeroDoc() == ""){
+				System.out.println("Ingrese Nro documento");
+			}else if(modelo.getCelular() == ""){
+				System.out.println("Ingrese numero de celular");
+			}
+			else{
+				negocio.insertar(modelo);			
+				System.out.println("============= Registrado Correctamente =============");
+			}
 			
 		} catch (DAOExcepcion e) {
 			Assert.fail("Fallo la inserción: " + e.getMessage());
@@ -61,8 +80,27 @@ public class GestionPersonaTest {
 			modeloCF.setIdCentroInformacion(1);
 			modelo.setCentroFormacion(modeloCF);
 			
-			negocio.actualizar(modelo);			
-
+			if (modelo.getNombres() == "")
+			{
+				System.out.println("Ingrese nombre");
+			}else if(modelo.getPaterno() == ""){
+				System.out.println("Ingrese Apellido Paterno");
+			}else if(modelo.getMaterno() == ""){
+				System.out.println("Ingrese Apellido Materno");
+			}else if(modelo.getSexo() == 0){
+				System.out.println("Ingrese Sexo");
+			}else if(modelo.getTipoDocumento() == 0){
+				System.out.println("Ingrese Tipo Documento");
+			}else if(modelo.getNumeroDoc() == ""){
+				System.out.println("Ingrese Nro documento");
+			}else if(modelo.getCelular() == ""){
+				System.out.println("Ingrese numero de celular");
+			}
+			else{
+				negocio.actualizar(modelo);			
+				System.out.println("============= Actualizado Correctamente =============");	
+			}
+			
 		} catch (DAOExcepcion e) {
 			Assert.fail("Falló la actualización: " + e.getMessage());
 		}
@@ -74,14 +112,14 @@ public class GestionPersonaTest {
 			
 			try {
 				negocio.eliminar(1);
-				
+				System.out.println("============= eliminado Correctamente =============");	
 			} catch (DAOExcepcion e) {
 				Assert.fail("Falló la eliminición: " + e.getMessage());
 			}
 		}
 		
 		
-		// @Test
+		//@Test
 		public void BuscarPersonaPorNombreYCentroFormacionTest() {
 
 			GestionPersona negocio = new GestionPersona();
@@ -112,6 +150,28 @@ public class GestionPersonaTest {
 			}
 		}
 		
+		@Test
+		public void validarNumeroDocumentoTest(){
+			
+			GestionPersona negocio = new GestionPersona();
+			try {
+				
+				Persona ps = new Persona();
+				ps.setNumeroDoc("45782145");
+				if (negocio.validarDocumentoIdentidad(ps))
+				{
+					
+					System.out.println("============= No existe DNI =============");
+				}else
+				{
+					System.out.println("============= EEEExiste DNI =============");
+					
+				}				
+			} catch (DAOExcepcion e) {
+				Assert.fail("Falló el listado: " + e.getMessage());
+			}
+			
+		}
 	
 	
 
