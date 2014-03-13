@@ -161,6 +161,41 @@ public class CentroFormacionDAO extends BaseDAO {
 		}
 		return i;
 	}
+	
+	
+	public int buscarPorURL(CentroFormacion vo) throws DAOExcepcion {
+		String query = "Select count(url) as Total From centro_formacion where url = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int i = 0 ;
+		
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+	
+			stmt.setString(1, vo.getUrl());
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				i = rs.getInt("Total");				
+			
+			}
+			
+			if (i != 0) {
+				throw new SQLException("URL ya registrada.");
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return i;
+	}
 
 
 	
