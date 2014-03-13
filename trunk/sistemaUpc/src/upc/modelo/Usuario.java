@@ -5,7 +5,7 @@ public class Usuario {
     private int idUsuario;
     private String correo;
     private String password;
-    private int tipoUsuario;
+    private Codigo tipoUsuario;
     private Persona persona;
 
     public int getIdUsuario() {
@@ -32,23 +32,6 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(int tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public Usuario(int idUsuario, String correo, String password,
-            int tipoUsuario,Persona persona) {
-        this.idUsuario = idUsuario;
-        this.correo = correo;
-        this.password = password;
-        this.tipoUsuario = tipoUsuario;
-        this.persona=persona;
-    }
-
 	public Usuario() {
 		super();
 	}
@@ -60,5 +43,23 @@ public class Usuario {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-    
+
+	public Codigo getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(Codigo tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public Usuario(int idUsuario, String correo, String password,
+			Codigo tipoUsuario, Persona persona) {
+		super();
+		this.idUsuario = idUsuario;
+		this.correo = correo;
+		this.password = password;
+		this.tipoUsuario = tipoUsuario;
+		this.persona = persona;
+	}
+	
 }
