@@ -44,9 +44,11 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',1,11,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',1,11,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderón',1,11,'45896325','LE ROBARON',1),(4,'Saul','Ramos','Llerena',1,11,'14521454','65478941',2),(5,'Ivan','Juárez','Sevilla',2,11,'45874521','987924525',3);
+INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',1,11,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',1,11,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderón',1,11,'45896325','LE ROBARON',1),(4,'Saul','Ramos','Llerena',1,11,'14521454','65478941',2),(5,'Ivan','Juárez','Sevilla',2,11,'45874521','987924525',3),('Juan', 'Sebastian', 'Asesor', 1, 11, '45874521', '9772324525', 3);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
 
 --
 -- Table structure for table `respuesta`
@@ -96,7 +98,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,'smlflores18@gmail.com','123',1),(2,2,'manuela@manuelita.com','123',2),(3,3,'carlos@gmail.com','123',1),(4,4,'vagul@gmail.com','123',1),(5,5,'chivan@gmail.com','123',2);
+INSERT INTO `usuario` VALUES (1,1,'smlflores18@gmail.com','123',1),(2,2,'manuela@manuelita.com','123',2),(3,3,'carlos@gmail.com','123',1),(4,4,'vagul@gmail.com','123',1),(5,5,'chivan@gmail.com','123',2), (6, 'sebastian@gmail.com', '213', 3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +153,7 @@ CREATE TABLE `publicacion` (
 
 LOCK TABLES `publicacion` WRITE;
 /*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
-INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,6,NULL,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,6,NULL,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,7,NULL,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
+INSERT INTO `publicacion` VALUES (1,'Aplicacion SmarthPhone','Crear una Aplicacion Mostrar Ideas',NULL,1,6,6,'2014-03-12 00:00:00','smarthphone','2014-03-12 00:00:00'),(2,'Videoteca Online','Implementar una Videoteca Online',NULL,2,6,6,'2014-03-12 00:00:00','videoteca','2014-03-12 00:00:00'),(3,'Biblioteca Online','Desarrollar una Biblioteca Online',NULL,1,7,6,'2014-03-12 00:00:00','biblioteca','2014-03-12 00:00:00');
 /*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
