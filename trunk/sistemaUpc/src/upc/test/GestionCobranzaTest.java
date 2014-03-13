@@ -22,7 +22,7 @@ public class GestionCobranzaTest {
 		CentroFormacion cf=new CentroFormacion();
 
 		try {
-		
+			cf.setCostoporusuario(50);
 			
 			Collection<CentroFormacion> listado = negocio.ListaCobranza(cf);
 
@@ -30,7 +30,7 @@ public class GestionCobranzaTest {
 			System.out.println("Nombre \t \t \t \t Tipo \t \t \t Cant.Usuarios \t \t \t Pago");
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
 			for (CentroFormacion centroformacion : listado) {
-				System.out.println(centroformacion.getNombre()+"\t\t"+centroformacion.getStrTipo()+"\t"+centroformacion.getPersona().size()+"\t\t");
+				System.out.println(centroformacion.getNombre()+"\t\t"+centroformacion.getStrTipo()+"\t"+centroformacion.getPersona().size()+"\t\t"+centroformacion.getPago());
 			}
 			
 			Assert.assertTrue(listado.size() > 0);			
