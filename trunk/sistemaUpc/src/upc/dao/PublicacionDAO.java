@@ -113,8 +113,8 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 	}
 
-	public boolean existenciaIdea(Publicacion vo) throws DAOExcepcion {
-		boolean estado = true; 
+	public boolean existeIdea(String titulo,int idusuario) throws DAOExcepcion {
+		boolean encontrado = true; 
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -122,11 +122,12 @@ public class PublicacionDAO extends BaseDAO {
 			String query = "select titulo from publicacion where titulo=? and idusuario=?";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, vo.getTitulo());
-			rs = stmt.executeQuery();
+			stmt.setString(1, titulo);
+			stmt.setInt(2, idusuario);
+			rs = stmt.executeQuery(); 
 			
 			if (rs == null) {
-				estado = false;
+				encontrado = false;
 			}
 			
 		} catch (SQLException e) {
@@ -137,7 +138,7 @@ public class PublicacionDAO extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		return estado;
+		return encontrado;
 	}
 	
 	
