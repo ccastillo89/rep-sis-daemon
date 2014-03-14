@@ -1,6 +1,7 @@
 package upc.negocio;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Collection;
 
@@ -10,22 +11,29 @@ import upc.modelo.Publicacion;
 
 public class GestionPublicaciones {
 
-	public Publicacion insertar(String titulo, String descripcion,String archivo,int idUsuario,
-				int estado,Date fechaCreacion,String palabraClave)
-			throws DAOExcepcion, ParseException {
-		
-		PublicacionDAO dao = new PublicacionDAO();
-		Publicacion vo = new Publicacion();
-		vo.setTitulo(titulo);
-		vo.setDescripcion(descripcion);
-		vo.setArchivo(archivo);
-		vo.setIdUsuario(idUsuario);
-		vo.setEstado(estado);
-		vo.setFechaCreacion(fechaCreacion);
-		vo.setPalabraClave(palabraClave);
+	public Publicacion insertar(Publicacion pub) throws DAOExcepcion {
 				
-		return dao.insertar(vo);
+		PublicacionDAO dao = new PublicacionDAO();
+		Publicacion pub2= new Publicacion();
+		
+		if (dao.existeIdea(pub.getTitulo(),pub.getUsuario().getIdUsuario())== false) {
+			try {
+				pub2=dao.insertar(pub);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			}
+		else {
+			System.out.println("Ya idea ya Existe");	
+			}
+		return pub2;
+		
 	}
+	
+				 
+
 	
 	public Publicacion actualizar(int idPublicacion,String titulo, String descripcion,String archivo,String palabraClave)
 					throws DAOExcepcion {
