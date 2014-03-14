@@ -14,6 +14,13 @@ public class Publicacion {
     private Date fechaPublicacion;
     private Usuario usuario;
     private Usuario usuarioAsesor;
+    
+    
+  //Campos Adicionales
+    private Date fechainicio;
+    private Date fechafin;
+    
+	
 	public Publicacion(int idPublicacion, String titulo, String descripcion,
 			String archivo, Codigo estado, Date fechaCreacion,
 			String palabraClave, Date fechaPublicacion, Usuario usuario,
@@ -32,7 +39,6 @@ public class Publicacion {
 	}
 	public Publicacion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getIdPublicacion() {
 		return idPublicacion;
@@ -96,4 +102,18 @@ public class Publicacion {
 	}
     
 
+	//get y set  campos adicionales
+	public Date getFechainicio() {
+		return fechainicio;
+	}
+	public void setFechainicio(Date fechainicio) {
+		this.fechainicio = fechainicio;
+	}
+	public Date getFechafin() {
+		return fechafin;
+	}
+	public void setFechafin(Date fechafin) {
+		this.fechafin = fechafin;
+	}
+	
 }
