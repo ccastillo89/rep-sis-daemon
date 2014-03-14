@@ -39,8 +39,8 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
 			stmt.setString(3, vo.getArchivo());
-			stmt.setInt(4, vo.getIdUsuario());
-			stmt.setInt(5, vo.getEstado());
+			stmt.setInt(4, vo.getUsuario().getIdUsuario());
+			stmt.setInt(5, vo.getEstado().getIdCodigo());
 			stmt.setDate(6,  fechaCreacion);
 			stmt.setString(7, vo.getPalabraClave());
 					
@@ -96,7 +96,7 @@ public class PublicacionDAO extends BaseDAO {
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, vo.getEstado());
+			stmt.setInt(1, vo.getEstado().getIdCodigo());
 			stmt.setInt(2, vo.getIdPublicacion());
 						
 			int i = stmt.executeUpdate();
