@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import upc.modelo.CentroFormacion;
+import upc.modelo.Codigo;
 import upc.modelo.Persona;
 import upc.negocio.GestionPersona;
 import upc.excepcion.DAOExcepcion;
@@ -19,40 +20,30 @@ public class GestionPersonaTest {
 		GestionPersona negocio = new GestionPersona();
 		Persona modelo = new Persona();
 		CentroFormacion modeloCF = new CentroFormacion();
+		Codigo sexo = new Codigo();
+		Codigo tipoDocumento = new Codigo();
+		
+		Persona personaRegistrada = new Persona();
 		
 		try {
 			
+			sexo.setIdCodigo(14);
+			tipoDocumento.setIdCodigo(12);
 			modelo.setNombres("Carlos");
 			modelo.setPaterno("Castillo");
 			modelo.setMaterno("Calderon");
 			modelo.setNumeroDoc("545454444");
-			//modelo.setTipoDocumento(1);
-			//modelo.setSexo(1);
+			modelo.setTipoDocumento(tipoDocumento);
+			modelo.setSexo(sexo);
 			modelo.setCelular("98754521");
 			
 			modeloCF.setIdCentroInformacion(1);
 			modelo.setCentroFormacion(modeloCF);
 			
-			if (modelo.getNombres() == "")
-			{
-				System.out.println("Ingrese nombre");
-			}else if(modelo.getPaterno() == ""){
-				System.out.println("Ingrese Apellido Paterno");
-			}else if(modelo.getMaterno() == ""){
-				System.out.println("Ingrese Apellido Materno");
-			}
-			//else if(modelo.getSexo() == 0){
-			//	System.out.println("Ingrese Sexo");
-			//}else if(modelo.getTipoDocumento() == 0){
-			//	System.out.println("Ingrese Tipo Documento");
-			//}
-			else if(modelo.getNumeroDoc() == ""){
-				System.out.println("Ingrese Nro documento");
-			}else if(modelo.getCelular() == ""){
-				System.out.println("Ingrese numero de celular");
-			}
-			else{
-				negocio.insertar(modelo);			
+			
+			personaRegistrada = negocio.insertar(modelo);
+			
+			if(!personaRegistrada.equals(null)){
 				System.out.println("============= Registrado Correctamente =============");
 			}
 			

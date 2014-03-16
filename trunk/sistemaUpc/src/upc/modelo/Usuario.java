@@ -8,6 +8,20 @@ public class Usuario {
     private Codigo tipoUsuario;
     private Persona persona;
 
+    public Usuario() {
+		super();
+	}
+	
+	public Usuario(int idUsuario, String correo, String password,
+			Codigo tipoUsuario, Persona persona) {
+		super();
+		this.idUsuario = idUsuario;
+		this.correo = correo;
+		this.password = password;
+		this.tipoUsuario = tipoUsuario;
+		this.persona = persona;
+	}
+    
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -32,10 +46,6 @@ public class Usuario {
         this.password = password;
     }
 
-	public Usuario() {
-		super();
-	}
-
 	public Persona getPersona() {
 		return persona;
 	}
@@ -52,14 +62,4 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public Usuario(int idUsuario, String correo, String password,
-			Codigo tipoUsuario, Persona persona) {
-		super();
-		this.idUsuario = idUsuario;
-		this.correo = correo;
-		this.password = password;
-		this.tipoUsuario = tipoUsuario;
-		this.persona = persona;
-	}
-	
 }
