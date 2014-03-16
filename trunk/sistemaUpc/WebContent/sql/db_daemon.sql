@@ -44,7 +44,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',14,11,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',14,11,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderon',14,11,'45896325','98989899',1),(4,'Saul','Ramos','Llerena',14,11,'14521454','65478941',2),(5,'Ivan','Juarez','Sevilla',14,11,'45874521','987924525',2);
+INSERT INTO `persona` VALUES (1,'Samuel','Flores','hernandez',14,12,'46683052','987924562',1),(2,'Manuel','Angeles','de la Cruz',14,12,'45782145','45688711',1),(3,'Carlos ','Castillo','Calderon',14,12,'45896325','98989899',1),(4,'Saul','Ramos','Llerena',14,12,'14521454','65478941',2),(5,'Ivan','Juarez','Sevilla',14,12,'45874521','987924525',2);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
