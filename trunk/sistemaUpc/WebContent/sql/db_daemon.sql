@@ -34,7 +34,9 @@ CREATE TABLE `persona` (
   `numero_doc` varchar(45) DEFAULT NULL,
   `celular` varchar(12) DEFAULT NULL,
   `idcentro_formacion` int(11) NOT NULL,
-  PRIMARY KEY (`idpersona`)
+  PRIMARY KEY (`idpersona`),
+	FOREIGN KEY (idcentro_formacion) 
+    REFERENCES centro_formacion(idcentro_formacion) 
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,7 +62,11 @@ CREATE TABLE `respuesta` (
   `texto` text,
   `idcomentario` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
-  PRIMARY KEY (`idrespuesta`)
+  PRIMARY KEY (`idrespuesta`),
+	FOREIGN KEY (idcomentario) 
+	REFERENCES comentario(idcomentario) ,
+	FOREIGN KEY (idusuario) 
+	REFERENCES usuario(idusuario) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,7 +92,9 @@ CREATE TABLE `usuario` (
   `correo` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `tipo_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idusuario`)
+  PRIMARY KEY (`idusuario`),
+	FOREIGN KEY (idpersona) 
+	REFERENCES persona(idpersona) 
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,7 +118,8 @@ DROP TABLE IF EXISTS `usuario_permitido`;
 CREATE TABLE `usuario_permitido` (
   `idcomentario` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
-  `puntos` int(11) DEFAULT NULL
+  `puntos` int(11) DEFAULT NULL,
+	PRIMARY KEY (`idcomentario`, `idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,7 +150,11 @@ CREATE TABLE `publicacion` (
   `fecha_creacion` datetime DEFAULT NULL,
   `palabra_clave` varchar(250) DEFAULT NULL,
   `fecha_publicacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`idpublicacion`)
+  PRIMARY KEY (`idpublicacion`),
+	FOREIGN KEY (idusuario) 
+	REFERENCES usuario(idusuario) ,
+	FOREIGN KEY (usuario_acesor) 
+	REFERENCES usuario(idusuario) 
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,7 +181,9 @@ CREATE TABLE `asesoria` (
   `calificacion` int(11) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   `idpublicacion` int(11) NOT NULL,
-  PRIMARY KEY (`idasesoria`)
+  PRIMARY KEY (`idasesoria`),
+	FOREIGN KEY (idpublicacion) 
+	REFERENCES publicacion(idpublicacion) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -219,7 +234,11 @@ CREATE TABLE `comentario` (
   `descripcion` text,
   `idpublicacion` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
-  PRIMARY KEY (`idcomentario`)
+  PRIMARY KEY (`idcomentario`),
+FOREIGN KEY (idpublicacion) 
+	REFERENCES publicacion(idpublicacion) ,
+FOREIGN KEY (idusuario) 
+	REFERENCES usuario(idusuario) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -269,3 +288,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-03-12 22:02:48
+
+
+
