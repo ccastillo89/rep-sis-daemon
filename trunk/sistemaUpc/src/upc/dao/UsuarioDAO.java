@@ -8,9 +8,232 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.CentroFormacion;
+import upc.modelo.Codigo;
+import upc.modelo.Persona;
 import upc.modelo.Usuario;
 import upc.util.ConexionBD;
 
-public class UsuarioDAO {
+public class UsuarioDAO extends BaseDAO {
 
+	public Collection<Usuario> BuscarUsuariosPorCentroFormacion(Persona ps)
+			throws DAOExcepcion {
+		String query = "";
+		
+		query += "select A.idUsuario, A.tipo_usuario, D.descripcion_codigo as TipoUsuario, B.idpersona, B.nombres, B.paterno, ";
+		query += "B.materno, B.sexo as idSexo, E.descripcion_codigo as Sexo, ";
+		query += "B.tipo_documento as idtipoDocumento, F.descripcion_codigo as tipoDocumento,";
+		query += "B.numero_doc, B.celular, B.idcentro_formacion,  C.nombre as CentroFormacion, A.correo ";
+		query += "from usuario A ";
+		query += "inner join persona B on A.idpersona = B.idpersona ";
+		query += "inner join centro_formacion C on B.idcentro_formacion = C.idcentro_formacion ";
+		query += "inner join codigo D on A.tipo_usuario = D.idcodigo ";
+		query += "inner join codigo E on B.sexo= E.idcodigo ";
+		query += "inner join codigo F on B.tipo_documento = F.idcodigo ";
+		query += "where (B.nombres like ? or B.paterno like ? or B.materno like ?)  ";
+		query += "and (? = 0 or B.idcentro_formacion = ?)"; 
+		
+		Collection<Usuario> lista = new ArrayList<Usuario>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + ps.getNombreCompleto() + "%");
+			stmt.setString(2, "%" + ps.getNombreCompleto() + "%");
+			stmt.setString(3, "%" + ps.getNombreCompleto() + "%");
+			stmt.setInt(4, ps.getCentroFormacion().getIdCentroInformacion());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Usuario user = new Usuario();
+				Persona person = new Persona();
+				CentroFormacion cf = new CentroFormacion();
+				Codigo sexo = new Codigo();
+				Codigo tipoDocumento = new Codigo();
+				Codigo rol = new Codigo(); 
+				
+				user.setIdUsuario(rs.getInt("idUsuario"));
+				user.setCorreo(rs.getString("correo"));
+				rol.setIdCodigo(rs.getInt("tipo_usuario"));
+				rol.setDescripcionCodigo(rs.getString("TipoUsuario"));
+				user.setTipoUsuario(rol);
+				
+				person.setIdPersona(rs.getInt("idpersona"));
+				person.setNombres(rs.getString("nombres"));
+				person.setPaterno(rs.getString("paterno"));
+				person.setMaterno(rs.getString("materno"));
+				sexo.setIdCodigo(rs.getInt("idSexo"));
+				sexo.setDescripcionCodigo(rs.getString("Sexo"));
+				person.setSexo(sexo);
+				tipoDocumento.setDescripcionCodigo(rs.getString("tipoDocumento"));
+				tipoDocumento.setIdCodigo(rs.getInt("idtipoDocumento"));
+				person.setTipoDocumento(tipoDocumento);
+				person.setNumeroDoc(rs.getString("numero_doc"));
+				person.setCelular(rs.getString("celular"));
+				cf.setIdCentroInformacion(rs.getInt("idcentro_formacion"));
+				cf.setNombre(rs.getString("CentroFormacion"));
+				person.setCentroFormacion(cf);
+				
+				user.setPersona(person);
+				
+				lista.add(user);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
+	
+	public Usuario insertar(Usuario user) throws DAOExcepcion {
+		String query = "insert into usuario (idpersona,correo,password,tipo_usuario) values (?,?,?,?)";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, user.getPersona().getIdPersona());
+			stmt.setString(2, user.getCorreo());
+			stmt.setString(3, user.getPassword());
+			stmt.setInt(4, user.getTipoUsuario().getIdCodigo());
+			
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo insertar");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return user;
+	}
+	
+	public void eliminar(int idUsuario) throws DAOExcepcion {
+		String query = "delete from usuario WHERE idUsuario=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idUsuario);
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo eliminar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+	}
+	
+	public Usuario actualizar(Usuario user) throws DAOExcepcion {
+		String query = "update usuario set idpersona = ?, correo = ?, password = ?, tipo_usuario = ? where idusuario=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+	
+			stmt.setInt(1, user.getPersona().getIdPersona());
+			stmt.setString(2, user.getCorreo());
+			stmt.setString(3, user.getPassword());
+			stmt.setInt(4, user.getTipoUsuario().getIdCodigo());
+			stmt.setInt(9, user.getIdUsuario());
+						
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return user;
+	}
+	
+	public Boolean loginUsuario(Usuario user) throws DAOExcepcion {
+		Boolean resultado = false;
+		
+		String query = "select count(1) as Cantidad from usuario where email = ? and password = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int cantidad = 0;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, user.getCorreo().trim());
+			stmt.setString(2, user.getPassword().trim());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				cantidad += rs.getInt("Cantidad");
+			}
+			if (cantidad > 0){
+				resultado = false;
+			}else{
+				resultado = true;}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+		return resultado;
+	}
+	
+	public Boolean validarCorreoPersona(Usuario user) throws DAOExcepcion {
+		Boolean resultado = false;
+		
+		String query = "select count(1) as Cantidad from usuario where email = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int cantidad = 0;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, user.getCorreo());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				cantidad += rs.getInt("Cantidad");
+			}
+			if (cantidad > 0){
+				resultado = false;
+			}else{
+				resultado = true;}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+		return resultado;
+	}
+	
 }

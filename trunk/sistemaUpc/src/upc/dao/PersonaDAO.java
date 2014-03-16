@@ -96,7 +96,6 @@ public class PersonaDAO extends BaseDAO {
 		return resultado;
 	}
 	
-	
 	public Persona insertar(Persona vo) throws DAOExcepcion {
 		String query = "insert into Persona (nombres,paterno,materno,sexo, tipo_documento, numero_doc, celular, idcentro_formacion) values (?,?,?,?,?,?,?,?)";
 		Connection con = null;
