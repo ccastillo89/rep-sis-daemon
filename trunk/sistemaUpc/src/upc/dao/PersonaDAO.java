@@ -45,6 +45,8 @@ public class PersonaDAO extends BaseDAO {
 				vo.setNumeroDoc(rs.getString("numero_doc"));
 				vo.setCelular(rs.getString("celular"));
 				vo.setCentroFormacion(cf);
+				vo.setSexo(sexo);
+				vo.setTipoDocumento(tipoDocumento);
 				
 				lista.add(vo);
 			}
@@ -96,7 +98,7 @@ public class PersonaDAO extends BaseDAO {
 		return resultado;
 	}
 	
-	public Persona insertar(Persona vo) throws DAOExcepcion {
+	public Persona insertar(Persona ps) throws DAOExcepcion {
 		String query = "insert into Persona (nombres,paterno,materno,sexo, tipo_documento, numero_doc, celular, idcentro_formacion) values (?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -104,21 +106,29 @@ public class PersonaDAO extends BaseDAO {
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, vo.getNombres());
-			stmt.setString(2, vo.getPaterno());
-			stmt.setString(3, vo.getMaterno());
-			stmt.setInt(4, vo.getSexo().getIdCodigo());
-			stmt.setInt(5, vo.getTipoDocumento().getIdCodigo());
-			stmt.setString(6, vo.getNumeroDoc());
-			stmt.setString(7, vo.getCelular());
-			stmt.setInt(8, vo.getCentroFormacion().getIdCentroInformacion());
+			stmt.setString(1, ps.getNombres());
+			stmt.setString(2, ps.getPaterno());
+			stmt.setString(3, ps.getMaterno());
+			stmt.setInt(4, ps.getSexo().getIdCodigo());
+			stmt.setInt(5, ps.getTipoDocumento().getIdCodigo());
+			stmt.setString(6, ps.getNumeroDoc());
+			stmt.setString(7, ps.getCelular());
+			stmt.setInt(8, ps.getCentroFormacion().getIdCentroInformacion());
 			
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo insertar");
 			}
 			
-
+			int id = 0;
+			query = "select last_insert_id()";
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+			ps.setIdPersona(id);
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
@@ -127,7 +137,7 @@ public class PersonaDAO extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		return vo;
+		return ps;
 	}
 	
 	public void eliminar(int idPersona) throws DAOExcepcion {

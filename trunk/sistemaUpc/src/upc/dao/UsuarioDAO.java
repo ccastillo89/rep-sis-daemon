@@ -16,7 +16,7 @@ import upc.util.ConexionBD;
 
 public class UsuarioDAO extends BaseDAO {
 
-	public Collection<Usuario> BuscarUsuariosPorCentroFormacion(Persona ps)
+	public Collection<Usuario> buscarUsuariosPorCentroFormacion(Persona ps)
 			throws DAOExcepcion {
 		String query = "";
 		
@@ -121,7 +121,7 @@ public class UsuarioDAO extends BaseDAO {
 	}
 	
 	public void eliminar(int idUsuario) throws DAOExcepcion {
-		String query = "delete from usuario WHERE idUsuario=?";
+		String query = "delete from usuario WHERE idpersona=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -130,7 +130,7 @@ public class UsuarioDAO extends BaseDAO {
 			stmt.setInt(1, idUsuario);
 			int i = stmt.executeUpdate();
 			if (i != 1) {
-				throw new SQLException("No se pudo eliminar");
+				throw new SQLException("No se pudo eliminar.");
 			}
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -142,18 +142,17 @@ public class UsuarioDAO extends BaseDAO {
 	}
 	
 	public Usuario actualizar(Usuario user) throws DAOExcepcion {
-		String query = "update usuario set idpersona = ?, correo = ?, password = ?, tipo_usuario = ? where idusuario=?";
+		String query = "update usuario set correo = ?, password = ?, tipo_usuario = ? where idpersona=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 	
-			stmt.setInt(1, user.getPersona().getIdPersona());
-			stmt.setString(2, user.getCorreo());
-			stmt.setString(3, user.getPassword());
-			stmt.setInt(4, user.getTipoUsuario().getIdCodigo());
-			stmt.setInt(9, user.getIdUsuario());
+			stmt.setString(1, user.getCorreo());
+			stmt.setString(2, user.getPassword());
+			stmt.setInt(3, user.getTipoUsuario().getIdCodigo());
+			stmt.setInt(4, user.getPersona().getIdPersona());
 						
 			int i = stmt.executeUpdate();
 			if (i != 1) {
@@ -172,7 +171,7 @@ public class UsuarioDAO extends BaseDAO {
 	public Boolean loginUsuario(Usuario user) throws DAOExcepcion {
 		Boolean resultado = false;
 		
-		String query = "select count(1) as Cantidad from usuario where email = ? and password = ?";
+		String query = "select count(1) as Cantidad from usuario where correo = ? and password = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -187,9 +186,9 @@ public class UsuarioDAO extends BaseDAO {
 				cantidad += rs.getInt("Cantidad");
 			}
 			if (cantidad > 0){
-				resultado = false;
+				resultado = true;
 			}else{
-				resultado = true;}
+				resultado = false;}
 			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -206,7 +205,7 @@ public class UsuarioDAO extends BaseDAO {
 	public Boolean validarCorreoPersona(Usuario user) throws DAOExcepcion {
 		Boolean resultado = false;
 		
-		String query = "select count(1) as Cantidad from usuario where email = ?";
+		String query = "select count(1) as Cantidad from usuario where correo = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
