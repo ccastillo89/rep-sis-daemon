@@ -2,36 +2,43 @@ package upc.negocio;
 
 import java.util.Collection;
 
+import upc.dao.UsuarioDAO;
+import upc.excepcion.DAOExcepcion;
+import upc.modelo.Persona;
+import upc.modelo.Usuario;
+
 public class GestionUsuarios {
 
-	/*
-	 * public Collection<Categoria> buscarPorNombre(String nombre) throws
-	 * DAOExcepcion { CategoriaDAO dao = new CategoriaDAO(); return
-	 * dao.listar(); }
-	 * 
-	 * public Categoria insertar(String nombre, String descripcion) throws
-	 * DAOExcepcion { CategoriaDAO dao = new CategoriaDAO();
-	 * 
-	 * Categoria vo = new Categoria(); vo.setNombre(nombre);
-	 * vo.setDescripcion(descripcion);
-	 * 
-	 * return dao.insertar(vo); }
-	 * 
-	 * public Categoria obtener(int idCategoria) throws DAOExcepcion {
-	 * CategoriaDAO dao = new CategoriaDAO(); return dao.obtener(idCategoria); }
-	 * 
-	 * public void eliminar(int idCategoria) throws DAOExcepcion { CategoriaDAO
-	 * dao = new CategoriaDAO(); dao.eliminar(idCategoria); }
-	 * 
-	 * public Categoria actualizar(int idCategoria, String nombre, String
-	 * descripcion) throws DAOExcepcion { CategoriaDAO dao = new CategoriaDAO();
-	 * 
-	 * Categoria vo = new Categoria(); vo.setIdCategoria(idCategoria);
-	 * vo.setNombre(nombre); vo.setDescripcion(descripcion);
-	 * 
-	 * return dao.actualizar(vo); }
-	 * 
-	 * public Collection<Categoria> listar() throws DAOExcepcion { CategoriaDAO
-	 * dao = new CategoriaDAO(); return dao.listar(); }
-	 */
+	public Collection<Usuario> BuscarUsuariosPorCentroFormacion(Persona ps)
+			throws DAOExcepcion {
+
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.buscarUsuariosPorCentroFormacion(ps);
+	}
+
+	public Usuario insertar(Usuario user) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.insertar(user);
+	}
+
+	public void eliminar(int idCategoria) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.eliminar(idCategoria);
+	}
+
+	public Usuario actualizar(Usuario user) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.actualizar(user);
+	}
+
+	public Boolean loginUsuario(Usuario user) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.loginUsuario(user);
+	}
+	
+	public Boolean validarCorreoPersona(Usuario user) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.validarCorreoPersona(user);
+	}
+
 }
