@@ -6,12 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import upc.excepcion.DAOExcepcion;
-import upc.modelo.CentroFormacion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.modelo.Codigo;
 import upc.modelo.Usuario;
-import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
 //import upc.util.utilfechas;
 
@@ -45,12 +43,12 @@ public class GestionPublicacionesTest {
 		 
 		 try { 
 		 //ingreso Usuario
-		 usu.setIdUsuario(6);
+		 usu.setIdUsuario(5);
 		 
 		
 		// ingreso Codigo
-		 cod.setIdCodigo(4);
-		 cod.setDescripcionCodigo("Estudiante");
+		 cod.setIdCodigo(6);
+		 cod.setDescripcionCodigo("Creada");
 		 
 		 
 		// ingreso publicacion
@@ -72,21 +70,35 @@ public class GestionPublicacionesTest {
 	}
 
 	//@Test
-	/*
-	public void actualizarTest() {
+	
+	public void actualizarTest()throws ParseException {
 
-		GestionCategorias negocio = new GestionCategorias();
+		GestionPublicaciones negocio = new GestionPublicaciones();
+		Publicacion p = new Publicacion();
+		Usuario usu = new Usuario();
+		Codigo cod = new Codigo();
+		Utilitarios fecha = new Utilitarios();
+		
 
 		try {
-			negocio.actualizar(1, "Monitores", "Pantalla plana");
-
-
+			
+			// Actualizo datos publicacion
+			 
+			  p.setTitulo("Comedor");
+			  p.setDescripcion("Renovacion del comedor estudiantil");
+			  p.setArchivo("ruta");
+			  p.setUsuario(usu);
+			  p.setEstado(cod);
+			  p.setFechaCreacion(fecha.ObtnerFecha());
+			  
+			  p = negocio.actualizar(p);
+			  System.out.println("Se Actualizo Corrrectamente  la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
-			Assert.fail("Falló la actualización: " + e.getMessage());
+			Assert.fail("Ocurrio una falla en la actualizaci�n: " + e.getMessage());
 		}
 	}
-	*/
+	
 
 	//@Test
 	
@@ -104,8 +116,8 @@ public class GestionPublicacionesTest {
 			
 			// correccion de lo de samuel
 			Codigo cod = new Codigo();
-			cod.setIdCodigo(1);
-			cod.setDescripcionCodigo("Estudiante");
+			cod.setIdCodigo(6);
+			cod.setDescripcionCodigo("Creada");
 						
 			// publi.setEstado(1); // Creada
 			publi.setEstado(cod);  // Creada
