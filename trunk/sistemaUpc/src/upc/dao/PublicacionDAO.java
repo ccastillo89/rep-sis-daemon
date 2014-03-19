@@ -291,6 +291,67 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return vo;
 	}
+   	
+   	public int buscarAsesorPorusuario(Publicacion vo) throws DAOExcepcion {
+		String query = "select count(titulo) from publicacion where idusuario = ? and usuario_acesor = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int i = 0 ;
+		
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+				
+
+			stmt.setInt(1, vo.getUsuario().getIdUsuario());
+			stmt.setInt(2, vo.getUsuarioAsesor().getIdUsuario());
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				i = rs.getInt("Total");				
+			
+			}
+			
+			if (i != 0) {
+				throw new SQLException("Acesor ya asignado para este usuario en otra publicacion.");
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return i;
+	}
+   	
+   	public Publicacion asignarAcesor(Publicacion vo) throws DAOExcepcion {
+		String query = "Update publicacion Set usuario_acesor = ? where idpublicacion = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, vo.getUsuario().getIdUsuario());
+			stmt.setInt(2, vo.getUsuarioAsesor().getIdUsuario());
+						
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+		
+   	}
     
 
 }
