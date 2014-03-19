@@ -6,10 +6,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.CentroFormacion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
+import upc.modelo.Codigo;
+import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
 //import upc.util.utilfechas;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,7 +65,7 @@ public class GestionPublicacionesTest {
 	}
 	*/
 
-	@Test
+	//@Test
 	
 	public void ReportedePublicacionesTest() throws ParseException {
 
@@ -131,5 +135,52 @@ public class GestionPublicacionesTest {
             Assert.fail("FallÃ³ el listado: " + e.getMessage());
         }
     }
+    
+    
+    @Test
+    public void buscarPublicacionTest() {
+
+        GestionPublicaciones negocio = new GestionPublicaciones();
+
+        try {
+            Collection<Publicacion> listado = negocio.buscar("", 8);
+
+            System.out.println("Total de registros: " + listado.size());
+
+            for (Publicacion publicacion : listado) {
+            	
+                System.out.println("ID : " + publicacion.getIdPublicacion() + " | Titulo : " + publicacion.getTitulo() + "  | Descripción : " + publicacion.getDescripcion() + "  | Estado : " + publicacion.getEstado().getIdCodigo());
+
+            }
+
+            Assert.assertTrue(listado.size() > 0);
+
+        } catch (DAOExcepcion e) {
+            Assert.fail("Fallo el listado: " + e.getMessage());
+        }
+    }
+    
+    //@Test
+  	public void actualizarEstadoTest() {
+
+  		GestionPublicaciones negocio = new GestionPublicaciones();
+  		Publicacion modelo = new Publicacion();
+  		Codigo modeloEstado = new Codigo(); 
+
+  		try {
+  			
+  			modeloEstado.setIdCodigo(8);
+  			
+  			modelo.setIdPublicacion(3);
+  			modelo.setEstado(modeloEstado); 								
+  					
+  			negocio.actualizarEstado(modelo);
+  			
+
+  		} catch (DAOExcepcion e) {
+  			Assert.fail("Falló la actualización: " + e.getMessage());
+  		}
+  	}
+	
 
 }
