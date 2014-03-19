@@ -144,7 +144,7 @@ public class PublicacionDAO extends BaseDAO {
 	}
 	
 	
-	/*
+	
 	public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion {
 		Collection<Publicacion> c = new ArrayList<Publicacion>();
 		Connection con = null;
@@ -157,7 +157,7 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setString(1, "%"+ pbePublicacion.getTitulo()+"%");
 			stmt.setDate(2, new java.sql.Date(pbePublicacion.getFechainicio().getTime()));
 			stmt.setDate(3, new java.sql.Date(pbePublicacion.getFechafin().getTime()));
-			stmt.setInt(4, pbePublicacion.getEstado());
+			stmt.setInt(4, pbePublicacion.getEstado().getIdCodigo());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Publicacion vo = new Publicacion();
@@ -193,7 +193,7 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return c;
 	}
-   */
+   
    	public Collection<Publicacion> buscarPublicacion(String texto,int estado)
 			throws DAOExcepcion {
 		String query = "select idpublicacion, titulo, descripcion,estado from publicacion where (titulo LIKE ? or descripcion like ? or palabra_clave like ?)  and estado=?";
