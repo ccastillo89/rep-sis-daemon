@@ -108,5 +108,22 @@ public class GestionPublicaciones {
                 PublicacionDAO dao = new PublicacionDAO();
                 return dao.buscarPublicacion(nombre, estado);
         }
+         
+
+         public Collection<Publicacion> buscar(String nombre,int estado)
+                 throws DAOExcepcion {
+        	 
+         PublicacionDAO dao = new PublicacionDAO();
+         return dao.buscar(nombre, estado);
+         
+         }
+         
+     	public Publicacion actualizarEstado(Publicacion vo)
+				throws DAOExcepcion {
+     		
+     			PublicacionDAO dao = new PublicacionDAO();
+     			return dao.actualizarEstado(vo);
+     			
+     	}
 
 }
