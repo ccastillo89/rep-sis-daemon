@@ -3,61 +3,57 @@ package upc.modelo;
 public class Asesoria {
 	
 	private int idAsesoria;
-    private int idPublicacion;
+    private Publicacion publicacion;
     private String observacion;
-    private int calificacion;
+    private Codigo calificacion;
     private String fechaAsesoria;
+    
+	public Asesoria() {
+		super();
+	}
 
-    public Asesoria() {
-    }
-
-    public Asesoria(int idAsesoria, int idPublicacion, String observacion, int calificacion, String fechaAsesoria) {
-        this.idAsesoria = idAsesoria;
-        this.idPublicacion = idPublicacion;
-        this.observacion = observacion;
-        this.calificacion = calificacion;
-        this.fechaAsesoria = fechaAsesoria;
-    }
-
-    public int getIdAsesoria() {
-        return idAsesoria;
-    }
-
-    public void setIdAsesoria(int idAsesoria) {
-        this.idAsesoria = idAsesoria;
-    }
+	public Asesoria(int idAsesoria, Publicacion publicacion,
+			String observacion, Codigo calificacion, String fechaAsesoria) {
+		super();
+		this.idAsesoria = idAsesoria;
+		this.publicacion = publicacion;
+		this.observacion = observacion;
+		this.calificacion = calificacion;
+		this.fechaAsesoria = fechaAsesoria;
+	}
 	
-	public int getIdPublicacion() {
-        return idPublicacion;
-    }
+	public int getIdAsesoria() {
+		return idAsesoria;
+	}
+	public void setIdAsesoria(int idAsesoria) {
+		this.idAsesoria = idAsesoria;
+	}
+	public Publicacion getPublicacion() {
+		return publicacion;
+	}
+	public void setPublicacion(Publicacion publicacion) {
+		this.publicacion = publicacion;
+	}
+	public String getObservacion() {
+		return observacion;
+	}
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+	public Codigo getCalificacion() {
+		return calificacion;
+	}
+	public void setCalificacion(Codigo calificacion) {
+		this.calificacion = calificacion;
+	}
+	public String getFechaAsesoria() {
+		return fechaAsesoria;
+	}
+	public void setFechaAsesoria(String fechaAsesoria) {
+		this.fechaAsesoria = fechaAsesoria;
+	}
 
-    public void setIdPublicacion(int idPublicacion) {
-        this.idPublicacion = idPublicacion;
-    }
 
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }
-	
-    public String getFechaAsesoria() {
-        return fechaAsesoria;
-    }
-
-    public void setFechaAsesoria(String fechaAsesoria) {
-        this.fechaAsesoria = fechaAsesoria;
-    }
 
     
 }
