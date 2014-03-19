@@ -125,5 +125,13 @@ public class GestionPublicaciones {
      			return dao.actualizarEstado(vo);
      			
      	}
+     	
+     	public Publicacion asignarAcesor(Publicacion vo)
+				throws DAOExcepcion {
+     		
+     			PublicacionDAO dao = new PublicacionDAO();
+     			return dao.asignarAcesor(vo);
+     			
+     	}
 
 }
