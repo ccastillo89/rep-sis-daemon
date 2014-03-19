@@ -64,7 +64,7 @@ public class GestionPublicacionesTest {
 			    
 								
 			  	p2=negocio.insertar(p);
-				if (p2.equals("")) {
+				if (!p2.equals("")) {
 					System.out.println("Se inserto la Idea " + p2.getTitulo());	
 				}
 				
