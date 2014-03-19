@@ -218,7 +218,7 @@ CREATE TABLE `codigo` (
 
 LOCK TABLES `codigo` WRITE;
 /*!40000 ALTER TABLE `codigo` DISABLE KEYS */;
-INSERT INTO `codigo` VALUES (1,'Administrador',1,'Roles'),(2,'Supervisor',1,'Roles'),(3,'Asesor',1,'Roles'),(4,'Estudiante',1,'Roles'),(5,'Evaluador de Innovador',1,'Roles'),(6,'Creada',2,'Estado_Publicacion'),(7,'Publicada',2,'Estado_Publicacion'),(8,'Aprobada',2,'Estado_Publicacion'),(9,'Rechazada',2,'Estado_Publicacion'),(10,'Universidad',3,'Tipo_CentroFormacion'),(11,'Instituto',3,'Tipo_CentroFormacion'),(12,'DNI',4,'Tipo_Documento'),(13,'RUC',4,'Tipo_Documento'), (14,'Masculino',5,'Genero'), (15, 'Femenino', 5, 'Genero');
+INSERT INTO `codigo` VALUES (1,'Administrador',1,'Roles'),(2,'Supervisor',1,'Roles'),(3,'Asesor',1,'Roles'),(4,'Estudiante',1,'Roles'),(5,'Evaluador de Innovador',1,'Roles'),(6,'Creada',2,'Estado_Publicacion'),(7,'Publicada',2,'Estado_Publicacion'),(8,'Aprobada',2,'Estado_Publicacion'),(9,'Rechazada',2,'Estado_Publicacion'),(10,'Universidad',3,'Tipo_CentroFormacion'),(11,'Instituto',3,'Tipo_CentroFormacion'),(12,'DNI',4,'Tipo_Documento'),(13,'RUC',4,'Tipo_Documento'), (14,'Masculino',5,'Genero'), (15, 'Femenino', 5, 'Genero'), (16, 'Bueno', 6, 'Calificacion_Asesoria') , (17, 'Medio', 6, 'Calificacion_Asesoria') , (18, 'Mejorar', 6, 'Calificacion_Asesoria') ;
 /*!40000 ALTER TABLE `codigo` ENABLE KEYS */;
 UNLOCK TABLES;
 
