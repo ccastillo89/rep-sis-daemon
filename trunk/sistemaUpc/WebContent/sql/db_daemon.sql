@@ -179,7 +179,7 @@ CREATE TABLE `asesoria` (
   `idasesoria` int(11) NOT NULL AUTO_INCREMENT,
   `observacion` varchar(45) DEFAULT NULL,
   `calificacion` int(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
   `idpublicacion` int(11) NOT NULL,
   PRIMARY KEY (`idasesoria`),
 	FOREIGN KEY (idpublicacion) 
