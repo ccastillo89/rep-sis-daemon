@@ -10,10 +10,14 @@ import upc.modelo.CentroFormacion;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.modelo.Codigo;
+import upc.modelo.Usuario;
 import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
 //import upc.util.utilfechas;
 
+
+
+import upc.util.Utilitarios;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,17 +38,36 @@ public class GestionPublicacionesTest {
 	public void insertarTest() throws ParseException {
 
 		GestionPublicaciones negocio = new GestionPublicaciones();
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-		Date fecha = formatoFecha.parse("2013-01-01");
-		java.sql.Date fechaCreacion = new java.sql.Date(fecha.getTime());
+		 Publicacion p = new Publicacion();
+		 Usuario usu = new Usuario();
+		 Codigo cod = new Codigo();
+		 Utilitarios fecha = new Utilitarios();
+		 
+		 try { 
+		 //ingreso Usuario
+		 usu.setIdUsuario(6);
+		 
 		
-	
-		try {
-			Publicacion p = negocio.insertar("Idea2", "xxx", "archivo", 1, 1,  fechaCreacion, "palabra1,palabra2,palabra3,palabra4");
-			System.out.println("Se insertó la Idea " + p.getTitulo());
+		// ingreso Codigo
+		 cod.setIdCodigo(4);
+		 cod.setDescripcionCodigo("Estudiante");
+		 
+		 
+		// ingreso publicacion
+		 
+		  p.setTitulo("Comedor");
+		  p.setDescripcion("Creacion de un comedor estudiantil");
+		  p.setArchivo("ruta");
+		  p.setUsuario(usu);
+		  p.setEstado(cod);
+		  p.setFechaCreacion(fecha.ObtnerFecha());
+		    
+							
+			p = negocio.insertar(p);
+			System.out.println("Se inserto la Idea " + p.getTitulo());
 
 		} catch (DAOExcepcion e) {
-			Assert.fail("Fallo la inserción: " + e.getMessage());
+			Assert.fail("Fallo la insercion: " + e.getMessage());
 		}
 	}
 
@@ -78,7 +101,16 @@ public class GestionPublicacionesTest {
 			publi.setFechainicio(fecha);
 			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2014");
 			publi.setFechafin(fecha);
-			publi.setEstado(1); //Creada
+			
+			// correccion de lo de samuel
+			Codigo cod = new Codigo();
+			cod.setIdCodigo(1);
+			cod.setDescripcionCodigo("Estudiante");
+						
+			// publi.setEstado(1); // Creada
+			publi.setEstado(cod);  // Creada
+			
+			//publi.setEstado(1); //Creada
 			Collection<Publicacion> listado = negocio.ReportedePublicaciones(publi);
 
 			System.out.println("Total de registros: "+ listado.size());
@@ -125,7 +157,7 @@ public class GestionPublicacionesTest {
             for (Publicacion publicacion : listado) {
                 System.out.println(publicacion.getTitulo());
                 System.out.println(publicacion.getEstado());
-                System.out.println(publicacion.getIdUsuario());
+                System.out.println(publicacion.getUsuario().getIdUsuario());
 
             }
 
