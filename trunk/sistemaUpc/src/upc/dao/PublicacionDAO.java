@@ -70,6 +70,7 @@ public class PublicacionDAO extends BaseDAO {
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
+			
 			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
 			stmt.setString(3, vo.getArchivo());
@@ -121,14 +122,14 @@ public class PublicacionDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String query = "select titulo from publicacion where titulo=? and idusuario=?";
+			String query = "select titulo,idusuario from publicacion where titulo=? and idusuario=?";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, titulo);
 			stmt.setInt(2, idusuario);
 			rs = stmt.executeQuery(); 
 			
-			if (rs == null) {
+			if (!rs.next()) {
 				encontrado = false;
 			}
 			
