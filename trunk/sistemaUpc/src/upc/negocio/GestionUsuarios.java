@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import upc.dao.UsuarioDAO;
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.Codigo;
 import upc.modelo.Persona;
 import upc.modelo.Usuario;
 
@@ -39,6 +40,13 @@ public class GestionUsuarios {
 	public Boolean validarCorreoPersona(Usuario user) throws DAOExcepcion {
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.validarCorreoPersona(user);
+	}
+	
+	public Collection<Usuario> buscarPorTipoUsuario(Codigo co)
+			throws DAOExcepcion {
+
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.buscarPorTipoUsuario(co);
 	}
 
 }
