@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 //import java.util.Date;
 
+
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
+import upc.modelo.Codigo;
 import upc.modelo.Persona;
 import upc.modelo.Publicacion;
 import upc.modelo.Usuario;
@@ -225,6 +227,70 @@ public class PublicacionDAO extends BaseDAO {
 		System.out.println(lista.size());
 		return lista;
 	}   
+   	
+   	
+   	public Collection<Publicacion> buscar(String texto,int estado)
+			throws DAOExcepcion {
+		String query = "select idpublicacion, titulo, descripcion,estado from publicacion where (titulo LIKE ? or descripcion like ? or palabra_clave like ?)  and estado=?";
+		Collection<Publicacion> lista = new ArrayList<Publicacion>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + texto + "%");
+			stmt.setString(2, "%" + texto + "%");
+			stmt.setString(3, "%" + texto + "%");
+			stmt.setInt(4,  estado );
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Publicacion vo = new Publicacion();
+				Codigo vu = new Codigo();
+				
+				vu.setIdCodigo(rs.getInt("Estado"));
+				
+				vo.setIdPublicacion(rs.getInt("idpublicacion"));
+				vo.setTitulo(rs.getString("titulo"));
+				vo.setDescripcion(rs.getString("descripcion")); 
+				vo.setEstado(vu);
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
+   	
+   	public Publicacion actualizarEstado(Publicacion vo) throws DAOExcepcion {
+		String query = "update publicacion set estado=? where idpublicacion=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, vo.getEstado().getIdCodigo());
+			stmt.setInt(2, vo.getIdPublicacion());
+						
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}
     
 
 }
