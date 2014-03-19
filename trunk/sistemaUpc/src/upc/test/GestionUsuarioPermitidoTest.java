@@ -32,7 +32,7 @@ public class GestionUsuarioPermitidoTest {
 				 								
 				  	p2=negocio.acceso(p);
 					if (!p2.equals("")) {
-						System.out.println("Se Permiso al usuario");	
+						System.out.println("Se dio Permiso al usuario");	
 					}
 				
 				} catch (DAOExcepcion e) {
