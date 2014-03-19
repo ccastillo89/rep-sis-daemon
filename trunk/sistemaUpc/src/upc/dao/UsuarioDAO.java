@@ -235,4 +235,42 @@ public class UsuarioDAO extends BaseDAO {
 		return resultado;
 	}
 	
+	public Collection<Usuario> buscarPorTipoUsuario(Codigo vo) throws DAOExcepcion {
+		String query = "select idusuario,correo,tipo_usuario from usuario where tipo_usuario = ?";
+		Collection<Usuario> c = new ArrayList<Usuario>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int i = 0 ;
+		
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+	
+			stmt.setInt(1, vo.getIdCodigo());
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				Usuario vu = new Usuario();
+				
+				vu.setIdUsuario(rs.getInt("idusuario"));
+				vu.setCorreo(rs.getString("correo"));
+									
+				c.add(vu);
+			
+			}
+			
+
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return c;
+	}
+	
 }
