@@ -33,73 +33,114 @@ public class GestionPublicacionesTest {
 	
 	
 	//@Test
-	public void insertarTest() throws ParseException {
+		public void insertarTest() throws ParseException {
 
-		GestionPublicaciones negocio = new GestionPublicaciones();
-		 Publicacion p = new Publicacion();
-		 Usuario usu = new Usuario();
-		 Codigo cod = new Codigo();
-		 Utilitarios fecha = new Utilitarios();
-		 
-		 try { 
-		 //ingreso Usuario
-		 usu.setIdUsuario(5);
-		 
-		
-		// ingreso Codigo
-		 cod.setIdCodigo(6);
-		 cod.setDescripcionCodigo("Creada");
-		 
-		 
-		// ingreso publicacion
-		 
-		  p.setTitulo("Comedor");
-		  p.setDescripcion("Creacion de un comedor estudiantil");
-		  p.setArchivo("ruta");
-		  p.setUsuario(usu);
-		  p.setEstado(cod);
-		  p.setFechaCreacion(fecha.ObtnerFecha());
-		    
-							
-			p = negocio.insertar(p);
-			System.out.println("Se inserto la Idea " + p.getTitulo());
-
-		} catch (DAOExcepcion e) {
-			Assert.fail("Fallo la insercion: " + e.getMessage());
-		}
-	}
-
-	//@Test
-	
-	public void actualizarTest()throws ParseException {
-
-		GestionPublicaciones negocio = new GestionPublicaciones();
-		Publicacion p = new Publicacion();
-		Usuario usu = new Usuario();
-		Codigo cod = new Codigo();
-		Utilitarios fecha = new Utilitarios();
-		
-
-		try {
+			GestionPublicaciones negocio = new GestionPublicaciones();
+			 Publicacion p = new Publicacion();
+			 Usuario usu = new Usuario();
+			 Codigo cod = new Codigo();
+			 Utilitarios fecha = new Utilitarios();
+			 Publicacion p2 = new Publicacion();
+			 
+			 try { 
+			 //ingreso Usuario
+			 usu.setIdUsuario(5);
+			 
 			
-			// Actualizo datos publicacion
+			// ingreso Codigo
+			 cod.setIdCodigo(6);
+			 cod.setDescripcionCodigo("Creada");
+			 
+			 
+			// ingreso publicacion
 			 
 			  p.setTitulo("Comedor");
-			  p.setDescripcion("Renovacion del comedor estudiantil");
+			  p.setDescripcion("Creacion de un comedor estudiantil");
 			  p.setArchivo("ruta");
 			  p.setUsuario(usu);
 			  p.setEstado(cod);
+			  p.setPalabraClave("Palabra1,palabra2,palabra3,palabra4");
 			  p.setFechaCreacion(fecha.ObtnerFecha());
-			  
-			  p = negocio.actualizar(p);
-			  System.out.println("Se Actualizo Corrrectamente  la Idea " + p.getTitulo());
+			    
+								
+			  	p2=negocio.insertar(p);
+				if (p2.equals("")) {
+					System.out.println("Se inserto la Idea " + p2.getTitulo());	
+				}
+				
 
-		} catch (DAOExcepcion e) {
-			Assert.fail("Ocurrio una falla en la actualización: " + e.getMessage());
+			} catch (DAOExcepcion e) {
+				Assert.fail("Fallo la insercion: " + e.getMessage());
+			}
 		}
-	}
-	
 
+		//@Test
+		
+		public void actualizarTest()throws ParseException {
+
+			GestionPublicaciones negocio = new GestionPublicaciones();
+			Publicacion p = new Publicacion();
+			Usuario usu = new Usuario();
+			Codigo cod = new Codigo();
+			Utilitarios fecha = new Utilitarios();
+			Publicacion p2 = new Publicacion();
+
+			try {
+				
+				// Actualizo datos publicacion
+				 	
+				p.setIdPublicacion(4);
+				  p.setTitulo("Comedorcito");
+				  p.setDescripcion("Renovacion del comedor estudiantil");
+				  p.setArchivo("ruta");
+				  p.setUsuario(usu);
+				  p.setEstado(cod);
+				  p.setPalabraClave("Palabra1,palabra2222,palabra3,palabra4");
+				  p.setFechaCreacion(fecha.ObtnerFecha());
+				  
+				  p2= negocio.actualizar(p);
+					if (!p2.equals("")) {
+						System.out.println("Se Actualizo Corrrectamente  la Idea " + p2.getTitulo());	
+					}
+				  
+				  
+			} catch (DAOExcepcion e) {
+				Assert.fail("Ocurrio una falla en la actualización: " + e.getMessage());
+			}
+		}
+		
+	//@Test
+		
+		public void publicarTest()throws ParseException {
+
+			GestionPublicaciones negocio = new GestionPublicaciones();
+			Publicacion p = new Publicacion();
+			Codigo cod = new Codigo();
+			Publicacion p2 = new Publicacion();
+
+			try {
+				// ingreso Codigo
+				 cod.setIdCodigo(7);
+				 cod.setDescripcionCodigo("Publicada");
+				 
+				// Actualizo datos publicacion
+				 	
+				  p.setIdPublicacion(4);
+				  p.setEstado(cod);
+				  
+				  p2= negocio.publicar(p);
+					if (!p2.equals("")) {
+						System.out.println("Se Publico Corrrectamente la Idea " + p2.getTitulo());	
+					}
+				  
+				  
+			} catch (DAOExcepcion e) {
+				Assert.fail("Ocurrio una falla en la actualización: " + e.getMessage());
+			}
+		}
+		
+
+	
 	@Test
 	
 	public void ReportedePublicacionesTest() throws ParseException {
