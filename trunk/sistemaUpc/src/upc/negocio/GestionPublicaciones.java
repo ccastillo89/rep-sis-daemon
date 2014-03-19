@@ -1,7 +1,5 @@
 package upc.negocio;
 
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Collection;
 
@@ -20,7 +18,6 @@ public class GestionPublicaciones {
 			try {
 				pub2=dao.insertar(pub);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -32,25 +29,17 @@ public class GestionPublicaciones {
 		
 	}
 	
-				 
-
+	 
 	
-	public Publicacion actualizar(int idPublicacion,String titulo, String descripcion,String archivo,String palabraClave)
-					throws DAOExcepcion {
+	public Publicacion actualizar(Publicacion pub)	throws DAOExcepcion {
 		
 		PublicacionDAO dao = new PublicacionDAO();
 		Publicacion vo = new Publicacion();
-		
-		vo.setIdPublicacion(idPublicacion);
-		vo.setTitulo(titulo);
-		vo.setDescripcion(descripcion);
-		vo.setArchivo(archivo);
-		vo.setPalabraClave(palabraClave);
-		
+				
 		return dao.actualizar(vo);
 	}
 	
-	
+	/*
 	public Publicacion publicar(int idPublicacion,int estado,Date fechaPublicacion)
 							throws DAOExcepcion {
 				
@@ -63,39 +52,7 @@ public class GestionPublicaciones {
 												
 				return dao.actualizar(vo);
 			}
-	
-	public boolean validarDatosIncompletos(String titulo, String descripcion,String archivo,int idUsuario,
-	int estado,String palabraClave){
-        boolean estadovalido=true ;
-        if (titulo.trim().length()==0  ){
-        	estadovalido =false;          
-       }
-        if (descripcion.trim().length()==0  ){
-        	estadovalido =false;          
-         }
-        if (archivo.trim().length()==0 ){
-        	estadovalido =false;          
-         }
-        if (idUsuario ==0  ){
-        	estadovalido =false;          
-         }
-        if (palabraClave.trim().length()==0 ){
-        	estadovalido =false;          
-         }
-        
-        return estadovalido;
-        
-    }  
-	public boolean validarTitulo(String titulo) throws DAOExcepcion{
-		        boolean estadovalido=true ;
-		        PublicacionDAO dao = new PublicacionDAO();
-				Publicacion vo = new Publicacion();
-				vo.setTitulo(titulo);
-				estadovalido =dao.existenciaIdea(vo);
-			    return estadovalido;
-		        
-		    }  
-	
+	*/
 	
 	  public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion
 	  { PublicacionDAO dao = new PublicacionDAO();
