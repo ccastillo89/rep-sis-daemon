@@ -41,11 +41,19 @@ public class Utilitarios {
         if (pub.getPalabraClave().isEmpty() ){
         	estadovalido =false;          
          }
-        
+       
         return estadovalido;
         
     }  
-		
-	
-	
+	/*	
+	public boolean validarPalabras(Publicacion pub){
+        boolean estadovalido=true ;
+      
+        if (pub.getPalabraClave().isEmpty() ){
+        	estadovalido =false;          
+         }
+       return estadovalido;
+        
+    }  
+	*/
 }
