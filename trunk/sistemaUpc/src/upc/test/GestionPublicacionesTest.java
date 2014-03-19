@@ -100,7 +100,7 @@ public class GestionPublicacionesTest {
 	}
 	
 
-	//@Test
+	@Test
 	
 	public void ReportedePublicacionesTest() throws ParseException {
 
@@ -108,8 +108,8 @@ public class GestionPublicacionesTest {
 		Publicacion publi=new Publicacion();
 
 		try {
-			publi.setTitulo("");
-			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2014");
+			publi.setTitulo("smarth");
+			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("05/03/2014");
 			publi.setFechainicio(fecha);
 			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2014");
 			publi.setFechafin(fecha);
@@ -181,7 +181,7 @@ public class GestionPublicacionesTest {
     }
     
     
-    @Test
+   //@Test
     public void buscarPublicacionTest() {
 
         GestionPublicaciones negocio = new GestionPublicaciones();
