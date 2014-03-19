@@ -6,21 +6,23 @@ import java.util.Collection;
 import upc.dao.PublicacionDAO;
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Publicacion;
+import upc.util.Utilitarios;
 
 public class GestionPublicaciones {
 
-	public Publicacion insertar(Publicacion pub) throws DAOExcepcion {
+	public Publicacion insertar(Publicacion pub) throws DAOExcepcion, ParseException {
 				
 		PublicacionDAO dao = new PublicacionDAO();
 		Publicacion pub2= new Publicacion();
+		Utilitarios validar = new Utilitarios();
 		
 		if (dao.existeIdea(pub.getTitulo(),pub.getUsuario().getIdUsuario())== false) {
-			try {
-				pub2=dao.insertar(pub);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		
+			if 	(validar.validarDatosIncompletos(pub)== true) {
+				pub2=dao.insertar(pub);				
+				}
+			else {
+				System.out.println("Datos Incomletos");	
+				}
 			}
 		else {
 			System.out.println("Ya idea ya Existe");	
@@ -34,25 +36,25 @@ public class GestionPublicaciones {
 	public Publicacion actualizar(Publicacion pub)	throws DAOExcepcion {
 		
 		PublicacionDAO dao = new PublicacionDAO();
-		Publicacion vo = new Publicacion();
+		Publicacion pub2= new Publicacion();
+		Utilitarios validar = new Utilitarios();
 				
-		return dao.actualizar(vo);
+		if 	(validar.validarDatosIncompletos(pub)== true) {
+			pub2=dao.actualizar(pub);
+		}
+		else {
+			System.out.println("Porfavor Completar Todos Los Datos");	
+			}
+		return pub2;
 	}
 	
-	/*
-	public Publicacion publicar(int idPublicacion,int estado,Date fechaPublicacion)
-							throws DAOExcepcion {
+	
+	public Publicacion publicar(Publicacion pub) throws DAOExcepcion {
 				
 				PublicacionDAO dao = new PublicacionDAO();
-				Publicacion vo = new Publicacion();
-				
-				vo.setIdPublicacion(idPublicacion);
-				vo.setEstado(estado);
-				vo.setFechaPublicacion(fechaPublicacion);
-												
-				return dao.actualizar(vo);
+				return dao.actualizar(pub);
 			}
-	*/
+	
 	
 	  public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion
 	  { PublicacionDAO dao = new PublicacionDAO();
