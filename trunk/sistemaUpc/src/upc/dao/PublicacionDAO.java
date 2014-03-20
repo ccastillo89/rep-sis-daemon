@@ -37,7 +37,6 @@ public class PublicacionDAO extends BaseDAO {
 			
 			java.sql.Date fechaCreacion = new java.sql.Date(vo.getFechaCreacion().getTime());
 			
-			
             stmt = con.prepareStatement(query);
 			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
