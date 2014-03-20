@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Usuario;
+import upc.modelo.Codigo;
 import upc.negocio.GestionUsuarios;
 
 public class GestionUsuariosTest {
@@ -33,6 +34,34 @@ public class GestionUsuariosTest {
 			Assert.fail("Falló el loguin: " + e.getMessage());
 		}
 		
+	}
+	
+	@Test
+	public void buscarPorTipoUsuarioTest() {
+
+		GestionUsuarios negocio = new GestionUsuarios();
+		Codigo modelo = new Codigo();
+		
+		modelo.setIdCodigo(1);
+		
+
+		try {
+			Collection<Usuario> listado = negocio.buscarPorTipoUsuario(modelo);
+
+			System.out.println("Total de registros: "+ listado.size());
+			System.out.println("");
+			
+			for (Usuario usuario : listado) {
+				System.out.println("ID : " + usuario.getIdUsuario() + " | Correo :  " + usuario.getCorreo() );
+			}
+			
+			//Assert.assertTrue(listado.size() > 0);	
+
+		
+			
+		} catch (DAOExcepcion e) {
+			Assert.fail("Falló el listado: " + e.getMessage());
+		}
 	}
 	
 	
