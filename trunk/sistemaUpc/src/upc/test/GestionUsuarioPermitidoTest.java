@@ -8,6 +8,7 @@ import org.junit.Test;
 import upc.excepcion.DAOExcepcion;
 
 
+import upc.modelo.Publicacion;
 import upc.modelo.UsuarioPermitido;
 import upc.modelo.Usuario;
 import upc.negocio.GestionUsuarioPermitido;
@@ -20,14 +21,17 @@ public class GestionUsuarioPermitidoTest {
 				GestionUsuarioPermitido negocio = new GestionUsuarioPermitido();
 				UsuarioPermitido p = new UsuarioPermitido();
 				 Usuario usu = new Usuario();
+				 Publicacion pub = new Publicacion();
 				 UsuarioPermitido p2 = new UsuarioPermitido();
 				 
 				 try { 
 				 //ingreso Usuario
-				 usu.setIdUsuario(2);
+				 usu.setIdUsuario(5);
+				 // publicacion
+				 pub.setIdPublicacion(1);
 				 
 				// ingreso UsuarioPermitido
-				 
+				 	p.setPublicacion(pub);
 				    p.setUsuario(usu);
 				 								
 				  	p2=negocio.acceso(p);
