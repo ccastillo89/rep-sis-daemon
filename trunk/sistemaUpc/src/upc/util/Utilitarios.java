@@ -1,5 +1,8 @@
 package upc.util;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,10 +19,24 @@ public class Utilitarios {
         return d;        
     }  
 	
-	public  Date ObtnerFecha() {
-		 
+	public  Date ObtnerFecha() throws ParseException {
+		
+		//int hora,minutos,segundos;
+		String fecha;
+		Date fechaCreacion=null;
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		  Calendar cal = Calendar.getInstance();
-		  Date fechaCreacion = cal.getTime();
+		  fecha=dateFormat.format(cal.getTime());
+		 // fecha=DateFormat.getDateInstance();
+		  fechaCreacion= dateFormat.parse(fecha);
+		  
+		  /*
+		  hora =cal.get(Calendar.HOUR_OF_DAY);
+		  minutos = cal.get(Calendar.MINUTE);
+		  segundos = cal.get(Calendar.SECOND);
+		  
+		 */
+		  //Date fechaCreacion = cal.getTime();
 		  return fechaCreacion;
 		  		  
 		 } 
