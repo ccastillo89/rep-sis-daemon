@@ -293,7 +293,7 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 	}
    	
-   	public int buscarAsesorPorusuario(Publicacion vo) throws DAOExcepcion {
+   	public int buscarAcesorPorUsuario(Publicacion vo) throws DAOExcepcion {
 		String query = "select count(titulo) from publicacion where idusuario = ? and usuario_acesor = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -341,7 +341,7 @@ public class PublicacionDAO extends BaseDAO {
 						
 			int i = stmt.executeUpdate();
 			if (i != 1) {
-				throw new SQLException("No se pudo actualizar");
+				throw new SQLException("No se pudo asignar el acesor.");
 			}
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
