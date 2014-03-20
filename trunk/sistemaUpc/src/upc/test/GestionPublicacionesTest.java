@@ -222,7 +222,7 @@ public class GestionPublicacionesTest {
     }
     
     
-   //@Test
+    @Test
     public void buscarPublicacionTest() {
 
         GestionPublicaciones negocio = new GestionPublicaciones();
@@ -266,6 +266,34 @@ public class GestionPublicacionesTest {
   			Assert.fail("Falló la actualización: " + e.getMessage());
   		}
   	}
-	
+  	
+    //@Test
+  	public void asignarAcesorTest() {
 
+  		GestionPublicaciones negocio = new GestionPublicaciones();
+  		
+  		Publicacion modelo = new Publicacion();
+  		
+  		  		
+  		Usuario usu_normal = new Usuario();
+  		Usuario usu_acesor = new Usuario();
+  		
+
+  		try {
+  			
+  			usu_normal.setIdUsuario(1);
+  			usu_acesor.setIdUsuario(3);
+  			
+  			modelo.setUsuario(usu_normal);
+  			modelo.setUsuarioAsesor(usu_acesor);
+  					
+  			negocio.actualizarEstado(modelo);
+  			
+
+  		} catch (DAOExcepcion e) {
+  			Assert.fail("Falló la actualización: " + e.getMessage());
+  		}
+  	}
+	
+  	
 }
