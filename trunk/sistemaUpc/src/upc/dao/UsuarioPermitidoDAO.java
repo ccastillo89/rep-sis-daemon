@@ -13,14 +13,15 @@ import upc.util.ConexionBD;
 public class UsuarioPermitidoDAO extends BaseDAO {
 
 	public UsuarioPermitido darAcceso(UsuarioPermitido userPer) throws DAOExcepcion {
-		String query = "insert into usuario_permitido (idusuario) values (?)";
+		String query = "insert into usuario_permitido (idcomentario,idusuario) values (?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, userPer.getUsuario().getIdUsuario());
+			stmt.setInt(1, userPer.getPublicacion().getIdPublicacion());
+			stmt.setInt(2, userPer.getUsuario().getIdUsuario());
 		
 					
 			int i = stmt.executeUpdate();
@@ -45,7 +46,7 @@ public class UsuarioPermitidoDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			String query = "select p.Idusuario, u.tipo_usuario from Usuario U, Usuario_permitido P where U.Idusuario = P.Idusuario and P.Idusuario=?";
+			String query = "select p.Idusuario, u.tipo_usuario from Usuario U, Usuario_permitido P where U.Idusuario = P.Idusuario and P.Idusuario=? ";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, tipoUsuario);

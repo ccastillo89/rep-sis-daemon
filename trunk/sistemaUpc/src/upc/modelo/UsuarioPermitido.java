@@ -1,15 +1,26 @@
 package upc.modelo;
 
 public class UsuarioPermitido {
-	private Comentario Comentario;
+	private Publicacion Publicacion;
 	private Usuario usuario;
 	private int puntos;
 	
-	public Comentario getComentario() {
-		return Comentario;
+	
+	public UsuarioPermitido() {
+		super();
 	}
-	public void setComentario(Comentario comentario) {
-		Comentario = comentario;
+	public UsuarioPermitido(upc.modelo.Publicacion publicacion,
+			Usuario usuario, int puntos) {
+		super();
+		Publicacion = publicacion;
+		this.usuario = usuario;
+		this.puntos = puntos;
+	}
+	public Publicacion getPublicacion() {
+		return Publicacion;
+	}
+	public void setPublicacion(Publicacion publicacion) {
+		Publicacion = publicacion;
 	}
 	public Usuario getUsuario() {
 		return usuario;
