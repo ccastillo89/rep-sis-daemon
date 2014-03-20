@@ -11,6 +11,7 @@ import java.util.Collection;
 //import java.util.Date;
 
 
+
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
 import upc.modelo.Codigo;
@@ -294,7 +295,7 @@ public class PublicacionDAO extends BaseDAO {
 	}
    	
    	public int buscarAcesorPorUsuario(Publicacion vo) throws DAOExcepcion {
-		String query = "select count(titulo) from publicacion where idusuario = ? and usuario_acesor = ?";
+		String query = "select count(titulo) as Total from publicacion where idusuario = ? and usuario_acesor = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -316,7 +317,7 @@ public class PublicacionDAO extends BaseDAO {
 			}
 			
 			if (i != 0) {
-				throw new SQLException("Acesor ya asignado para este usuario en otra publicacion.");
+				throw new SQLException("Asesor ya asignado para este usuario en otra publicacion.");
 			}
 
 		} catch (SQLException e) {
@@ -329,20 +330,22 @@ public class PublicacionDAO extends BaseDAO {
 		return i;
 	}
    	
-   	public Publicacion asignarAcesor(Publicacion vo) throws DAOExcepcion {
+   	public Publicacion asignarAsesor(Publicacion vo) throws DAOExcepcion {
 		String query = "Update publicacion Set usuario_acesor = ? where idpublicacion = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, vo.getUsuario().getIdUsuario());
-			stmt.setInt(2, vo.getUsuarioAsesor().getIdUsuario());
-						
-			int i = stmt.executeUpdate();
-			if (i != 1) {
-				throw new SQLException("No se pudo asignar el acesor.");
-			}
+			
+			
+			
+			stmt.setInt(1, vo.getUsuarioAsesor().getIdUsuario());
+			stmt.setInt(2, vo.getIdPublicacion());
+			
+			stmt.executeUpdate();			
+			
+
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
@@ -353,6 +356,43 @@ public class PublicacionDAO extends BaseDAO {
 		return vo;
 		
    	}
+   	
+   	
+   	public int contarPuntosPublicacion(Publicacion vo) throws DAOExcepcion {
+		String query = "select ifnull(sum(puntos),0) as Total from usuario_permitido Where idcomentario = ? ";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int i = 0 ;
+		
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+				
+
+			stmt.setInt(1, vo.getIdPublicacion());
+			
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				i = rs.getInt("Total");				
+			
+			}
+			
+			if (i <= 0) {
+				throw new SQLException("Esta publicacion no tiene votaciones.");
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return i;
+	}
     
 
 }
