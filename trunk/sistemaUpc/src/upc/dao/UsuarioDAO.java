@@ -241,8 +241,7 @@ public class UsuarioDAO extends BaseDAO {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		int i = 0 ;
-		
+				
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
