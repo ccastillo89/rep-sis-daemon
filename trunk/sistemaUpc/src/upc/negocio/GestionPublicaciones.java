@@ -85,12 +85,30 @@ public class GestionPublicaciones {
      			
      	}
      	
+     	public void buscarAcesorPorUsuario(Publicacion vo)
+				throws DAOExcepcion {
+     		
+     			PublicacionDAO dao = new PublicacionDAO();
+     			 dao.buscarAcesorPorUsuario(vo);    			 
+     			 
+     			
+     	}
+     	
      	public Publicacion asignarAcesor(Publicacion vo)
 				throws DAOExcepcion {
      		
      			PublicacionDAO dao = new PublicacionDAO();
-     			return dao.asignarAcesor(vo);
+     			return dao.asignarAsesor(vo);
      			
      	}
+     	
+     	public int contarPuntosPublicacion(Publicacion vo)
+				throws DAOExcepcion {
+     		
+     			PublicacionDAO dao = new PublicacionDAO();
+     			 return dao.contarPuntosPublicacion(vo);    			 
+     			 
+     			
+     	}	
 
 }
