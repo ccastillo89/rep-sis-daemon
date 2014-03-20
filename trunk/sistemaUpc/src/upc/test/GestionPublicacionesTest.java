@@ -141,7 +141,7 @@ public class GestionPublicacionesTest {
 		
 
 	
-	@Test
+	//@Test
 	
 	public void ReportedePublicacionesTest() throws ParseException {
 
@@ -222,7 +222,7 @@ public class GestionPublicacionesTest {
     }
     
     
-    @Test
+    //@Test
     public void buscarPublicacionTest() {
 
         GestionPublicaciones negocio = new GestionPublicaciones();
@@ -245,7 +245,7 @@ public class GestionPublicacionesTest {
         }
     }
     
-    //@Test
+   // @Test
   	public void actualizarEstadoTest() {
 
   		GestionPublicaciones negocio = new GestionPublicaciones();
@@ -268,13 +268,39 @@ public class GestionPublicacionesTest {
   	}
   	
     //@Test
-  	public void asignarAcesorTest() {
+  	public void asignarAsesorTest() {
 
   		GestionPublicaciones negocio = new GestionPublicaciones();
   		
   		Publicacion modelo = new Publicacion();
+  		  		 		
   		
-  		  		
+  		Usuario usu_acesor = new Usuario();
+  		
+
+  		try {
+  			
+  			
+  			usu_acesor.setIdUsuario(5);
+  			
+  			modelo.setIdPublicacion(3);
+  			modelo.setUsuarioAsesor(usu_acesor);
+  					
+  			negocio.asignarAcesor(modelo);
+  			
+
+  		} catch (DAOExcepcion e) {
+  			Assert.fail("Falló la actualización: " + e.getMessage());
+  		}
+  	}
+  	
+  //@Test
+  	public void buscarAcesorPorUsuarioTest() {
+
+  		GestionPublicaciones negocio = new GestionPublicaciones();
+  		
+  		Publicacion modelo = new Publicacion();
+  		  		 		
   		Usuario usu_normal = new Usuario();
   		Usuario usu_acesor = new Usuario();
   		
@@ -282,18 +308,44 @@ public class GestionPublicacionesTest {
   		try {
   			
   			usu_normal.setIdUsuario(1);
-  			usu_acesor.setIdUsuario(3);
+  			usu_acesor.setIdUsuario(5);
   			
-  			modelo.setUsuario(usu_normal);
+  			modelo.setUsuario(usu_normal);;
   			modelo.setUsuarioAsesor(usu_acesor);
   					
-  			negocio.actualizarEstado(modelo);
+  			negocio.buscarAcesorPorUsuario(modelo);
   			
 
   		} catch (DAOExcepcion e) {
-  			Assert.fail("Falló la actualización: " + e.getMessage());
+  			Assert.fail("Error : " + e.getMessage());
   		}
   	}
 	
+  	
+  	 @Test
+ 	public void contarPuntosPublicacionTest() {
+
+ 		GestionPublicaciones negocio = new GestionPublicaciones();
+ 		
+ 		Publicacion modelo = new Publicacion();		  		 		
+ 					
+
+ 		try {
+ 			
+ 		
+ 			modelo.setIdPublicacion(1);
+ 					
+ 			int i = 0;
+ 			i = negocio.contarPuntosPublicacion(modelo);
+ 			
+ 			System.out.println("Total votaciones : " + i  );
+ 			
+
+ 		} catch (DAOExcepcion e) {
+ 			Assert.fail("Error : " + e.getMessage());
+ 		}
+ 	}
+  
+  
   	
 }
