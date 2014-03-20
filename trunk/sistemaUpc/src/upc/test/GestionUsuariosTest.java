@@ -42,7 +42,7 @@ public class GestionUsuariosTest {
 		GestionUsuarios negocio = new GestionUsuarios();
 		Codigo modelo = new Codigo();
 		
-		modelo.setIdCodigo(1);
+		modelo.setIdCodigo(3);
 		
 
 		try {
