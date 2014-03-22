@@ -195,9 +195,21 @@ public class PublicacionDAO extends BaseDAO {
 		return c;
 	}
    
-   	public Collection<Publicacion> buscarPublicacion(String texto,int estado)
+	public Collection<Publicacion> buscarPublicacion(String texto,int estado)
 			throws DAOExcepcion {
-		String query = "select idpublicacion, titulo, descripcion,estado from publicacion where (titulo LIKE ? or descripcion like ? or palabra_clave like ?)  and estado=?";
+		String query = "    select idpublicacion, titulo, descripcion,descripcion_codigo,c.nombres,c.paterno,fecha_publicacion, " +
+				" f.nombres as nombres_asesor ,f.paterno as paterno_asesor  from "+ 
+    " publicacion a inner join usuario b on a.idusuario=b.idusuario "+
+    " inner join persona c on b.idpersona=c.idpersona "+
+    " inner join codigo d on d.idcodigo=a.estado "+
+    " inner join usuario e on a.usuario_acesor=e.idusuario "+
+    " inner join persona f on e.idpersona=f.idpersona "+  
+		"  where "+
+		" (titulo LIKE ? or descripcion like ? or palabra_clave like ?) and "+
+		" estado=? and "+
+		" Grupo='Estado_Publicacion' ";
+		
+		
 		Collection<Publicacion> lista = new ArrayList<Publicacion>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -214,7 +226,28 @@ public class PublicacionDAO extends BaseDAO {
 				Publicacion vo = new Publicacion();
 				vo.setIdPublicacion(rs.getInt("idpublicacion"));
 				vo.setTitulo(rs.getString("titulo"));
-				vo.setDescripcion(rs.getString("estado")); 
+				vo.setDescripcion(rs.getString("descripcion"));
+				vo.setFechaPublicacion(rs.getDate("fecha_publicacion"));
+				
+				Codigo codigo = new Codigo();
+				codigo.setDescripcionCodigo(rs.getString("descripcion_codigo")); 
+				vo.setEstado(codigo);
+				
+				Persona personaEstudiante=new Persona();
+				personaEstudiante.setNombres(rs.getString("nombres"));
+				personaEstudiante.setPaterno(rs.getString("paterno"));
+				Usuario usuarioEstudiante=new Usuario();
+				usuarioEstudiante.setPersona(personaEstudiante);				
+				vo.setUsuario(usuarioEstudiante);
+				
+				Persona personaAsesor=new Persona();
+				personaAsesor.setNombres(rs.getString("nombres_asesor"));
+				personaAsesor.setPaterno(rs.getString("paterno_asesor"));
+
+				Usuario usuarioAsesor=new Usuario();
+				usuarioEstudiante.setPersona(personaAsesor);				
+				vo.setUsuarioAsesor(usuarioAsesor);
+				
 				lista.add(vo);
 			}
 		} catch (SQLException e) {
