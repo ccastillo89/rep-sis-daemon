@@ -53,7 +53,7 @@
 	   
 	   <!-- Jumbotron -->
 	   <div class="jumbotron">     
-	   		<h4>Bienvenid@ <b>${sessionScope.USUARIO_ACTUAL.nombres } ${sessionScope.USUARIO_ACTUAL.paterno }</b></h4>	     
+	   		<h4>Bienvenid@ <b> ${sessionScope.USUARIO_ACTUAL.correo }</b></h4>	     
 	   </div>
 	   
 	   <div class="row">
