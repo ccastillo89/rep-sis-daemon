@@ -56,23 +56,21 @@ public class LoginServlet extends javax.servlet.http.HttpServlet implements
 		String clave = request.getParameter("clave");
 
 		GestionUsuarios negocio = new GestionUsuarios();
-		Usuario usuariObj= new Usuario();
-		usuariObj.setCorreo(usuario);
-		usuariObj.setPassword(clave);
+
 
 		try {
-			Boolean vo = negocio.loginUsuario(usuariObj);
+			Usuario vo = negocio.validarUsuario(usuario, clave);
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("USUARIO_ACTUAL", usuariObj);
+			session.setAttribute("USUARIO_ACTUAL", vo);
 			
 			response.sendRedirect("PortadaServlet");
 			return;
 		} catch (DAOExcepcion e) {
 			request.setAttribute("MENSAJE", "Hubo un error al procesar la operación: " + e.getMessage());	
-		}/* catch (LoginExcepcion e) {			
+		} catch (LoginExcepcion e) {			
 			request.setAttribute("MENSAJE", "Usuario y/o clave incorrectos");
-		}*/
+		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
