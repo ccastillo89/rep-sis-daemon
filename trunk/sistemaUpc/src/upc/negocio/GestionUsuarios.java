@@ -2,6 +2,7 @@ package upc.negocio;
 
 import java.util.Collection;
 
+import upc.excepcion.LoginExcepcion;
 import upc.dao.UsuarioDAO;
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Codigo;
@@ -47,6 +48,11 @@ public class GestionUsuarios {
 
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.buscarPorTipoUsuario(co);
+	}
+	public Usuario validarUsuario(String idUsuario, String clave)
+			throws DAOExcepcion, LoginExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.validar(idUsuario, clave);
 	}
 
 }
