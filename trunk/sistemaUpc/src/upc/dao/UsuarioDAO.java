@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import upc.excepcion.LoginExcepcion;
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
 import upc.modelo.Codigo;
@@ -271,5 +272,42 @@ public class UsuarioDAO extends BaseDAO {
 		}
 		return c;
 	}
+	
+	public Usuario validar(String correo, String password)
+			throws DAOExcepcion, LoginExcepcion {
+		String query = "select id_usuario, nombres, paterno,"
+				+ "materno, correo, direccion, telefono,"
+				+ "estado from usuario where correo = ? and password = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Usuario vo = new Usuario();
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, correo);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				vo.setIdUsuario(rs.getInt("id_usuario"));				 
+				vo.setCorreo(rs.getString("correo"));
+			} else {
+				throw new LoginExcepcion("No existe");
+			}
+		} catch (LoginExcepcion e) {
+			System.err.println(e.getMessage());
+			throw new LoginExcepcion(e.getMessage());
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}	
+	
 	
 }
