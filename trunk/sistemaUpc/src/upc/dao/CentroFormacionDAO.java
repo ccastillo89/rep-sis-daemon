@@ -95,17 +95,19 @@ public class CentroFormacionDAO extends BaseDAO {
 	}
 
 	
-	public Collection<CentroFormacion> listar() throws DAOExcepcion {
+	public Collection<CentroFormacion> listar(CentroFormacion ci) throws DAOExcepcion {
 
 		Collection<CentroFormacion> c = new ArrayList<CentroFormacion>();
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		try {
+		try {			
+			String query = "select idcentro_formacion,nombre,tipo,url,logo from Centro_Formacion WHERE nombre like ? order by nombre";
+			
 			con = ConexionBD.obtenerConexion();
-			String query = "select idcentro_formacion,nombre,tipo,url,logo from Centro_Formacion order by nombre";
 			stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery();
+			stmt.setString(1, "%" + ci.getNombre() + "%");
+			rs = stmt.executeQuery();			
 			while (rs.next()) {
 				CentroFormacion vo = new CentroFormacion();
 				vo.setIdCentroInformacion(rs.getInt("idcentro_formacion"));
@@ -195,6 +197,36 @@ public class CentroFormacionDAO extends BaseDAO {
 			this.cerrarConexion(con);
 		}
 		return i;
+	}
+	
+	public CentroFormacion obtener(Integer IdCentroFormacion) throws DAOExcepcion {
+		System.out.println("CentroFormacionDAO: obtener(Int IdcentroFormacion)");
+		CentroFormacion vo = new CentroFormacion();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "select idcentro_formacion,nombre,tipo,url,logo from Centro_Formacion where idcentro_formacion=?";
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, IdCentroFormacion);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				vo.setIdCentroInformacion(rs.getInt(1));
+				vo.setNombre(rs.getString(2));
+				vo.setTipo(rs.getInt(3));
+				vo.setUrl(rs.getString(4));
+				vo.setLogo(rs.getString(5));
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
 	}
 
 
