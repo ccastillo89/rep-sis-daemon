@@ -39,7 +39,9 @@
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="roles_buscar.jsp">Roles</a></li>
-	              <li><a href="#">Productos</a></li>	              
+	              <li><a href="#">Productos</a></li>
+	              <li><a href="centroFormacion_Buscar.jsp">Centro de Formacion</a></li>	      
+	                      
 	            </ul>
 	          </li>
 	          <li><a href="#">Reportes</a></li>	          
@@ -65,6 +67,11 @@
         <div class="col-lg-4">
           <h4>Mantenimiento de Productos</h4>
           <p>Desde esta opción usted podrá crear, modificar, buscar y eliminar los productos de la base de datos. </p>
+          <p><a class="btn btn-primary" href="#">Ver detalles &raquo;</a></p>
+       </div>
+       <div class="col-lg-4">
+          <h4>Mantenimiento de Centros de Formacion</h4>
+          <p>Desde esta opción usted podrá crear, modificar, buscar y eliminar los centros de formacion de la base de datos. </p>
           <p><a class="btn btn-primary" href="#">Ver detalles &raquo;</a></p>
        </div>
       </div>
