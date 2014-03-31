@@ -63,9 +63,10 @@ public class GestionCentroFormacionTest {
 	public void listarTest() {
 
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
+		CentroFormacion ci = new CentroFormacion();
 
 		try {
-			Collection<CentroFormacion> listado = negocio.listar();
+			Collection<CentroFormacion> listado = negocio.listar(ci);
 
 			System.out.println("Total de registros: "+ listado.size());
 			System.out.println("");
