@@ -36,10 +36,17 @@ public class GestionCentroFormacion {
 	}
 
 	
-	public Collection<CentroFormacion> listar() throws DAOExcepcion {
+	public Collection<CentroFormacion> listar(CentroFormacion ci) throws DAOExcepcion {
 		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
-		return dao.listar();
+		return dao.listar(ci);
+	}
+	
+	public CentroFormacion obtener(Integer IdCentroFormacion) throws DAOExcepcion {
+		CentroFormacionDAO dao = new CentroFormacionDAO();
+
+		return dao.obtener(IdCentroFormacion);
+
 	}
 
 	
