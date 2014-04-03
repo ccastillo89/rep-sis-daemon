@@ -99,7 +99,7 @@ CentroFormacion cf = (CentroFormacion)request.getAttribute("CentroFormacion");
     <tr>
       <td colspan="2">
         <input type="submit" value="Guardar" />
-        <input type="button" value="Regresar" onclick="window.location='CentroFormacion_Buscar.jsp' " />
+        <input type="button" value="Regresar" onclick="window.location='centroFormacion_Buscar.jsp' " />
 	  </td>
     </tr>
   </table>  
