@@ -92,7 +92,7 @@
 		    <td><%=i++ %></td>
 		    <td><% out.print(x.getIdCentroInformacion()); %></td>
 		    <td><% out.print(x.getNombre()); %></td>
-		    <td><% out.print(x.getTipo()); %></td>
+		    <td><% out.print(x.getStrTipo()); %></td>
 		    <td><% out.print(x.getUrl()); %></td>
 		    <td><a href="<%=request.getContextPath() %>/CentroFormacionEditarServlet?id=<%=x.getIdCentroInformacion() %>">Editar</a> - <a href="<%=request.getContextPath()%>
 		/CentroFormacionEliminarServlet?id=<%=x.getIdCentroInformacion()%>" onclick="return confirm('¿Está seguro que desea eliminar');">Eliminar</a></td>
