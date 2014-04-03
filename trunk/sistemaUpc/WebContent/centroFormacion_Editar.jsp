@@ -50,7 +50,19 @@
 	    </div>
 	  </div>
       
-	 <div class="container"> 
+	 <div class="container">
+	 
+<script>
+function selectInCombo(combo,val)
+{
+    for(var indice=0 ;indice<document.getElementById(combo).length;indice++)
+    {
+        if (document.getElementById(combo).options[indice].text==val )
+            document.getElementById(combo).selectedIndex =indice;
+    }       
+}
+</script>
+
 
 <p><strong>Mantenimiento de Centro de Formaciones &gt; Editar</strong></p>
 
@@ -78,10 +90,11 @@ CentroFormacion cf = (CentroFormacion)request.getAttribute("CentroFormacion");
     <tr>
       <td>Tipo:</td>
       <td><label>
-        <select name="tipo">
+        <select name="tipo" id="tipo">
 		    <option value="10">Universidad</option>
 		    <option value="11">Instituto</option>
 		</select>
+		<script>selectInCombo('tipo','<%=cf.getStrTipo() %>')</script>
       </label></td>
     </tr>
     <tr>
