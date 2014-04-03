@@ -102,8 +102,7 @@ public class CentroFormacionDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {			
-			String query = "select idcentro_formacion,nombre,tipo,url,logo from Centro_Formacion WHERE nombre like ? order by nombre";
-			
+			String query = "select cf.idcentro_formacion,cf.nombre,cf.tipo,co.descripcion_codigo,cf.url,cf.logo from Centro_Formacion cf inner join codigo co on cf.tipo = co.idcodigo WHERE cf.nombre like ? order by cf.nombre";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%" + ci.getNombre() + "%");
@@ -114,7 +113,8 @@ public class CentroFormacionDAO extends BaseDAO {
 				vo.setNombre(rs.getString("nombre"));
 				vo.setTipo(rs.getInt("tipo"));
 				vo.setUrl(rs.getString("url"));
-				vo.setLogo(rs.getString("logo"));						
+				vo.setLogo(rs.getString("logo"));
+				vo.setStrTipo(rs.getString("descripcion_codigo"));
 				
 				c.add(vo);
 			}
