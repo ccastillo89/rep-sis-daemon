@@ -65,7 +65,10 @@
     <tr>
       <td>Tipo:</td>
       <td><label>
-        <input type="text" name="tipo" id="tipo" />
+        <select name="tipo">
+		    <option value="10">Universidad</option>
+		    <option value="11">Instituto</option>
+		</select>
       </label></td>
     </tr>
      <tr>
