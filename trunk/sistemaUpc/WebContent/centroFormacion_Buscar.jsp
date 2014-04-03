@@ -77,6 +77,7 @@
 		    <th width="192" scope="col">Nombre</th>
 		    <th width="107" scope="col">Tipo</th>
 		    <th width="192" scope="col">URL</th>
+		    <th width="192" scope="col">Acciones</th>
 		    
 		  </tr>
 		
