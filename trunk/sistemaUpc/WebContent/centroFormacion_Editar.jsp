@@ -78,8 +78,10 @@ CentroFormacion cf = (CentroFormacion)request.getAttribute("CentroFormacion");
     <tr>
       <td>Tipo:</td>
       <td><label>
-        <input type="text" name="tipo" id="tipo" 
-        value="<%=cf.getTipo() %>"   />
+        <select name="tipo">
+		    <option value="10">Universidad</option>
+		    <option value="11">Instituto</option>
+		</select>
       </label></td>
     </tr>
     <tr>
