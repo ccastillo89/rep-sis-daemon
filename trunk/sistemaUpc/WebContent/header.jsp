@@ -38,7 +38,20 @@
 	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>	                      
 	            </ul>
 	          </li>	          
-	          <li><a href="#">Reportes</a></li>	          
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="reporte_ideas.jsp">Roles</a></li>
+	             
+	            </ul>
+	          </li>     
+	            <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobranzas <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="calcular_pagos.jsp">Calcular Pagos</a></li>
+	             
+	            </ul>
+	          </li>    
 	          <li><a href="LogoutServlet">Salir</a></li>
 	        </ul>
 	      </div><!--/.nav-collapse -->
