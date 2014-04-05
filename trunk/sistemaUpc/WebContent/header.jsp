@@ -30,6 +30,13 @@
 	                      
 	            </ul>
 	          </li>
+	          
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>	                      
+	            </ul>
+	          </li>	          
 	          <li><a href="#">Reportes</a></li>	          
 	          <li><a href="LogoutServlet">Salir</a></li>
 	        </ul>
