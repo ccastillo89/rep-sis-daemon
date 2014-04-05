@@ -41,7 +41,7 @@
 	          <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="reporte_ideas.jsp">Roles</a></li>
+	              <li><a href="reporte_ideas.jsp">Reporte de Ideas</a></li>
 	             
 	            </ul>
 	          </li>     
