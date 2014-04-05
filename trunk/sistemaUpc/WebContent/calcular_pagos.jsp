@@ -21,35 +21,82 @@
 
   <body>
         
-	 <jsp:include page="header.jsp" />
+	  <!-- Static navbar -->
+	  <div class="navbar navbar-default navbar-static-top">
+	    <div class="container">
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <a class="navbar-brand" href="principal.jsp">Trastienda</a>
+	      </div>
+	      <div class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav">
+	          <li><a href="principal.jsp">Inicio</a></li>
+	          <li class="dropdown active">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="roles_buscar.jsp">Roles</a></li>
+	              <li><a href="#">Productos</a></li>	              
+	            </ul>
+	          </li>
+	          <li><a href="#">Reportes</a></li>	          
+	          <li><a href="LogoutServlet">Salir</a></li>
+	        </ul>
+	      </div><!--/.nav-collapse -->
+	    </div>
+	  </div>
       
 	 <div class="container"> 
-	   
-	   <!-- Jumbotron -->
-	   <div class="jumbotron">     
-	   		<h4>Bienvenid@ <b> ${sessionScope.USUARIO_ACTUAL.correo }</b></h4>	     
-	   </div>
-	   
-	   <div class="row">
-        <div class="col-lg-4">
-          <h4>Mantenimiento de Roles</h4>
-          <p>Desde esta opción usted podrá crear, modificar, buscar y eliminar los roles de la base de datos. </p>
-          <p><a class="btn btn-primary" href="roles_buscar.jsp">Ver detalles &raquo;</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h4>Mantenimiento de Productos</h4>
-          <p>Desde esta opción usted podrá crear, modificar, buscar y eliminar los productos de la base de datos. </p>
-          <p><a class="btn btn-primary" href="#">Ver detalles &raquo;</a></p>
-       </div>
-       <div class="col-lg-4">
-          <h4>Mantenimiento de Centros de Formacion</h4>
-          <p>Desde esta opción usted podrá crear, modificar, buscar y eliminar los centros de formacion de la base de datos. </p>
-          <p><a class="btn btn-primary" href="#">Ver detalles &raquo;</a></p>
-       </div>
-      </div>
-      
-	
-	   <!-- Site footer -->
+
+
+		<p><strong>Mantenimiento de Roles &gt; Buscar</strong></p>
+		
+		<form id="form1" name="form1" method="post" action="RolBuscarServlet" class="form-horizontal" role="form">
+		  <p>Buscar: 
+		    <label>
+		    <input type="text" name="nombre" id="nombre" />
+		    </label>
+		    <label>
+		    <input type="submit" name="button" id="button" value="Buscar" />
+		    </label>
+		    <label>
+		    <input type="button" name="button2" id="button2" value="Nuevo" onclick="window.location='roles_nuevo.jsp' "  />
+		    </label>
+		  </p>
+		</form>
+		<div class="table-responsive">
+		<table width="550" height="65" border="1" cellpadding="0" cellspacing="0" class="table table-hover">
+		  <tr>
+		    <th width="49" scope="col">Nro.</th>
+		    <th width="192" scope="col">Nombre</th>
+		    <th width="107" scope="col">Descripción</th>
+		    <th width="192" scope="col">Acciones</th>
+		  </tr>
+		
+		<%@page import="java.util.*, trastienda.modelo.Rol" %>
+		<%
+		Collection<Rol> arreglo = (ArrayList<Rol>)request.getAttribute("roles");
+		if(arreglo != null) { 
+		int i = 1;
+		for(Rol x : arreglo) {
+		%>  
+		  <tr>
+		    <td><%=i++ %></td>
+		    <td><% out.print(x.getRolNombre()); %></td>
+		    <td><% out.print(x.getDescripcion()); %></td>
+		    <td><a href="<%=request.getContextPath() %>/RolEditarServlet?id=<%=x.getRolNombre() %>">Editar</a> - <a href="<%=request.getContextPath()%>
+		/RolEliminarServlet?id=<%=x.getRolNombre()%>" onclick="return confirm('¿Está seguro que desea eliminar');">Eliminar</a></td>
+		  </tr>
+		<% }  
+		  } %>
+		  
+		</table>
+		</div>
+
+ 		<!-- Site footer -->
 	   <div class="footer">
 	   	 <p>&nbsp;</p>
 	     <p>&copy; RCondezo 2014 </p>
