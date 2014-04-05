@@ -27,14 +27,15 @@
 	              <li><a href="roles_buscar.jsp">Roles</a></li>
 	              <li><a href="#">Productos</a></li>
 	              <li><a href="centroFormacion_Buscar.jsp">Centro de Formacion</a></li>	      
-	                      
+	              <li><a id="lnkUsuario" href="usuarios_Buscar.jsp">Usuarios</a></li>
 	            </ul>
 	          </li>
 	          
 	          <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>	                      
+	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>
+	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>	                      
 	            </ul>
 	          </li>	          
 	          <li><a href="#">Reportes</a></li>	          
