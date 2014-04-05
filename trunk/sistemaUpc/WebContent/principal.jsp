@@ -45,7 +45,7 @@
 	            </ul>
 	          </li>
 	          <li><a href="#">Reportes</a></li>	          
-	          <li><a href="LogoutServlet">Salir</a></li>
+	          <li><a href="LogoutServlet">Saliree</a></li>
 	        </ul>
 	      </div><!--/.nav-collapse -->
 	    </div>
