@@ -27,7 +27,7 @@
 	              <li><a href="roles_buscar.jsp">Roles</a></li>
 	              <li><a href="#">Productos</a></li>
 	              <li><a href="centroFormacion_Buscar.jsp">Centro de Formacion</a></li>	      
-	              <li><a id="lnkUsuario" href="usuarios_Buscar.jsp">Usuarios</a></li>
+	              <li><a id="lnkUsuario" href="/sistemaUpc/H7/usuarios_Buscar.jsp">Usuarios</a></li>
 	            </ul>
 	          </li>
 	          
@@ -35,7 +35,7 @@
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>
-	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>
+	              <li><a id="lnkAsesoria" href="/sistemaUpc/H8/asesoria.jsp">Asesorias</a></li>
 	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>	                      
 	            </ul>
 	          </li>	          
