@@ -68,7 +68,8 @@
 		    <td><% out.print(x.getDescripcion()); %></td>
 		    <td><% out.print(x.getDescripcion()); %></td>
 		    <td><% out.print(x.getFechaPublicacion()); %></td>
-
+		    <td><a href="<%=request.getContextPath() %>/PublicacionAprobarServlet?id=<%=x.getIdPublicacion() %>" onclick="return confirm('¿Está seguro de aprobar la publicacion');">Aprobar</a> - 
+		        <a href="<%=request.getContextPath()%>/PublicacionRechazarServlet?id=<%=x.getIdPublicacion()%>" onclick="return confirm('¿Está seguro de rechazar la publicacion');">Rechazar</a></td>
 		  </tr>
 		<% }  
 		  } %>
