@@ -35,7 +35,8 @@
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>
-	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>	                      
+	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>
+	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>	                      
 	            </ul>
 	          </li>	          
 	          <li class="dropdown">
