@@ -38,7 +38,7 @@
 		    <label>
 		    <input type="submit" name="button" id="button" value="Buscar" />
 		    </label>
-
+			<input type="hidden" name="txtEstado" id="txtEstado" value="7" />
 		  </p>
 		</form>
 		<div class="table-responsive">
