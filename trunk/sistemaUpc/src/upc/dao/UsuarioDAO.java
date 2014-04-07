@@ -32,7 +32,7 @@ public class UsuarioDAO extends BaseDAO {
 		query += "inner join codigo E on B.sexo= E.idcodigo ";
 		query += "inner join codigo F on B.tipo_documento = F.idcodigo ";
 		query += "where (B.nombres like ? or B.paterno like ? or B.materno like ?)  ";
-		query += "and (? = 0 or B.idcentro_formacion = ?)"; 
+		query += "and B.idcentro_formacion = ?"; 
 		
 		Collection<Usuario> lista = new ArrayList<Usuario>();
 		Connection con = null;
