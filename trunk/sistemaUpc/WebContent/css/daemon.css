@@ -90,3 +90,19 @@ line-height: 1.1;
 color: inherit;
 text-rendering: optimizeLegibility;
 }
+
+
+.pageTitle{
+	height: 25px;
+	background-color: #8F8F8F;
+	font-size: larger;
+	text-align: center;
+	color: white;
+	padding: 0px;
+	/*para Firefox*/
+	-moz-border-radius: 15px 15px 15px 15px;
+	/*para Safari y Chrome*/
+	-webkit-border-radius: 15px 15px 15px 15px;
+	/* para Opera */
+	border-radius: 15px 15px 15px 15px;
+}
