@@ -16,7 +16,7 @@ import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
 
 /**
- * Servlet implementation class for Servlet: RolBuscarServlet
+ * Servlet implementation class for Servlet: ReporteIdeasServlet
  * 
  */
 @WebServlet("/ReporteIdeasServlet")
