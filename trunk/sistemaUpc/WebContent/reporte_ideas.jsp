@@ -7,7 +7,7 @@
     <meta name="author" content="">
 <!--     <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
 
-    <title>Trastienda</title>
+    <title>Reporte de Ideas</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap-3.1.1.css" rel="stylesheet" media="screen">
@@ -17,6 +17,38 @@
       <script src="../../assets/js/html5shiv.js"></script>
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
+    
+    
+
+  <SCRIPT src="js/mootools-core.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/mootools-more.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Locale.en-US.DatePicker.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.Attach.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.Date.js" type="text/javascript"></SCRIPT>
+
+ <LINK href="css/datepicker_dashboard.css" rel="stylesheet"> 
+     
+
+
+<SCRIPT>
+
+	window.addEvent('domready', function(){
+		new Picker.Date($$('input'), {
+			
+			positionOffset: {x: 5, y: 0},
+			pickerClass: 'datepicker_dashboard',
+			useFadeInOut: !Browser.ie
+		});
+	});
+
+	</SCRIPT>
+      
   </head>
 
   <body>
@@ -30,7 +62,7 @@
 		<p><strong>Reporte de Ideas &gt; Buscar</strong></p>
 		
 		<form id="form1" name="form1" method="post" action="ReporteIdeasServlet" class="form-horizontal" role="form">
-		  <p>Buscar: 
+		  <p>Titulo: 
 		    <label>
 		    <input type="text" name="descripcion" id="descripcion" />
 		    </label>
@@ -40,6 +72,14 @@
 		    <label>
 		    <input type="button" name="button2" id="button2" value="Nuevo" onclick="window.location='roles_nuevo.jsp' "  />
 		    </label>
+		  </p>
+		  <p>Fecha Inicio:
+		  
+		 <input type="text" id="datepicker">
+		 
+		 
+		 <input name='date_B' type='text' value="02/08/1991 11:05AM" class='date demo' />
+
 		  </p>
 		</form>
 		<div class="table-responsive">
