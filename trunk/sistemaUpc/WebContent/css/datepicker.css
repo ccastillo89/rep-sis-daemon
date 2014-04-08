@@ -1,0 +1,141 @@
+.datepicker {
+	BORDER-BOTTOM: #1c3262 2px solid; POSITION: absolute; BORDER-LEFT: #1c3262 2px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: normal; PADDING-LEFT: 3px; WIDTH: 194px; PADDING-RIGHT: 3px; BACKGROUND: #fff; HEIGHT: 221px; FONT-SIZE: 11px; BORDER-TOP: #1c3262 2px solid; BORDER-RIGHT: #1c3262 2px solid; PADDING-TOP: 3px
+}
+.datepicker .header {
+	POSITION: relative; MARGIN-BOTTOM: 3px; BACKGROUND: #1c3262; HEIGHT: 21px; PADDING-TOP: 4px
+}
+.datepicker .header .title {
+	TEXT-ALIGN: center; MARGIN: 0px 42px 0px 20px; PADDING-TOP: 1px
+}
+.datepicker .header .titleText {
+	COLOR: #fff; FONT-WEIGHT: bold
+}
+.datepicker .header .next {
+	POSITION: absolute; TEXT-ALIGN: center; WIDTH: 15px; BACKGROUND: #fff; HEIGHT: 15px; COLOR: #666; CURSOR: pointer; TOP: 5px
+}
+.datepicker .header .previous {
+	POSITION: absolute; TEXT-ALIGN: center; WIDTH: 15px; BACKGROUND: #fff; HEIGHT: 15px; COLOR: #666; CURSOR: pointer; TOP: 5px
+}
+.datepicker .header .closeButton {
+	POSITION: absolute; TEXT-ALIGN: center; WIDTH: 15px; BACKGROUND: #fff; HEIGHT: 15px; COLOR: #666; CURSOR: pointer; TOP: 5px
+}
+.datepicker .header .previous {
+	LEFT: 5px
+}
+.datepicker .header .next {
+	RIGHT: 28px
+}
+.datepicker .header .closeButton {
+	RIGHT: 5px
+}
+.datepicker .body {
+	POSITION: relative; WIDTH: 194px; HEIGHT: 193px; OVERFLOW: hidden; BORDER-RIGHT: #fff 2px solid; TOP: 0px; LEFT: 0px
+}
+.datepicker .time {
+	WIDTH: 100%; BACKGROUND: #eee; HEIGHT: 100%
+}
+.datepicker .time .hour {
+	BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; WIDTH: 50px; PADDING-RIGHT: 2px; BACKGROUND: #fff; FONT-SIZE: 32px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 2px; TOP: 50px
+}
+.datepicker .time .separator {
+	BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; WIDTH: 50px; PADDING-RIGHT: 2px; BACKGROUND: #fff; FONT-SIZE: 32px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 2px; TOP: 50px
+}
+.datepicker .time .minutes {
+	BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #ccc 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; WIDTH: 50px; PADDING-RIGHT: 2px; BACKGROUND: #fff; FONT-SIZE: 32px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 2px; TOP: 50px
+}
+.datepicker .time .hour {
+	LEFT: 30px
+}
+.datepicker .time .separator {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 10px; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; LEFT: 91px
+}
+.datepicker .time .minutes {
+	LEFT: 110px
+}
+.datepicker .time .ok {
+	POSITION: absolute; WIDTH: 136px; FONT-SIZE: 20px; TOP: 105px; LEFT: 30px
+}
+.datepicker .days .day {
+	TEXT-ALIGN: center; MARGIN: 0px 3px 3px 0px; WIDTH: 25px; BACKGROUND: #ccc; FLOAT: left; HEIGHT: 21px; OVERFLOW: hidden; CURSOR: pointer; PADDING-TOP: 4px
+}
+.datepicker .days .day0 {
+	MARGIN-RIGHT: 0px
+}
+.datepicker .days .week5 .day {
+	MARGIN-BOTTOM: 0px
+}
+.datepicker .days .title {
+	BACKGROUND: #5d6e95; COLOR: #fff; CURSOR: default; FONT-WEIGHT: bold
+}
+.datepicker .days .otherMonth {
+	BACKGROUND: #eee; COLOR: #aaa
+}
+.datepicker .months .month {
+	TEXT-ALIGN: center; MARGIN: 0px 3px 3px 0px; WIDTH: 62px; BACKGROUND: #eee; FLOAT: left; HEIGHT: 31px; OVERFLOW: hidden; CURSOR: pointer; PADDING-TOP: 15px
+}
+.datepicker .months .month3 {
+	WIDTH: 64px; MARGIN-RIGHT: 0px
+}
+.datepicker .months .month6 {
+	WIDTH: 64px; MARGIN-RIGHT: 0px
+}
+.datepicker .months .month9 {
+	WIDTH: 64px; MARGIN-RIGHT: 0px
+}
+.datepicker .months .month12 {
+	WIDTH: 64px; MARGIN-RIGHT: 0px
+}
+.datepicker .months .month10 {
+	MARGIN-BOTTOM: 0px
+}
+.datepicker .months .month11 {
+	MARGIN-BOTTOM: 0px
+}
+.datepicker .months .month12 {
+	MARGIN-BOTTOM: 0px
+}
+.datepicker .years .year {
+	TEXT-ALIGN: center; MARGIN: 0px 3px 3px 0px; WIDTH: 46px; BACKGROUND: #eee; FLOAT: left; HEIGHT: 25px; OVERFLOW: hidden; CURSOR: pointer; PADDING-TOP: 11px
+}
+.datepicker .years .year3 {
+	WIDTH: 47px; MARGIN-RIGHT: 0px
+}
+.datepicker .years .year7 {
+	WIDTH: 47px; MARGIN-RIGHT: 0px
+}
+.datepicker .years .year11 {
+	WIDTH: 47px; MARGIN-RIGHT: 0px
+}
+.datepicker .years .year15 {
+	WIDTH: 47px; MARGIN-RIGHT: 0px
+}
+.datepicker .years .year19 {
+	WIDTH: 47px; MARGIN-RIGHT: 0px
+}
+.datepicker .years .year16 {
+	MARGIN-BOTTOM: 0px; HEIGHT: 26px
+}
+.datepicker .years .year17 {
+	MARGIN-BOTTOM: 0px; HEIGHT: 26px
+}
+.datepicker .years .year18 {
+	MARGIN-BOTTOM: 0px; HEIGHT: 26px
+}
+.datepicker .years .year19 {
+	MARGIN-BOTTOM: 0px; HEIGHT: 26px
+}
+.datepicker .selected {
+	BACKGROUND: #8c929f; COLOR: #fff !important
+}
+.datepicker .unavailable {
+	BACKGROUND: #edd; COLOR: #b88 !important; CURSOR: default !important
+}
+.datepicker .days .week .day:hover {
+	BACKGROUND: #5d6e95; COLOR: #fff !important
+}
+.datepicker .months .month:hover {
+	BACKGROUND: #5d6e95; COLOR: #fff !important
+}
+.datepicker .years .year:hover {
+	BACKGROUND: #5d6e95; COLOR: #fff !important
+}
