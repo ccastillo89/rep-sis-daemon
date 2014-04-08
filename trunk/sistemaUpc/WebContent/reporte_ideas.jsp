@@ -32,19 +32,26 @@
 	 
 <SCRIPT src="js/Picker.Date.js" type="text/javascript"></SCRIPT>
 
- <LINK href="css/datepicker_dashboard.css" rel="stylesheet"> 
-     
+
+      <LINK href="css/datepicker.css" rel="stylesheet"> 
 
 
 <SCRIPT>
 
 	window.addEvent('domready', function(){
-		new Picker.Date($$('input'), {
+		new Picker.Date($$('#datepicker'), {
 			
 			positionOffset: {x: 5, y: 0},
-			pickerClass: 'datepicker_dashboard',
+			
 			useFadeInOut: !Browser.ie
 		});
+new Picker.Date($$('#datepicker2'), {
+			
+			positionOffset: {x: 5, y: 0},
+			
+			useFadeInOut: !Browser.ie
+		});
+		
 	});
 
 	</SCRIPT>
@@ -69,17 +76,17 @@
 		    <label>
 		    <input type="submit" name="button" id="button" value="Buscar" />
 		    </label>
-		    <label>
-		    <input type="button" name="button2" id="button2" value="Nuevo" onclick="window.location='roles_nuevo.jsp' "  />
-		    </label>
 		  </p>
 		  <p>Fecha Inicio:
-		  
-		 <input type="text" id="datepicker">
-		 
-		 
-		 <input name='date_B' type='text' value="02/08/1991 11:05AM" class='date demo' />
-
+		 <input type="text" id="datepicker" value="01/01/2014"  class='date demo'>
+		Fecha Fin:
+		 <input type="text" id="datepicker2" value="01/01/2014"  class='date demo'>
+		  </p>
+		  <p>
+		  <input type="radio" name="Estado" value="6">Creada
+		  <input type="radio" name="Estado" value="7">Publicada
+		  <input type="radio" name="Estado" value="8">Aprobada
+		  <input type="radio" name="Estado" value="9">Rechazada
 		  </p>
 		</form>
 		<div class="table-responsive">
