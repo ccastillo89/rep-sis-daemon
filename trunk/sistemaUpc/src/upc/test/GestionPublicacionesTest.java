@@ -149,7 +149,7 @@ public class GestionPublicacionesTest {
 		Publicacion publi=new Publicacion();
 
 		try {
-			publi.setTitulo("smarth");
+			publi.setTitulo("");
 			Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse("05/03/2014");
 			publi.setFechainicio(fecha);
 			fecha=new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2014");
