@@ -7,7 +7,7 @@
     <meta name="author" content="">
 <!--     <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
 
-    <title>Trastienda</title>
+    <title>Reporte de Ideas</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap-3.1.1.css" rel="stylesheet" media="screen">
@@ -17,58 +17,114 @@
       <script src="../../assets/js/html5shiv.js"></script>
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
+    
+    
+
+  <SCRIPT src="js/mootools-core.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/mootools-more.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Locale.en-US.DatePicker.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.Attach.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="js/Picker.Date.js" type="text/javascript"></SCRIPT>
+
+
+      <LINK href="css/datepicker.css" rel="stylesheet"> 
+
+
+<SCRIPT>
+
+	window.addEvent('domready', function(){
+		new Picker.Date($$('#datepicker'), {
+			
+			positionOffset: {x: 5, y: 0},			
+			useFadeInOut: !Browser.ie,
+			format: '%d/%m/%Y'
+		});
+new Picker.Date($$('#datepicker2'), {
+			
+			positionOffset: {x: 5, y: 0},
+			useFadeInOut: !Browser.ie,
+			format: '%d/%m/%Y'
+		});
+		
+	});
+
+	</SCRIPT>
+      
   </head>
 
   <body>
         
 	  <!-- Static navbar -->
-	  <jsp:include page="header.jsp" />
+	 <jsp:include page="header.jsp" />
+      
 	 <div class="container"> 
 
 
-		<p><strong>Mantenimiento de Roles &gt; Buscar</strong></p>
+		<div class="pageTitle">
+			<span>Calcular Pagos</span>
+		</div>
+		<br>
 		
-		<form id="form1" name="form1" method="post" action="RolBuscarServlet" class="form-horizontal" role="form">
-		  <p>Buscar: 
+		<form id="form1" name="form1" method="post" action="CacularPagosServlet" class="form-horizontal" role="form">
+		  <p>Costo por Usuario: 
 		    <label>
-		    <input type="text" name="nombre" id="nombre" />
+		    <input type="text" name="titulo" id="descripcion" />
 		    </label>
 		    <label>
-		    <input type="submit" name="button" id="button" value="Buscar" />
-		    </label>
-		    <label>
-		    <input type="button" name="button2" id="button2" value="Nuevo" onclick="window.location='roles_nuevo.jsp' "  />
+		    <input type="submit" name="button" id="button" value="Calcular" />
 		    </label>
 		  </p>
 		</form>
 		<div class="table-responsive">
 		<table width="550" height="65" border="1" cellpadding="0" cellspacing="0" class="table table-hover">
-		  <tr>
-		    <th width="49" scope="col">Nro.</th>
+		  <tr class="footergrid">
+		    <th width="49" scope="col">Tipo</th>
 		    <th width="192" scope="col">Nombre</th>
-		    <th width="107" scope="col">Descripción</th>
-		    <th width="192" scope="col">Acciones</th>
+		    <th width="107" scope="col">Correo</th>
+		    <th width="50" scope="col">Cant.Usuarios</th>
+		     <th width="100" scope="col">Pago</th>
 		  </tr>
 		
-		<%@page import="java.util.*, trastienda.modelo.Rol" %>
+		<%@page import="java.util.*, upc.modelo.CentroFormacion" %>
 		<%
-		Collection<Rol> arreglo = (ArrayList<Rol>)request.getAttribute("roles");
+		
+		Collection<CentroFormacion> arreglo = (ArrayList<CentroFormacion>)request.getAttribute("centrosformacion");
+		int total=0 = 0;
+		
 		if(arreglo != null) { 
-		int i = 1;
-		for(Rol x : arreglo) {
+		for(CentroFormacion x : arreglo) {
 		%>  
 		  <tr>
-		    <td><%=i++ %></td>
-		    <td><% out.print(x.getRolNombre()); %></td>
-		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><a href="<%=request.getContextPath() %>/RolEditarServlet?id=<%=x.getRolNombre() %>">Editar</a> - <a href="<%=request.getContextPath()%>
-		/RolEliminarServlet?id=<%=x.getRolNombre()%>" onclick="return confirm('¿Está seguro que desea eliminar');">Eliminar</a></td>
+		   
+		    <td><% out.print(x.getNombre());
+		    %></td>
+		    <td><% out.print(x.getTipo()); %></td>
+		    <td><% out.print(x.getCostoporusuario()); %></td>
+		    <td><% out.print(x.getPago()); 
+		    
+		     total+=1;%></td>
+		  
+		   
 		  </tr>
 		<% }  
-		  } %>
+		  }%>
+		  
+
 		  
 		</table>
 		</div>
+		<div style="width:200px;" >
+		<table class="table table-hover">></tr>
+		<tr><td><b>Total Centros de Formacion:</b></td><td><%out.print(" "+total); %></td></tr>
+		</table>
+		</div>
+		
 
  		<!-- Site footer -->
 	   <div class="footer">
