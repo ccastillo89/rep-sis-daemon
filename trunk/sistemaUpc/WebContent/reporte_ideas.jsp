@@ -41,15 +41,15 @@
 	window.addEvent('domready', function(){
 		new Picker.Date($$('#datepicker'), {
 			
-			positionOffset: {x: 5, y: 0},
-			
-			useFadeInOut: !Browser.ie
+			positionOffset: {x: 5, y: 0},			
+			useFadeInOut: !Browser.ie,
+			format: '%d/%m/%Y'
 		});
 new Picker.Date($$('#datepicker2'), {
 			
 			positionOffset: {x: 5, y: 0},
-			
-			useFadeInOut: !Browser.ie
+			useFadeInOut: !Browser.ie,
+			format: '%d/%m/%Y'
 		});
 		
 	});
@@ -71,22 +71,22 @@ new Picker.Date($$('#datepicker2'), {
 		<form id="form1" name="form1" method="post" action="ReporteIdeasServlet" class="form-horizontal" role="form">
 		  <p>Titulo: 
 		    <label>
-		    <input type="text" name="descripcion" id="descripcion" />
+		    <input type="text" name="titulo" id="descripcion" />
 		    </label>
 		    <label>
 		    <input type="submit" name="button" id="button" value="Buscar" />
 		    </label>
 		  </p>
 		  <p>Fecha Inicio:
-		 <input type="text" id="datepicker" value="01/01/2014"  class='date demo'>
+		 <input type="text" id="datepicker" name="fechaini" value="01/01/2014"  class='date demo'>
 		Fecha Fin:
-		 <input type="text" id="datepicker2" value="01/01/2014"  class='date demo'>
+		 <input type="text" id="datepicker2" name="fechafin" value="01/01/2014"  class='date demo'>
 		  </p>
 		  <p>
-		  <input type="radio" name="Estado" value="6">Creada
-		  <input type="radio" name="Estado" value="7">Publicada
-		  <input type="radio" name="Estado" value="8">Aprobada
-		  <input type="radio" name="Estado" value="9">Rechazada
+		  <input type="radio" name="estado" value="6">Creada
+		  <input type="radio" name="estado" value="7">Publicada
+		  <input type="radio" name="estado" value="8">Aprobada
+		  <input type="radio" name="estado" value="9">Rechazada
 		  </p>
 		</form>
 		<div class="table-responsive">
