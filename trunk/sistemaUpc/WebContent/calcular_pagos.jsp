@@ -71,7 +71,7 @@ new Picker.Date($$('#datepicker2'), {
 		</div>
 		<br>
 		
-		<form id="form1" name="form1" method="post" action="CacularPagosServlet" class="form-horizontal" role="form">
+		<form id="form1" name="form1" method="post" action="CalcularPagosServlet" class="form-horizontal" role="form">
 		  <p>Costo por Usuario: 
 		    <label>
 		    <input type="text" name="titulo" id="descripcion" />
@@ -86,7 +86,7 @@ new Picker.Date($$('#datepicker2'), {
 		  <tr class="footergrid">
 		    <th width="49" scope="col">Tipo</th>
 		    <th width="192" scope="col">Nombre</th>
-		    <th width="107" scope="col">Correo</th>
+		    <th width="107" scope="col">Web</th>
 		    <th width="50" scope="col">Cant.Usuarios</th>
 		     <th width="100" scope="col">Pago</th>
 		  </tr>
@@ -95,19 +95,22 @@ new Picker.Date($$('#datepicker2'), {
 		<%
 		
 		Collection<CentroFormacion> arreglo = (ArrayList<CentroFormacion>)request.getAttribute("centrosformacion");
-		int total=0 = 0;
+		int total=0;
+		int totuser=0;
+		double suma=0;
 		
 		if(arreglo != null) { 
 		for(CentroFormacion x : arreglo) {
 		%>  
 		  <tr>
-		   
-		    <td><% out.print(x.getNombre());
-		    %></td>
-		    <td><% out.print(x.getTipo()); %></td>
-		    <td><% out.print(x.getCostoporusuario()); %></td>
-		    <td><% out.print(x.getPago()); 
+		    <td><% out.print(x.getStrTipo()); %></td>
+		    <td><% out.print(x.getNombre());%></td>
+		    <td><% out.print(x.getUrl()); %></td>
+		     <td><% out.print(x.getPersona().size()); %></td>
+		    <td><% out.print(x.getPago());
 		    
+		    totuser+=x.getPersona().size();
+		    suma+=x.getPago();
 		     total+=1;%></td>
 		  
 		   
@@ -119,9 +122,11 @@ new Picker.Date($$('#datepicker2'), {
 		  
 		</table>
 		</div>
-		<div style="width:200px;" >
+		<div style="width:300px;" >
 		<table class="table table-hover">></tr>
-		<tr><td><b>Total Centros de Formacion:</b></td><td><%out.print(" "+total); %></td></tr>
+		<tr><td><b>Cantidad Centros de Formacion:</b></td><td><%out.print(" "+total); %></td></tr>
+		<tr><td><b>Cantidad de Usuarios:</b></td><td><%out.print(" "+totuser); %></td></tr>
+		<tr><td><b>Total a Pagar:</b></td><td><%out.print(" "+suma); %></td></tr>
 		</table>
 		</div>
 		
