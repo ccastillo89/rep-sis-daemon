@@ -80,7 +80,7 @@ new Picker.Date($$('#datepicker2'), {
 		  <p>Fecha Inicio:
 		 <input type="text" id="datepicker" name="fechaini" value="01/01/2014"  class='date demo'>
 		Fecha Fin:
-		 <input type="text" id="datepicker2" name="fechafin" value="01/01/2014"  class='date demo'>
+		 <input type="text" id="datepicker2" name="fechafin" value="01/04/2014"  class='date demo'>
 		  </p>
 		  <p>
 		  <input type="radio" name="estado" value="6" checked="checked">Creada
