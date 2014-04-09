@@ -54,13 +54,18 @@ public class PublicacionCrearServlet extends HttpServlet {
 		String x = request.getParameter("titulo");
 		String y = request.getParameter("descripcion");
 		String ruta = request.getParameter("descripcion");
-			
+		String palab1=	request.getParameter("titulo");
+		String palab2=	request.getParameter("titulo");
+		String palab3=	request.getParameter("titulo");
+		String palab4=	request.getParameter("titulo");
+		String pclave = palab1 + ","+palab2+","+palab3+","+palab4;
 		try {
 				cod.setIdCodigo(6);
 			  p.setTitulo(x);
 			  p.setDescripcion(y);
-			  p.setArchivo("ruta");
+			  p.setArchivo(ruta);
 			  p.setEstado(cod);
+			  p.setPalabraClave(pclave);
 			  p.setFechaCreacion(fecha.ObtnerFecha());
 			
 			negocio.insertar(p);
