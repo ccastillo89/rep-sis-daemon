@@ -13,8 +13,10 @@ import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
 import upc.modelo.Codigo;
 import upc.modelo.Publicacion;
+import upc.modelo.Usuario;
 import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
+import upc.util.Utilitarios;
 /**
  * Servlet implementation class PublicacionCrearServlet
  */
@@ -42,33 +44,37 @@ public class PublicacionCrearServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-    		
 		GestionPublicaciones negocio = new GestionPublicaciones();
+		Publicacion p = new Publicacion();
+		Usuario usu = new Usuario();
+		Codigo cod = new Codigo();
+		Utilitarios fecha = new Utilitarios();	
+	
 		
 		String x = request.getParameter("titulo");
 		String y = request.getParameter("descripcion");
-		
-		GestionRoles negocio = new GestionRoles();
+		String ruta = request.getParameter("descripcion");
+			
 		try {
-			negocio.insertar(x, y);
+				cod.setIdCodigo(6);
+			  p.setTitulo(x);
+			  p.setDescripcion(y);
+			  p.setArchivo("ruta");
+			  p.setEstado(cod);
+			  p.setFechaCreacion(fecha.ObtnerFecha());
+			
+			negocio.insertar(p);
 			response.sendRedirect(request.getContextPath()	+ "/RolBuscarServlet");
 		} catch (DAOExcepcion e) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}
-		try {
-			CentroFormacion vo = negocio.(IdPublicacion);
-			request.setAttribute("CentroFormacion", vo);
-		} catch (DAOExcepcion e) {
-			System.out.println(e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
-		}
+	
 		RequestDispatcher rd = request.getRequestDispatcher("centroFormacion_Editar.jsp");
 		rd.forward(request, response);
 		
 	}
 		
-	}
+	
 
 }
