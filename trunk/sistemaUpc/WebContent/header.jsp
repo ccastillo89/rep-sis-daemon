@@ -19,6 +19,7 @@
 	        <a class="navbar-brand" href="principal.jsp">Trastienda</a>
 	      </div>
 	      <div class="navbar-collapse collapse">
+	      <div>
 	        <ul class="nav navbar-nav">
 	          <li class="active"><a href="principal.jsp">Inicio</a></li>
 	          <li class="dropdown">
@@ -54,8 +55,15 @@
 	            </ul>
 	          </li>    
 	          <li><a href="LogoutServlet">Salir</a></li>
+	          
+	         
 	        </ul>
+	        </div>
+	         <div style="float: right ;">
+	         <b> Nombre :</b> ${sessionScope.PERSONA_ACTUAL.nombreCompleto } &nbsp;&nbsp; | &nbsp;&nbsp;   <b>Cargo :</b> ${sessionScope.USUARIO_ACTUAL.nombretipoUsuario }
+	          </div>
 	      </div><!--/.nav-collapse -->
+	      
 	    </div>
 	  </div>
 </body>
