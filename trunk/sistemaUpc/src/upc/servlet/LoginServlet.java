@@ -63,7 +63,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet implements
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("USUARIO_ACTUAL", vo);
-			
+			session.setAttribute("PERSONA_ACTUAL", vo.getPersona());
 			response.sendRedirect("PortadaServlet");
 			return;
 		} catch (DAOExcepcion e) {
