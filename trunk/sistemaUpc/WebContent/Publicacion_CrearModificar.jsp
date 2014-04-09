@@ -32,7 +32,7 @@
     <legend> </legend>
      <p>
 	<input type="checkbox" name="achivo" value="archivo">Subir Archivo<br>
-	 Examinar: <input type="text"> <input type="submit" value="ver" /> <br>
+	 Examinar: <input type="text" name="ruta" id="ruta"> <input type="submit" value="ver" /> <br>
 	  </p>
      </fieldset>
     
