@@ -9,13 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
 import upc.modelo.Persona;
 import upc.modelo.Usuario;
-import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionUsuarios;
 
 /**
@@ -54,6 +52,11 @@ public class UsuariosBuscarServlet extends HttpServlet {
 		CentroFormacion cf = new CentroFormacion();
 		
 		ps.setNombreCompleto(x);
+		
+		if (centroFormacionId == null){
+			centroFormacionId = "1";
+		}
+		
 		cf.setIdCentroInformacion(Integer.parseInt(centroFormacionId));
 		ps.setCentroFormacion(cf);
 		
@@ -61,8 +64,7 @@ public class UsuariosBuscarServlet extends HttpServlet {
 			Collection<Usuario> lista = negocio.BuscarUsuariosPorCentroFormacion(ps);
 			// Guardar en el ambiente de request
 			request.setAttribute("Usuarios", lista);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("usuarios_Buscar.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("usuarios_Buscar.jsp");
 			rd.forward(request, response);
 
 		} catch (DAOExcepcion e) {

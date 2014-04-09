@@ -33,27 +33,28 @@
 			<span>B&uacute;squeda de Usuarios</span>
 		</div>
 		<br />
-		<form id="form1" name="form1" method="post" action="UsuariosBuscarServlet"
-			class="form-horizontal" role="form">
+		<form id="form1" name="form1" method="post"
+			action="UsuariosBuscarServlet" class="form-horizontal" role="form">
 			<p>
-				Buscar: <label> <input type="text" name="txtNombre" id="txtNombre" /></label>
-				Centro de Formaci&oacute;n: <label>
-			    <select id="ddlCentroFormacion" name="ddlCentroFormacion" style="width: 120px;" >
-					<% 	GestionCentroFormacion negocio = new GestionCentroFormacion();
+				Buscar: <label> <input type="text" name="txtNombre"
+					id="txtNombre" /></label> Centro de Formaci&oacute;n: <label> <select
+					id="ddlCentroFormacion" name="ddlCentroFormacion"
+					style="width: 120px;">
+						<% 	GestionCentroFormacion negocio = new GestionCentroFormacion();
 						CentroFormacion ci = new CentroFormacion();
 						ci.setNombre("");
 						Collection<CentroFormacion> cf=  negocio.listar(ci) ;
 						if(cf!=null)			               
-						for(CentroFormacion c:cf){%> 
+						for(CentroFormacion c:cf){%>
 						<option value="<%=c.getIdCentroInformacion() %>"><%=c.getNombre() %></option>
-					<%} 
+						<%} 
 					
 					%>
-				</select> </label>
-				<label> <input type="submit" name="button" id="button"
+				</select>
+				</label> <label> <input type="submit" name="button" id="button"
 					value="Buscar" />
 				</label> <label> <input type="button" name="button2" id="button2"
-					value="Nuevo" onclick="window.location='usuario_Nuevo.jsp'" />
+					value="Nuevo" onclick="window.location='usuarios_Nuevo.jsp'" />
 				</label>
 			</p>
 		</form>
@@ -101,27 +102,28 @@
 					<td>
 						<% out.print(x.getPersona().getCelular()); %>
 					</td>
-					<td>
-						<a href="<%=request.getContextPath() %>/UsuariosEditarServlet?id=<%=x.getPersona().getIdPersona() %>">Editar</a>
-						- 
-						<a href="<%=request.getContextPath()%>/UsuariosEliminarServlet?id=<%=x.getPersona().getIdPersona()%>"
-						onclick="return confirm('¿Está seguro que desea eliminar');">Eliminar</a>
+					<td><a
+						href="<%=request.getContextPath() %>/UsuariosEditarServlet?id=<%=x.getPersona().getIdPersona() %>">Editar</a>
+						- <a
+						href="<%=request.getContextPath()%>/UsuariosEliminarServlet?id=<%=x.getPersona().getIdPersona()%>"
+						onclick="return confirm('¿Está seguro que desea eliminar?');">Eliminar</a>
 					</td>
 				</tr>
 				<%
 					}
 	 	 		} %>
-		 	 
+
 			</table>
 		</div>
-		
+
 		<!-- Site footer -->
 		<div class="footer">
 			<p>&nbsp;</p>
 			<p>&copy; DAEMON 2014</p>
 		</div>
-		
-	 </div> <!-- /container -->
+
+	</div>
+	<!-- /container -->
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

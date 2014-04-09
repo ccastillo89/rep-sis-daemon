@@ -76,6 +76,7 @@ public class UsuarioDAO extends BaseDAO {
 				cf.setNombre(rs.getString("CentroFormacion"));
 				person.setCentroFormacion(cf);
 				
+				
 				user.setPersona(person);
 				
 				lista.add(user);
@@ -308,5 +309,69 @@ public class UsuarioDAO extends BaseDAO {
 		return vo;
 	}	
 	
-	
+	public Usuario obtener(Integer IdPersona) throws DAOExcepcion {
+		Usuario user = new Usuario();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "";
+			
+			query += "select A.idUsuario, A.tipo_usuario, D.descripcion_codigo as TipoUsuario, B.idpersona, B.nombres, B.paterno, ";
+			query += "B.materno, B.sexo as idSexo, E.descripcion_codigo as Sexo, ";
+			query += "B.tipo_documento as idtipoDocumento, F.descripcion_codigo as tipoDocumento,";
+			query += "B.numero_doc, B.celular, B.idcentro_formacion,  C.nombre as CentroFormacion, A.correo,  A.password ";
+			query += "from usuario A ";
+			query += "inner join persona B on A.idpersona = B.idpersona ";
+			query += "inner join centro_formacion C on B.idcentro_formacion = C.idcentro_formacion ";
+			query += "inner join codigo D on A.tipo_usuario = D.idcodigo ";
+			query += "inner join codigo E on B.sexo= E.idcodigo ";
+			query += "inner join codigo F on B.tipo_documento = F.idcodigo ";
+			query += "where B.idpersona = ? ";
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, IdPersona);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				Persona person = new Persona();
+				CentroFormacion cf = new CentroFormacion();
+				Codigo sexo = new Codigo();
+				Codigo tipoDocumento = new Codigo();
+				Codigo rol = new Codigo(); 
+				
+				user.setIdUsuario(rs.getInt("idUsuario"));
+				user.setCorreo(rs.getString("correo"));
+				rol.setIdCodigo(rs.getInt("tipo_usuario"));
+				rol.setDescripcionCodigo(rs.getString("TipoUsuario"));
+				user.setTipoUsuario(rol);
+				
+				person.setIdPersona(rs.getInt("idpersona"));
+				person.setNombres(rs.getString("nombres"));
+				person.setPaterno(rs.getString("paterno"));
+				person.setMaterno(rs.getString("materno"));
+				sexo.setIdCodigo(rs.getInt("idSexo"));
+				sexo.setDescripcionCodigo(rs.getString("Sexo"));
+				person.setSexo(sexo);
+				tipoDocumento.setDescripcionCodigo(rs.getString("tipoDocumento"));
+				tipoDocumento.setIdCodigo(rs.getInt("idtipoDocumento"));
+				person.setTipoDocumento(tipoDocumento);
+				person.setNumeroDoc(rs.getString("numero_doc"));
+				person.setCelular(rs.getString("celular"));
+				cf.setIdCentroInformacion(rs.getInt("idcentro_formacion"));
+				cf.setNombre(rs.getString("CentroFormacion"));
+				person.setCentroFormacion(cf);
+				user.setPassword(rs.getString("password"));
+				
+				user.setPersona(person);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return user;
+	}
 }
