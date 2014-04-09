@@ -23,8 +23,8 @@
     <fieldset>
     <legend>Palabras Clave:</legend>
     <p>
-    Palabra 1: <input type="text"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 2: <input type="text"> &nbsp;&nbsp; * <br>
-    Palabra 3: <input type="text"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 4: <input type="text"> &nbsp;&nbsp; * <br>
+    Palabra 1: <input type="text" name="palabra1" id="palabra1"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 2: <input type="text" name="palabra2" id="palabra2"> &nbsp;&nbsp; * <br>
+    Palabra 3: <input type="text" name="palabra3" id="palabra3"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 4: <input type="text" name="palabra4" id="palabra4"> &nbsp;&nbsp; * <br>
      </p>
      </fieldset>
     <br>
