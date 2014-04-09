@@ -1,6 +1,12 @@
 package upc.modelo;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+
+import com.mysql.jdbc.EscapeTokenizer;
+
+
 
 public class Publicacion {
 	
@@ -19,6 +25,8 @@ public class Publicacion {
   //Campos Adicionales
     private Date fechainicio;
     private Date fechafin;
+    
+	private String estadossel;
     
 	
 	public Publicacion(int idPublicacion, String titulo, String descripcion,
@@ -115,5 +123,12 @@ public class Publicacion {
 	public void setFechafin(Date fechafin) {
 		this.fechafin = fechafin;
 	}
+	public String getEstadossel() {
+		return estadossel;
+	}
+	public void setEstadossel(String estadossel) {
+		this.estadossel = estadossel;
+	}
+	
 	
 }
