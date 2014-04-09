@@ -7,7 +7,11 @@ public class Usuario {
     private String password;
     private Codigo tipoUsuario;
     private Persona persona;
+    
+    //Campos adicionales
+    private String nombretipoUsuario;
 
+    
     public Usuario() {
 		super();
 	}
@@ -61,5 +65,15 @@ public class Usuario {
 	public void setTipoUsuario(Codigo tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+
+	public String getNombretipoUsuario() {
+		return nombretipoUsuario;
+	}
+
+	public void setNombretipoUsuario(String nombretipoUsuario) {
+		this.nombretipoUsuario = nombretipoUsuario;
+	}
+
+
 
 }
