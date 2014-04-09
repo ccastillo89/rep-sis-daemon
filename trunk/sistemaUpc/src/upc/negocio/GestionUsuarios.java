@@ -54,5 +54,10 @@ public class GestionUsuarios {
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.validar(idUsuario, clave);
 	}
+	
+	public Usuario obtener(int idPersona) throws DAOExcepcion {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.obtener(idPersona);
+	}
 
 }
