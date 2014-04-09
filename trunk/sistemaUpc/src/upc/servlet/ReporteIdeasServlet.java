@@ -1,7 +1,10 @@
 package upc.servlet;
 
-import java.io.IOException;
+ import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+
+
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.Codigo;
 import upc.modelo.Publicacion;
 import upc.negocio.GestionPublicaciones;
 
@@ -54,15 +62,24 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		System.out.println("Dentro de doPost del servlet RolBuscarSerlvet");
-		String descripcion = (String) request.getParameter("descripcion");
-		
+		String titulo = (String) request.getParameter("titulo");
+		Date fechaini =new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechaini"));
+		Date fechafin = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechafin"));
+		int estado = Integer.parseInt(request.getParameter("estado")) ;
 		
 		Publicacion pub =new Publicacion();
+		Codigo es=new Codigo();
+		es.setIdCodigo(estado);
 		
-		pub.setDescripcion(descripcion);
+		pub.setTitulo(titulo);
+		pub.setFechainicio(fechaini);
+		pub.setFechafin(fechafin);
+		
+		pub.setEstado(es);
 		GestionPublicaciones negocio = new GestionPublicaciones();
-		try {
+		
 			Collection<Publicacion> lista = negocio.ReportedePublicaciones(pub);
 			// Guardar en el ambiente de request
 			request.setAttribute("publicaciones", lista);
@@ -74,6 +91,9 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
