@@ -66,7 +66,7 @@ new Picker.Date($$('#datepicker2'), {
 	 <div class="container"> 
 
 
-		<p><strong>Reporte de Ideas &gt; Buscar</strong></p>
+		<p><strong>Reporte de Ideas</strong></p>
 		
 		<form id="form1" name="form1" method="post" action="ReporteIdeasServlet" class="form-horizontal" role="form">
 		  <p>Titulo: 
@@ -83,7 +83,7 @@ new Picker.Date($$('#datepicker2'), {
 		 <input type="text" id="datepicker2" name="fechafin" value="01/01/2014"  class='date demo'>
 		  </p>
 		  <p>
-		  <input type="radio" name="estado" value="6">Creada
+		  <input type="radio" name="estado" value="6" checked="checked">Creada
 		  <input type="radio" name="estado" value="7">Publicada
 		  <input type="radio" name="estado" value="8">Aprobada
 		  <input type="radio" name="estado" value="9">Rechazada
@@ -94,7 +94,7 @@ new Picker.Date($$('#datepicker2'), {
 		  <tr>
 		    <th width="49" scope="col">Estado</th>
 		    <th width="192" scope="col">Titulo</th>
-		    <th width="107" scope="col">Descripción</th>
+		    <th width="107" scope="col">Descripcion</th>
 		    <th width="192" scope="col">Nombres y Apellidos</th>
 		  </tr>
 		
@@ -107,11 +107,11 @@ new Picker.Date($$('#datepicker2'), {
 		for(Publicacion x : arreglo) {
 		%>  
 		  <tr>
-		    <td><%=i++ %></td>
-		    <td><% out.print(x.getEstado()); %></td>
+		   
+		    <td><% out.print(x.getEstado().getDescripcionCodigo()); %></td>
 		    <td><% out.print(x.getTitulo()); %></td>
 		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getUsuario()); %></td>
+		    <td><% out.print(x.getUsuario().getPersona().getNombreCompleto()); %></td>
 		   
 		   
 		  </tr>
