@@ -15,17 +15,16 @@
     <input type="radio"  name="Tipo" value="modificar">Nuevo 
 	<input type="radio"  name="Tipo" value="modificar">Modificar <br>
     Titulo: <input type="text" name="titulo" id="titulo" style="width: 285px; "/> 
-    <input type="submit" value="Buscar"><br>
-    Descripción: <input type="text" name="descripcion" id="descripcion" style="width: 406px; "/><br>
+    <input type="submit" value="Buscar"> &nbsp;&nbsp;* <br>
+    Descripción: <input type="text" name="descripcion" id="descripcion" style="width: 406px; "/>&nbsp;&nbsp;* <br>
     </p>
     </fieldset>
     <br>
-          
     <fieldset>
     <legend>Palabras Clave:</legend>
     <p>
-    Palabra 1: <input type="text">  Palabra 2: <input type="text">  <br>
-    Palabra 3: <input type="text"> Palabra 4: <input type="text"> <br>
+    Palabra 1: <input type="text"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 2: <input type="text"> &nbsp;&nbsp; * <br>
+    Palabra 3: <input type="text"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 4: <input type="text"> &nbsp;&nbsp; * <br>
      </p>
      </fieldset>
     <br>
@@ -33,10 +32,11 @@
     <legend> </legend>
      <p>
 	<input type="checkbox" name="achivo" value="archivo">Subir Archivo<br>
-	 Examinar: <input type="text">  <br>
+	 Examinar: <input type="text"> <input type="submit" value="ver" /> <br>
 	  </p>
      </fieldset>
-     <br>
+    
+     <p><strong>* Campos Obligatorios</strong></p>
     <input type="submit" value="Guardar" />
     <input type="button" value="Regresar" onclick="window.location='roles_buscar.jsp' " />
     
