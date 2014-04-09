@@ -7,7 +7,7 @@
     <meta name="author" content="">
 <!--     <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
 
-    <title>Trastienda</title>
+    <title>SGI para Centros de Formacion Profesional</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap-3.1.1.css" rel="stylesheet" media="screen">

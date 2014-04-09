@@ -16,7 +16,7 @@
 	          <span class="icon-bar"></span>
 	          <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="principal.jsp">Trastienda</a>
+	        <a class="navbar-brand" href="principal.jsp">SGI</a>
 	      </div>
 	      <div class="navbar-collapse collapse">
 	      <div>
@@ -59,7 +59,7 @@
 	         
 	        </ul>
 	        </div>
-	         <div style="float: right ;">
+	         <div class="headerlogin">
 	         <b> Nombre :</b> ${sessionScope.PERSONA_ACTUAL.nombreCompleto } &nbsp;&nbsp; | &nbsp;&nbsp;   <b>Cargo :</b> ${sessionScope.USUARIO_ACTUAL.nombretipoUsuario }
 	          </div>
 	      </div><!--/.nav-collapse -->
