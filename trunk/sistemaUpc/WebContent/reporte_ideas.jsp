@@ -66,7 +66,10 @@ new Picker.Date($$('#datepicker2'), {
 	 <div class="container"> 
 
 
-		<p><strong>Reporte de Ideas</strong></p>
+		<div class="pageTitle">
+			<span>Reporte de Ideas</span>
+		</div>
+		<br>
 		
 		<form id="form1" name="form1" method="post" action="ReporteIdeasServlet" class="form-horizontal" role="form">
 		  <p>Titulo: 
@@ -83,15 +86,15 @@ new Picker.Date($$('#datepicker2'), {
 		 <input type="text" id="datepicker2" name="fechafin" value="01/04/2014"  class='date demo'>
 		  </p>
 		  <p>
-		  <input type="radio" name="estado" value="6" checked="checked">Creada
-		  <input type="radio" name="estado" value="7">Publicada
-		  <input type="radio" name="estado" value="8">Aprobada
-		  <input type="radio" name="estado" value="9">Rechazada
+		  <input type="checkbox" name="estado" value="6" checked="checked">Creada
+		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="7">Publicada
+		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="8">Aprobada
+		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="9">Rechazada
 		  </p>
 		</form>
 		<div class="table-responsive">
 		<table width="550" height="65" border="1" cellpadding="0" cellspacing="0" class="table table-hover">
-		  <tr>
+		  <tr class="footergrid">
 		    <th width="49" scope="col">Estado</th>
 		    <th width="192" scope="col">Titulo</th>
 		    <th width="107" scope="col">Descripcion</th>
@@ -102,24 +105,54 @@ new Picker.Date($$('#datepicker2'), {
 		<%
 		
 		Collection<Publicacion> arreglo = (ArrayList<Publicacion>)request.getAttribute("publicaciones");
+		int total=0,creada=0,publicada=0,aprobada=0,rechazada = 0;
+		
 		if(arreglo != null) { 
-		int i = 1;
 		for(Publicacion x : arreglo) {
 		%>  
 		  <tr>
 		   
-		    <td><% out.print(x.getEstado().getDescripcionCodigo()); %></td>
+		    <td><% out.print(x.getEstado().getDescripcionCodigo());
+		    if(x.getEstado().getDescripcionCodigo().equals("Creada")){
+		    	creada+=1;
+		    }
+		    else if(x.getEstado().getDescripcionCodigo().equals("Publicada")){
+		    	publicada+=1;
+		    }
+		    else if(x.getEstado().getDescripcionCodigo().equals("Aprobada")){
+		    	aprobada+=1;
+		    }
+		    else if(x.getEstado().getDescripcionCodigo().equals("Rechazada")){
+		    	rechazada+=1;
+		    }
+		    
+		    
+		    %></td>
 		    <td><% out.print(x.getTitulo()); %></td>
 		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getUsuario().getPersona().getNombreCompleto()); %></td>
-		   
+		    <td><% out.print(x.getUsuario().getPersona().getNombreCompleto()); 
+		    
+		     total+=1;%></td>
+		  
 		   
 		  </tr>
 		<% }  
-		  } %>
+		  }%>
+		  
+
 		  
 		</table>
 		</div>
+		<div style="width:200px;" >
+		<table class="table table-hover">
+		<tr><td>Creadas:</td><td><%out.print(" "+creada); %></td></tr>
+		<tr><td>Publicadas:</td><td><%out.print(" "+publicada); %></td></tr>
+		<tr><td>Aprobadas:</td><td><%out.print(" "+aprobada); %></td></tr>
+		<tr><td>Rechazadas:</td><td><%out.print(" "+rechazada); %></td></tr>
+		<tr><td><b>Total Ideas:</b></td><td><%out.print(" "+total); %></td></tr>
+		</table>
+		</div>
+		
 
  		<!-- Site footer -->
 	   <div class="footer">
