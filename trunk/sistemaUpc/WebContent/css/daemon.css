@@ -103,3 +103,7 @@ text-rendering: optimizeLegibility;
 	/* para Opera */
 	border-radius: 15px 15px 15px 15px;
 }
+.footergrid{
+	background-color: #DEDEDE;
+	
+}
