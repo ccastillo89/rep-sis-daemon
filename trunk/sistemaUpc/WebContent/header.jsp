@@ -75,7 +75,15 @@
 	             
 	            </ul>
 	          </li>     
-	            <li class="dropdown">
+	            <li <% if(pageName.equals("calcular_pagos.jsp"))
+	          { 
+	            	System.out.println(pageName);
+	            	out.println("class='active'");  
+	            	}  
+	          else{
+	        	  out.println("class='dropdown'");
+	        	  } %>
+	        	  >
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobranzas <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="calcular_pagos.jsp">Calcular Pagos</a></li>
