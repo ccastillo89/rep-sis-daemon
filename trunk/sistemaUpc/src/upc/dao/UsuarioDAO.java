@@ -276,8 +276,7 @@ public class UsuarioDAO extends BaseDAO {
 	
 	public Usuario validar(String correo, String password)
 			throws DAOExcepcion, LoginExcepcion {
-		String query = "select idusuario, idpersona, correo"				
-				+ " from usuario where correo = ? and password = ?";
+		String query = "select u.idusuario, p.idpersona, correo,p.nombres,p.paterno,p.materno,cod.Descripcion_Codigo from usuario u join persona p on p.idpersona=u.idpersona join codigo cod on cod.idcodigo=u.tipo_usuario and cod.IdGrupo=1 where u.correo = ? and u.password = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -288,10 +287,15 @@ public class UsuarioDAO extends BaseDAO {
 			stmt.setString(1, correo);
 			stmt.setString(2, password);
 			rs = stmt.executeQuery();
-
+			Persona persona;
 			if (rs.next()) {
 				vo.setIdUsuario(rs.getInt("idusuario"));				 
 				vo.setCorreo(rs.getString("correo"));
+				vo.setNombretipoUsuario(rs.getString("Descripcion_Codigo"));
+				persona=new Persona();
+				String nombreCompleto=rs.getString("nombres")+" "+rs.getString("paterno")+" "+rs.getString("materno");
+				persona.setNombreCompleto(nombreCompleto);
+				vo.setPersona(persona);
 			} else {
 				throw new LoginExcepcion("No existe");
 			}
