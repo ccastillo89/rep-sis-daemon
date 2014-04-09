@@ -7,7 +7,7 @@
   </head>
 <body>
 <p><strong>Registro Y Modificacion de Ideas</strong></p>
-<form >
+<form id="form1" name="form1" method="post" action="PublicacionCrearServlet" class="form-horizontal" role="form" >
 
   <fieldset>
     <legend>Datos de la Idea</legend>
