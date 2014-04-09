@@ -153,12 +153,12 @@ public class PublicacionDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select cod.Descripcion_Codigo,pu.idpublicacion,pu.titulo,pu.descripcion,pu.fecha_creacion,pu.fecha_publicacion,u.correo,p.nombres,p.paterno,p.materno,cf.nombre as institucion from publicacion pu inner join usuario u on u.idusuario=pu.idusuario inner join persona p on u.idpersona=p.idpersona inner join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion join codigo cod on cod.idcodigo=pu.estado and cod.IdGrupo=2 where pu.titulo like ? and (pu.fecha_creacion>=? and pu.fecha_creacion<=?) and pu.estado=?";
+			String query = "select cod.Descripcion_Codigo,pu.idpublicacion,pu.titulo,pu.descripcion,pu.fecha_creacion,pu.fecha_publicacion,u.correo,p.nombres,p.paterno,p.materno,cf.nombre as institucion from publicacion pu inner join usuario u on u.idusuario=pu.idusuario inner join persona p on u.idpersona=p.idpersona inner join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion join codigo cod on cod.idcodigo=pu.estado and cod.IdGrupo=2 where pu.titulo like ? and (pu.fecha_creacion>=? and pu.fecha_creacion<=?) and pu.estado in("+pbePublicacion.getEstadossel()+")";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%"+ pbePublicacion.getTitulo()+"%");
 			stmt.setDate(2, new java.sql.Date(pbePublicacion.getFechainicio().getTime()));
 			stmt.setDate(3, new java.sql.Date(pbePublicacion.getFechafin().getTime()));
-			stmt.setInt(4, pbePublicacion.getEstado().getIdCodigo());
+			//stmt.setString(4, pbePublicacion.getEstadossel());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Publicacion vo = new Publicacion();
