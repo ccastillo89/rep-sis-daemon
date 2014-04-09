@@ -2052,6 +2052,12 @@ fieldset[disabled] .btn {
   background-color: #ebebeb;
   border-color: #adadad;
 }
+
+.headerlogin{
+	float: right ;
+	padding-top: 15px;
+}
+
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
