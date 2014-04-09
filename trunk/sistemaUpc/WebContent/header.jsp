@@ -20,11 +20,30 @@
 	      </div>
 	      <div class="navbar-collapse collapse">
 	      <div>
+	  
+	      <%
+	      String uri = request.getRequestURI();
+	      String pageName = uri.substring(uri.lastIndexOf("/")+1);
+	      System.out.println(pageName);
+	      %>
+	      
 	        <ul class="nav navbar-nav">
-	          <li class="active"><a href="principal.jsp">Inicio</a></li>
-	          <li class="dropdown">
+	          <li <%
+	          if(pageName.equals("principal.jsp") || pageName.equals("roles_buscar.jsp"))
+	          {  out.println("class='active'");  }  
+	          else{out.println("class='dropdown'");}%>>
+	          <a href="principal.jsp">Inicio</a></li>
+	          <li  <% if(pageName.equals("centroFormacion_Buscar.jsp") || pageName.equals("usuarios_Buscar.jsp"))
+	          { 
+	            	System.out.println(pageName);
+	            	out.println("class='active'");  
+	            	}  
+	          else{
+	        	  out.println("class='dropdown'");
+	        	  } %> 
+	        	  >
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
-	            <ul class="dropdown-menu">
+	            <ul class="dropdown-menu" >
 	              <li><a href="roles_buscar.jsp">Roles</a></li>
 	              <li><a href="#">Productos</a></li>
 	              <li><a href="centroFormacion_Buscar.jsp">Centro de Formacion</a></li>	      
@@ -40,7 +59,15 @@
 	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>	                      
 	            </ul>
 	          </li>	          
-	          <li class="dropdown">
+	          <li <% if(pageName.equals("reporte_ideas.jsp"))
+	          { 
+	            	System.out.println(pageName);
+	            	out.println("class='active'");  
+	            	}  
+	          else{
+	        	  out.println("class='dropdown'");
+	        	  } %>
+	        	   >
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="reporte_ideas.jsp">Reporte de Ideas</a></li>
@@ -58,6 +85,11 @@
 	          
 	         
 	        </ul>
+	        
+	        
+	        
+	        
+	        
 	        </div>
 	         <div class="headerlogin">
 	         <b> Nombre :</b> ${sessionScope.PERSONA_ACTUAL.nombreCompleto } &nbsp;&nbsp; | &nbsp;&nbsp;   <b>Cargo :</b> ${sessionScope.USUARIO_ACTUAL.nombretipoUsuario }
