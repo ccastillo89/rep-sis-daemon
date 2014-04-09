@@ -10,7 +10,8 @@ public class Persona {
     private String numeroDoc;
     private String celular;
     private CentroFormacion centroFormacion;
-	private String nombreCompleto;
+    private String nombreCompleto;
+	
 
     
 	public Persona() {
@@ -75,13 +76,7 @@ public class Persona {
 		this.centroFormacion = centroFormacion;
 	}
 	
-    public String getNombreCompleto() {
-		return nombreCompleto;
-	}
-
-	public void setNombreCompleto(String nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
-	}
+  
 
 	public Codigo getSexo() {
 		return sexo;
@@ -97,6 +92,14 @@ public class Persona {
 
 	public void setTipoDocumento(Codigo tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 	
 }
