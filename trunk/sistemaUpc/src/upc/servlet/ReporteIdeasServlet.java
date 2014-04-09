@@ -3,6 +3,7 @@ package upc.servlet;
  import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 
 
@@ -67,17 +69,26 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 		String titulo = (String) request.getParameter("titulo");
 		Date fechaini =new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechaini"));
 		Date fechafin = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechafin"));
-		int estado = Integer.parseInt(request.getParameter("estado")) ;
+		//int estado = Integer.parseInt(request.getParameter("estado")) ;
 		
 		Publicacion pub =new Publicacion();
-		Codigo es=new Codigo();
-		es.setIdCodigo(estado);
+		 String[] ids=request.getParameterValues("estado");
+		 String strestados="";
+		    // this will get array of values of all checked checkboxes
+		    for(String id:ids){
+		     // do something with id, this is checkbox value
+		    	System.out.println(id);
+		    	strestados+=id+",";
+		    }
+		 
+		    strestados= strestados.substring(0, strestados.length()-1);
+		    System.out.println(strestados);
+		 
+		pub.setEstadossel(strestados);
 		
 		pub.setTitulo(titulo);
 		pub.setFechainicio(fechaini);
 		pub.setFechafin(fechafin);
-		
-		pub.setEstado(es);
 		GestionPublicaciones negocio = new GestionPublicaciones();
 		
 			Collection<Publicacion> lista = negocio.ReportedePublicaciones(pub);
