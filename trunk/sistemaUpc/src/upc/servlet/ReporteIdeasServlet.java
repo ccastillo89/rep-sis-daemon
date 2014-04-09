@@ -93,7 +93,7 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 		
 			Collection<Publicacion> lista = negocio.ReportedePublicaciones(pub);
 			// Guardar en el ambiente de request
-			request.setAttribute("publicaciones", lista);
+			request.setAttribute("centrosformacion", lista);
 			RequestDispatcher rd = request
 					.getRequestDispatcher("reporte_ideas.jsp");
 			rd.forward(request, response);
