@@ -62,13 +62,16 @@ public class PublicacionBuscarServlet extends HttpServlet {
 		
 		*/
 		
-		System.out.println("Dentro de doPost del servlet PublicacionBuscarSerlvet");
+		//System.out.println("Dentro de doPost del servlet PublicacionBuscarSerlvet");
 		String x = request.getParameter("nombre");
+		int estado = Integer.parseInt(request.getParameter("ddlEstado"));
+	//	System.out.println(estado);
+		
 		GestionPublicaciones negocio = new GestionPublicaciones();
 		//Publicacion modelo = new Publicacion();
 		//modelo.setNombre(x);
 		try {
-			Collection<Publicacion> lista = negocio.buscarPublicacion(x,1);
+			Collection<Publicacion> lista = negocio.buscarPublicacion(x,estado);
 			// Guardar en el ambiente de request
 			request.setAttribute("PUBLICACIONES", lista);
 			RequestDispatcher rd = request
