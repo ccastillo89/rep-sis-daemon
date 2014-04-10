@@ -57,7 +57,8 @@
 	            <ul class="dropdown-menu">
 	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>
 	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>
-	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>	                      
+	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>
+	              <li><a href="Publicacion_CrearModificar.jsp">Crear Publicación</a></li>	                      
 	            </ul>
 	          </li>	          
 	          <li <% if(pageName.equals("reporte_ideas.jsp"))
