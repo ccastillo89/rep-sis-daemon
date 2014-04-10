@@ -59,6 +59,9 @@ public class PublicacionCrearServlet extends HttpServlet {
 		String palab4=	request.getParameter("titulo");
 		String pclave = palab1 + ","+palab2+","+palab3+","+palab4;
 		try {
+			
+			
+			 usu.setIdUsuario(5);
 			cod.setIdCodigo(6);
 			  p.setTitulo(x);
 			  p.setDescripcion(y);
