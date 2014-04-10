@@ -66,7 +66,7 @@
 		    <input type="text" name="nombre" id="nombre" />
 		    </label>
 		  <label>    
-
+Estado
 			<select name="ddlEstado" id="ddlEstado"
 							style="width: 120px;">
 							<option value="55">TODOS</option>
@@ -88,6 +88,7 @@
 	    
 		    
 		       </label>
+		       
 		    <label>
 		    <input type="submit" name="button" id="button" value="Buscar" />
 		    </label>
