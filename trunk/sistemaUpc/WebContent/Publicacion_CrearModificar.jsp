@@ -1,47 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-  <head>
-    
-  </head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!--     <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+<title></title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap-3.1.1.css" rel="stylesheet" media="screen">
+<link href="css/daemon.css" rel="stylesheet" media="screen">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
 <body>
-<p><strong>Registro Y Modificacion de Ideas</strong></p>
-<form id="form1" name="form1" method="post" action="PublicacionCrearServlet" class="form-horizontal" role="form" >
+	<jsp:include page="header.jsp" />
+	<div class="container">
 
-  <fieldset>
-    <legend>Datos de la Idea</legend>
-    <p>
-    <input type="radio"  name="Tipo" value="modificar">Nuevo 
-	<input type="radio"  name="Tipo" value="modificar">Modificar <br>
-    Titulo: <input type="text" name="titulo" id="titulo" style="width: 285px; "/> 
-    <input type="submit" value="Buscar"> &nbsp;&nbsp;* <br>
-    Descripción: <input type="text" name="descripcion" id="descripcion" style="width: 406px; "/>&nbsp;&nbsp;* <br>
-    </p>
-    </fieldset>
-    <br>
-    <fieldset>
-    <legend>Palabras Clave:</legend>
-    <p>
-    Palabra 1: <input type="text" name="palabra1" id="palabra1"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 2: <input type="text" name="palabra2" id="palabra2"> &nbsp;&nbsp; * <br>
-    Palabra 3: <input type="text" name="palabra3" id="palabra3"> &nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 4: <input type="text" name="palabra4" id="palabra4"> &nbsp;&nbsp; * <br>
-     </p>
-     </fieldset>
-    <br>
-     <fieldset>
-    <legend> </legend>
-     <p>
-	<input type="checkbox" name="achivo" value="archivo">Subir Archivo<br>
-	 Examinar: <input type="text" name="ruta" id="ruta"> <input type="submit" value="ver" /> <br>
-	  </p>
-     </fieldset>
-    
-     <p><strong>* Campos Obligatorios</strong></p>
-    <input type="submit" value="Guardar" />
-    <input type="button" value="Regresar" onclick="window.location='roles_buscar.jsp' " />
-    
-</form>
+		<p>
+			<strong>Proceso &gt; Crear Publicacion</strong>
+		</p>
 
+		<div class="pageTitle">
+			<span>Registro Y Modificacion de Ideas</span>
+		</div>
+		<br />
+		<form id="form1" name="form1" method="post"
+			action="PublicacionCrearServlet" class="form-horizontal" role="form">
+
+			<fieldset>
+				<legend>Datos de la Idea</legend>
+				<p>
+					<input type="radio" name="Tipo" value="modificar">Nuevo <input
+						type="radio" name="Tipo" value="modificar">Modificar <br>
+					Titulo: <input type="text" name="titulo" id="titulo"
+						style="width: 285px;" /> <input type="submit" value="Buscar">
+					&nbsp;&nbsp;* <br> Descripción: <input type="text"
+						name="descripcion" id="descripcion" style="width: 406px;" />&nbsp;&nbsp;*
+					<br>
+				</p>
+			</fieldset>
+			<br>
+			<fieldset>
+				<legend>Palabras Clave:</legend>
+				<p>
+					Palabra 1: <input type="text" name="palabra1" id="palabra1">
+					&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 2: <input type="text"
+						name="palabra2" id="palabra2"> &nbsp;&nbsp; * <br>
+					Palabra 3: <input type="text" name="palabra3" id="palabra3">
+					&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Palabra 4: <input type="text"
+						name="palabra4" id="palabra4"> &nbsp;&nbsp; * <br>
+				</p>
+			</fieldset>
+			<br>
+			<fieldset>
+				<legend> </legend>
+				<p>
+					<input type="checkbox" name="achivo" value="archivo">Subir
+					Archivo<br> Examinar: <input type="text" name="ruta" id="ruta">
+					<input type="submit" value="ver" /> <br>
+				</p>
+			</fieldset>
+
+			<p>
+				<strong>* Campos Obligatorios</strong>
+			</p>
+			<input type="submit" value="Guardar" /> <input type="button"
+				value="Regresar" onclick="window.location='roles_buscar.jsp' " />
+
+		</form>
+
+	</div>
 
 </body>
 </html>
