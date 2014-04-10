@@ -1,6 +1,7 @@
 package servlet.usuarios;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -85,9 +86,19 @@ public class UsuarioInsertarServlet extends HttpServlet {
 		user.setTipoUsuario(rol);
 		
 		try {
-			negocio.insertar(person, user);
+			Persona perso = new Persona();
+			perso = negocio.insertar(person, user);
+			
+			if (!perso.equals(null)) {
+				PrintWriter out = response.getWriter();  
+				response.setContentType("text/html");  
+				out.println("<script type=\"text/javascript\">");  
+				out.println("alert('Usuario Registrado Correctamente');");  
+				out.println("</script>");				
+			}
 			response.sendRedirect(request.getContextPath()	+ "/UsuariosBuscarServlet");
 		} catch (DAOExcepcion e) {
+			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}		
