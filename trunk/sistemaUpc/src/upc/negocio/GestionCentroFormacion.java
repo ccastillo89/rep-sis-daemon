@@ -31,6 +31,9 @@ public class GestionCentroFormacion {
 	public CentroFormacion actualizar(CentroFormacion ci) throws DAOExcepcion {
 		
 		CentroFormacionDAO dao = new CentroFormacionDAO();
+		
+		dao.buscarPorNombre(ci); 
+		dao.buscarPorURL(ci); 
 		return dao.actualizar(ci);
 		
 	}
