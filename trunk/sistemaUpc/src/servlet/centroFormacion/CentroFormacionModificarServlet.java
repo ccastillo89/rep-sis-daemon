@@ -41,6 +41,8 @@ public class CentroFormacionModificarServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+		String mensajeError = "";
+		
 		String IdCentroFormacion = request.getParameter("IdCentroFormacion");
 		String nombre = request.getParameter("nombre");
 		String tipo = request.getParameter("tipo");
@@ -58,11 +60,18 @@ public class CentroFormacionModificarServlet extends HttpServlet {
 		try {
 			negocio.actualizar(modelo);
 			response.sendRedirect(request.getContextPath()	+ "/CentroFormacionBuscarServlet");
+			return;
 		} catch (DAOExcepcion e) {
-			System.out.println(e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+
+			mensajeError = e.getMessage();
 		}
+
+		System.out.println("Mensaje Error : " + mensajeError);
+		response.sendRedirect(request.getContextPath()	+ "/CentroFormacionEditarServlet?id=" + IdCentroFormacion + "&mensajeError=" + mensajeError);
+		
+
+		
+
 		
 	}
 
