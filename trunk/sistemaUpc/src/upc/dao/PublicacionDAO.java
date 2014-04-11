@@ -245,7 +245,7 @@ public class PublicacionDAO extends BaseDAO {
     " inner join persona f on e.idpersona=f.idpersona "+  
 		"  where "+
 		" (titulo LIKE ? or descripcion like ? or palabra_clave like ?) and "+
-		" estado=? and "+
+		" estado="+estado+" or "+estado+"=0 and "+
 		" Grupo='Estado_Publicacion' ";
 		
 		
@@ -259,7 +259,6 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setString(1, "%" + texto + "%");
 			stmt.setString(2, "%" + texto + "%");
 			stmt.setString(3, "%" + texto + "%");
-			stmt.setInt(4,  estado );
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Publicacion vo = new Publicacion();
