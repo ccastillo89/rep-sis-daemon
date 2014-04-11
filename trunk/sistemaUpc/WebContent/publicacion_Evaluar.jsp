@@ -46,10 +46,8 @@
 		  <tr>
 		    <th width="49" scope="col">Nro.</th>
 		    <th width="49" scope="col">Codigo</th>
-		    <th width="192" scope="col">Titutlo</th>
-		    <th width="107" scope="col">Descripcion</th>
-		    <th width="192" scope="col">Nombre</th>
-		    <th width="192" scope="col">Fecha Pub.</th>
+		    <th width="200" scope="col">Titulo</th>
+		    <th width="250" scope="col">Descripcion</th>
 		    <th width="192" scope="col">Acciones</th>
 		    
 		  </tr>
@@ -66,8 +64,6 @@
 		    <td><% out.print(x.getIdPublicacion()); %></td>
 		    <td><% out.print(x.getTitulo()); %></td>
 		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getFechaPublicacion()); %></td>
 		    <td><a href="<%=request.getContextPath() %>/PublicacionAprobarServlet?id=<%=x.getIdPublicacion() %>" onclick="return confirm('¿Está seguro de aprobar la publicacion');">Aprobar</a> - 
 		        <a href="<%=request.getContextPath()%>/PublicacionRechazarServlet?id=<%=x.getIdPublicacion()%>" onclick="return confirm('¿Está seguro de rechazar la publicacion');">Rechazar</a></td>
 		  </tr>
