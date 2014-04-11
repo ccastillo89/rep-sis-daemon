@@ -18,6 +18,45 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
 
+	<script>
+       function validar(){
+         var t = document.form1.titulo.value;   
+         var d = document.form1.descripcion.value;  
+         var p1 = document.form1.palabra1.value;
+         var p2 = document.form1.palabra2.value;
+         var p3 = document.form1.palabra3.value;
+         var p4 = document.form1.palabra4.value;
+         
+         if (t == ""){
+            alert('Ingrese Titulo');
+            return false;     }
+         else if (d== ""){
+             alert('Ingrese Descripcion');
+             return false;}
+         else if (p1== ""){
+             alert('Ingrese Palabra Clave 1');
+             return false;} 
+         else if (p2== ""){
+             alert('Ingrese Palabra Clave 2');
+             return false;} 
+         else if (p3== ""){
+             alert('Ingrese Palabra Clave 3');
+             return false;} 
+         else if (p4== ""){
+             alert('Ingrese Palabra Clave 4');
+             return false;} 
+         else if (p1 == p2 || p1 == p3 || p1==p4 || p2==p3|| p2==p4 || p3==p4){
+ 			alert("Las palabras claves no se pueden repetir.");
+ 		} else {
+ 				return true;
+ 			}
+         
+       }
+    </script>
+
+
+
+
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -31,13 +70,13 @@
 			<span>Registro Y Modificacion de Ideas</span>
 		</div>
 		<br />
-		<form id="form1" name="form1" method="post"
+		<form id="form1" name="form1" method="post" onsubmit="return validar()"  
 			action="PublicacionCrearServlet" class="form-horizontal" role="form">
 
 			<fieldset>
 				<legend>Datos de la Idea</legend>
 				<p>
-					<input type="radio" name="Tipo" value="modificar">Nuevo <input
+					<input type="radio" name="Tipo" value="nuevo">Nuevo <input
 						type="radio" name="Tipo" value="modificar">Modificar <br>
 					Titulo: <input type="text" name="titulo" id="titulo"
 						style="width: 285px;" /> <input type="submit" value="Buscar">
@@ -71,8 +110,7 @@
 			<p>
 				<strong>* Campos Obligatorios</strong>
 			</p>
-			<input type="submit" value="Guardar" /> <input type="button"
-				value="Regresar" onclick="window.location='roles_buscar.jsp' " />
+			<input type="submit" value="Guardar" />
 
 		</form>
 
