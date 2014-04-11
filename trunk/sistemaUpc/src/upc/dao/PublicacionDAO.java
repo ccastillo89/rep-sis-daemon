@@ -241,8 +241,8 @@ public class PublicacionDAO extends BaseDAO {
     " publicacion a inner join usuario b on a.idusuario=b.idusuario "+
     " inner join persona c on b.idpersona=c.idpersona "+
     " inner join codigo d on d.idcodigo=a.estado "+
-    " inner join usuario e on a.usuario_acesor=e.idusuario "+
-    " inner join persona f on e.idpersona=f.idpersona "+  
+    " left join usuario e on a.usuario_acesor=e.idusuario "+
+    " left join persona f on e.idpersona=f.idpersona "+  
 		"  where "+
 		" (titulo LIKE ? or descripcion like ? or palabra_clave like ?) and "+
 		" estado="+estado+" or "+estado+"=0 and "+
