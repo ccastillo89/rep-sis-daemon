@@ -79,7 +79,13 @@
 	            else if(User.getNombretipoUsuario().equals("Estudiante")){
 	            	 out.print("<li><a href='Publicacion_CrearModificar.jsp'>Crear Publicación</a></li>");
 	            	 out.print("<li><a href='publicacion_Buscar.jsp'>Buscar Publicación</a></li>");
-	             } %>
+	             }
+	            else if(User.getNombretipoUsuario().equals("Docente") || User.getNombretipoUsuario().equals("Evaluador de Innovador")){
+	            	out.print("<li><a href='publicacion_Buscar.jsp'>Buscar Publicación</a></li>");
+	            	
+	            }
+	            
+	            %>
 	                                    
 	            </ul>
 	          </li>	  
