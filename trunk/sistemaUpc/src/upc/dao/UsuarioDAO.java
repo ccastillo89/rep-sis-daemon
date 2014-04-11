@@ -277,7 +277,7 @@ public class UsuarioDAO extends BaseDAO {
 	
 	public Usuario validar(String correo, String password)
 			throws DAOExcepcion, LoginExcepcion {
-		String query = "select u.idusuario, p.idpersona, correo,p.nombres,p.paterno,p.materno,cod.Descripcion_Codigo from usuario u join persona p on p.idpersona=u.idpersona join codigo cod on cod.idcodigo=u.tipo_usuario and cod.IdGrupo=1 where u.correo = ? and u.password = ?";
+		String query = "select u.idusuario, p.idpersona, correo,p.nombres,p.paterno,p.materno,cod.Descripcion_Codigo,cf.nombre as 'centro_formacion',cf.idcentro_formacion from usuario u join persona p on p.idpersona=u.idpersona join codigo cod on cod.idcodigo=u.tipo_usuario and cod.IdGrupo=1 join centro_formacion cf on cf.idcentro_formacion=p.idcentro_formacion where u.correo = ? and u.password = ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -296,6 +296,10 @@ public class UsuarioDAO extends BaseDAO {
 				persona=new Persona();
 				String nombreCompleto=rs.getString("nombres")+" "+rs.getString("paterno")+" "+rs.getString("materno");
 				persona.setNombreCompleto(nombreCompleto);
+				CentroFormacion cf=new CentroFormacion();
+				cf.setIdCentroInformacion(rs.getInt("idcentro_formacion"));
+				cf.setNombre(rs.getString("centro_formacion"));
+				persona.setCentroFormacion(cf);
 				vo.setPersona(persona);
 			} else {
 				throw new LoginExcepcion("No existe");
