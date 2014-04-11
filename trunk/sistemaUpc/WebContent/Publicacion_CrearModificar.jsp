@@ -79,7 +79,7 @@
 					<input type="radio" name="Tipo" value="nuevo">Nuevo <input
 						type="radio" name="Tipo" value="modificar">Modificar <br>
 					Titulo: <input type="text" name="titulo" id="titulo"
-						style="width: 285px;" /> <input type="submit" value="Buscar">
+						style="width: 285px;" /> <input type="submit" value="Buscar" disabled>
 					&nbsp;&nbsp;* <br> Descripción: <input type="text"
 						name="descripcion" id="descripcion" style="width: 406px;" />&nbsp;&nbsp;*
 					<br>
