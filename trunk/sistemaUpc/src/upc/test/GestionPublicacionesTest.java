@@ -32,7 +32,7 @@ import trastienda.negocio.GestionCategorias;*/
 public class GestionPublicacionesTest {
 	
 	
-	//@Test
+	@Test
 		public void insertarTest() throws ParseException {
 
 			GestionPublicaciones negocio = new GestionPublicaciones();
@@ -54,7 +54,7 @@ public class GestionPublicacionesTest {
 			 
 			// ingreso publicacion
 			 
-			  p.setTitulo("Comedor");
+			  p.setTitulo("Co");
 			  p.setDescripcion("Creacion de un comedor estudiantil");
 			  p.setArchivo("ruta");
 			  p.setUsuario(usu);
@@ -322,7 +322,7 @@ public class GestionPublicacionesTest {
   	}
 	
   	
-  	 @Test
+  	 //@Test
  	public void contarPuntosPublicacionTest() {
 
  		GestionPublicaciones negocio = new GestionPublicaciones();
