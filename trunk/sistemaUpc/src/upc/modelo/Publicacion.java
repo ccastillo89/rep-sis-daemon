@@ -20,12 +20,14 @@ public class Publicacion {
     private Date fechaPublicacion;
     private Usuario usuario;
     private Usuario usuarioAsesor;
+  
+  
     
     
   //Campos Adicionales
     private Date fechainicio;
     private Date fechafin;
-    
+    private int idcentro_formacion;
 	private String estadossel;
     
 	
@@ -128,6 +130,12 @@ public class Publicacion {
 	}
 	public void setEstadossel(String estadossel) {
 		this.estadossel = estadossel;
+	}
+	public int getIdcentro_formacion() {
+		return idcentro_formacion;
+	}
+	public void setIdcentro_formacion(int idcentro_formacion) {
+		this.idcentro_formacion = idcentro_formacion;
 	}
 	
 	
