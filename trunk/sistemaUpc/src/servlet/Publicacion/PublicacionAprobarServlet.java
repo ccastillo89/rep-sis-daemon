@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import upc.excepcion.DAOExcepcion;
-import upc.modelo.CentroFormacion;
 import upc.modelo.Codigo;
 import upc.modelo.Publicacion;
-import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
 
 /**
