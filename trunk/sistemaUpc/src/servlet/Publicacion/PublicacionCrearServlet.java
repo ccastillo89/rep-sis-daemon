@@ -1,6 +1,7 @@
 package servlet.Publicacion;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Codigo;
@@ -48,38 +50,45 @@ public class PublicacionCrearServlet extends HttpServlet {
 		Usuario usu = new Usuario();
 		Codigo cod = new Codigo();
 		Utilitarios fecha = new Utilitarios();	
-	
+		HttpSession session = request.getSession();
 		
 		String x = request.getParameter("titulo");
 		String y = request.getParameter("descripcion");
 		String ruta = request.getParameter("descripcion");
-		String palab1=	request.getParameter("titulo");
-		String palab2=	request.getParameter("titulo");
-		String palab3=	request.getParameter("titulo");
-		String palab4=	request.getParameter("titulo");
-		String pclave = palab1 + ","+palab2+","+palab3+","+palab4;
+		String palab1=	request.getParameter("palabra1");
+		String palab2=	request.getParameter("palabra2");
+		String palab3=	request.getParameter("palabra3");
+		String palab4=	request.getParameter("palabra4");
+		String opcion = request.getParameter("Tipo");
+		String pclave = palab1 + ","+ palab2 + ","+ palab3 +","+ palab4;
 		try {
 			
-			
+			//session.getAttribute();
 			 usu.setIdUsuario(5);
-			cod.setIdCodigo(6);
+			 cod.setIdCodigo(6);
+			 
 			  p.setTitulo(x);
 			  p.setDescripcion(y);
 			  p.setArchivo(ruta);
+			  p.setUsuario(usu);
 			  p.setEstado(cod);
 			  p.setPalabraClave(pclave);
-			 // p.setFechaCreacion(fecha.ObtnerFecha().getTime());
+			  p.setFechaCreacion(fecha.ObtnerFecha());
 			
-			negocio.insertar(p);
-			
-			
-			response.sendRedirect(request.getContextPath()	+ "/RolBuscarServlet");
+			if (opcion =="Nuevo") {
+				negocio.insertar(p);	
+			}			
+			else if (opcion =="Modificar") {
+				negocio.insertar(p);	
+			}
+						
+			//response.sendRedirect(request.getContextPath()	+ "/RolBuscarServlet");
 		} catch (DAOExcepcion | ParseException e) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}
 	
-		RequestDispatcher rd = request.getRequestDispatcher("centroFormacion_Editar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("Publicacion_CrearModificar.jsp");
 		rd.forward(request, response);
 		
 	}
