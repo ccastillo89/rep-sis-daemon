@@ -131,7 +131,7 @@
 	        
 	        </div>
 	         <div class="headerlogin">
-	         <b> Nombre :</b> ${sessionScope.PERSONA_ACTUAL.nombreCompleto } &nbsp;&nbsp; | &nbsp;&nbsp;   <b>Cargo :</b> ${sessionScope.USUARIO_ACTUAL.nombretipoUsuario }
+	         <b> Nombre :</b> ${sessionScope.PERSONA_ACTUAL.nombreCompleto }  |    <b>Cargo :</b> ${sessionScope.USUARIO_ACTUAL.nombretipoUsuario } | <b>C. Formacion :</b> ${sessionScope.CENTRO_FORMACION.nombre }
 	          </div>
 	      </div><!--/.nav-collapse -->
 	      
