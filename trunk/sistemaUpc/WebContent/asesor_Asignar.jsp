@@ -30,7 +30,7 @@
 
 		<p><strong>Asignar Asesor</strong></p>
 		
-		<form id="form1" name="form1" method="post" action="PublicacionBuscarPublicadosServlet" class="form-horizontal" role="form">
+		<form id="form1" name="form1" method="post" action="PublicacionBuscarAprobadosSerlvet" class="form-horizontal" role="form">
 		  <p>Buscar: 
 		    <label>
 		    <input type="text" name="txtDescripcion" id="txtDescripcion" />
@@ -48,10 +48,8 @@
 		    <th width="49" scope="col">Nro.</th>
 		    <th width="49" scope="col">Codigo</th>
 		    <th width="192" scope="col">Titutlo</th>
-		    <th width="107" scope="col">Descripcion</th>
-		    <th width="192" scope="col">Nombre</th>
-		    <th width="192" scope="col">Fecha Pub.</th>
-		    <th width="192" scope="col">Accion</th>
+		    <th width="200" scope="col">Descripcion</th>
+		    <th width="250" scope="col">Accion</th>
 		    
 		  </tr>
 		
@@ -67,8 +65,6 @@
 		    <td><% out.print(x.getIdPublicacion()); %></td>
 		    <td><% out.print(x.getTitulo()); %></td>
 		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getDescripcion()); %></td>
-		    <td><% out.print(x.getFechaPublicacion()); %></td>
 		    <td><a href="<%=request.getContextPath() %>/PublicacionAsignarAsesorServlet?id=<%=x.getIdPublicacion() %>">Asignar</a></td>
 		  </tr>
 		<% }  
