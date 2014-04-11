@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Collection;
 
 import upc.dao.PublicacionDAO;
+import upc.dao.UsuarioDAO;
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.Publicacion;
 import upc.util.Utilitarios;
@@ -27,6 +28,11 @@ public class GestionPublicaciones {
 		else {
 			System.out.println("Ya idea ya Existe");	
 			}
+		
+		
+		
+		//return dao.insertar(pub);
+		//pub2=dao.insertar(pub);	
 		return pub2;
 		
 	}
