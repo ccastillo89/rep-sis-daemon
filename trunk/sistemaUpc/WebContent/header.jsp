@@ -1,3 +1,5 @@
+<%@page import="upc.modelo.Usuario"%>
+<%@page import="upc.modelo.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,11 +31,14 @@
 	      %>
 	      
 	        <ul class="nav navbar-nav">
-	          <li <%
-	          if(pageName.equals("principal.jsp") || pageName.equals("roles_buscar.jsp"))
-	          {  out.println("class='active'");  }  
-	          else{out.println("class='dropdown'");}%>>
-	          <a href="principal.jsp">Inicio</a></li>
+	        
+	    <%
+	        	out.print("<li ");
+	          if(pageName.equals("principal.jsp") || pageName.equals("roles_buscar.jsp")){out.print("class='active' >");}  
+	          else{out.print("class='dropdown' >");}
+	        	out.print("<a href='principal.jsp'>Inicio</a></li>"); %>
+	          
+	          
 	          <li  <% if(pageName.equals("centroFormacion_Buscar.jsp") || pageName.equals("usuarios_Buscar.jsp"))
 	          { 
 	            	System.out.println(pageName);
@@ -55,12 +60,23 @@
 	          <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="publicacion_Evaluar.jsp">Evaluar Publicacion</a></li>
-	              <li><a id="lnkAsesoria" href="asesoria.jsp">Asesorias</a></li>
-	              <li><a href="asesor_Asignar.jsp">Asignar Asesor</a></li>
-	              <li><a href="Publicacion_CrearModificar.jsp">Crear Publicación</a></li>	                      
+	             <%@page import="java.util.*, upc.modelo.Publicacion"%> 
+	            <%
+	            Usuario User= (Usuario) session.getAttribute("USUARIO_ACTUAL");
+	            if(User.getNombretipoUsuario().equals("Evaluador de Innovador")){
+	            out.print("<li><a href='publicacion_Evaluar.jsp'>Evaluar Publicacion</a></li>");}
+	            else if("a"=="b"){
+	            out.print("<li><a id='lnkAsesoria' href='asesoria.jsp'>Asesorias</a></li>");}
+	            else if("a"=="b"){
+	            out.print("<li><a href='asesor_Asignar.jsp'>Asignar Asesor</a></li>");}
+	            else if(User.getNombretipoUsuario().equals("Estudiante")){
+	            	 out.print("<li><a href='Publicacion_CrearModificar.jsp'>Crear Publicación</a></li>");
+	             } %>
+	                                    
 	            </ul>
-	          </li>	          
+	          </li>	  
+	          
+	          <%if(User.getNombretipoUsuario().equals("Evaluador de Innovador")){ %>        
 	          <li <% if(pageName.equals("reporte_ideas.jsp"))
 	          { 
 	            	System.out.println(pageName);
@@ -69,13 +85,17 @@
 	          else{
 	        	  out.println("class='dropdown'");
 	        	  } %>
-	        	   >
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
+	        	   ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="reporte_ideas.jsp">Reporte de Ideas</a></li>
+	              <% 
+	              out.print("<li><a href='reporte_ideas.jsp'>Reporte de Ideas</a></li>");
+	              %>
 	             
 	            </ul>
 	          </li>     
+	          <%} %>
+	            
+	            <%if(User.getNombretipoUsuario().equals("Administrador")){ %>
 	            <li <% if(pageName.equals("calcular_pagos.jsp"))
 	          { 
 	            	System.out.println(pageName);
@@ -91,6 +111,8 @@
 	             
 	            </ul>
 	          </li>    
+	          <%} %>
+	          
 	          <li><a href="LogoutServlet">Salir</a></li>
 	          
 	         
