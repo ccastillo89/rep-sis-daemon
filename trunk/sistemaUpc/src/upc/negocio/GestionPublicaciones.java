@@ -61,7 +61,11 @@ public class GestionPublicaciones {
 				return dao.actualizar(pub);
 			}
 	
-	
+	 public Collection<Publicacion> buscarPubliUsuario(int idusuario,int estado)
+             throws DAOExcepcion {
+     PublicacionDAO dao = new PublicacionDAO();
+     return dao.buscaPubliUsuario(idusuario, estado);
+}
 	  public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion
 	  { PublicacionDAO dao = new PublicacionDAO();
 	  return dao.ReportedePublicaciones(pbePublicacion); 
