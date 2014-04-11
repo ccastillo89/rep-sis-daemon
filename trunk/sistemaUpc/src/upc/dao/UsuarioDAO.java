@@ -32,7 +32,7 @@ public class UsuarioDAO extends BaseDAO {
 		query += "inner join codigo E on B.sexo= E.idcodigo ";
 		query += "inner join codigo F on B.tipo_documento = F.idcodigo ";
 		query += "where (B.nombres like ? or B.paterno like ? or B.materno like ?)  ";
-		query += "and B.idcentro_formacion = ?"; 
+		query += "and (0 = ? or B.idcentro_formacion = ?)"; 
 		
 		Collection<Usuario> lista = new ArrayList<Usuario>();
 		Connection con = null;
@@ -45,6 +45,7 @@ public class UsuarioDAO extends BaseDAO {
 			stmt.setString(2, "%" + ps.getNombreCompleto() + "%");
 			stmt.setString(3, "%" + ps.getNombreCompleto() + "%");
 			stmt.setInt(4, ps.getCentroFormacion().getIdCentroInformacion());
+			stmt.setInt(5, ps.getCentroFormacion().getIdCentroInformacion());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Usuario user = new Usuario();

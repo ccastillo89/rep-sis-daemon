@@ -40,6 +40,7 @@
 					id="txtNombre" /></label> Centro de Formaci&oacute;n: <label> <select
 					id="ddlCentroFormacion" name="ddlCentroFormacion"
 					style="width: 120px;">
+						<option value="0">-- TODOS --</option>
 						<% 	GestionCentroFormacion negocio = new GestionCentroFormacion();
 						CentroFormacion ci = new CentroFormacion();
 						ci.setNombre("");

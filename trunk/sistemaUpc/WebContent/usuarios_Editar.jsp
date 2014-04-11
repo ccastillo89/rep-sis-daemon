@@ -4,6 +4,8 @@
 <%@page import="java.util.Collection"%>
 <%@page import="upc.negocio.GestionCentroFormacion"%>
 <%@page import="upc.modelo.CentroFormacion"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -25,16 +27,16 @@
     <![endif]-->
 
 <script type="text/javascript">
-    
-	    function selectInCombo(combo,val)
-	    {
-	        for(var indice=0 ;indice<document.getElementById(combo).length;indice++)
-	        {
-	            if (document.getElementById(combo).options[indice].text==val )
-	                document.getElementById(combo).selectedIndex =indice;
-	        }       
-	    }
-	    
+    	
+		function isNumberKey(evt)
+		{
+		 var charCode = (evt.which) ? evt.which : event.keyCode
+		 if (charCode > 31 && (charCode < 48 || charCode > 57))
+		    return false;
+			
+		 return true;
+		}
+
 	    function validarCampos(){
 			
 			var txtNombres = $("#txtNombres").val();
@@ -58,9 +60,9 @@
 				alert("Ingrese apellido materno");
 			}else if (txtApePaterno == ""){
 				alert("Ingrese apellido paterno");
-			}else if (ddlSexo == ""){
+			}else if (ddlSexo == "0"){
 				alert("Seleccione sexo");
-			}else if (ddlTipo == ""){
+			}else if (ddlTipo == "0"){
 				alert("Seleccione tipo de documento");
 			}else if (txtNroDocumento == ""){
 				alert("Ingrese número de documento");
@@ -72,9 +74,9 @@
 				alert("Ingrese contraseña");
 			}else if (txtContrasenaConfir == ""){
 				alert("Ingrese confirmación de contraseña");
-			}else if (ddlCentro == ""){
+			}else if (ddlCentro == "0"){
 				alert("Seleccione centro de formación}");
-			}else if (ddlRol == ""){
+			}else if (ddlRol == "0"){
 				alert("Seleccione rol");
 			}else {
 				if (txtContrasena != txtContrasenaConfir){
@@ -83,8 +85,8 @@
 					document.form.submit();
 			        return true;
 				}
-				
 			}
+		}
 
 	       
     
@@ -110,30 +112,31 @@
 					<td>ID</td>
 					<td><label><input type="text" name="txtIdPersona"
 							id="txtIdPersona" value="<%=us.getPersona().getIdPersona()%>"
-							readonly="readonly" /> </label></td>
+							readonly="readonly" /></label></td>
 				</tr>
 				<tr>
 					<td>Nombres:</td>
-					<td><label> <input type="text" name="txtNombres"
+					<td><label> <input type="text" name="txtNombres" maxlength="50"
 							id="txtNombres" value="<%=us.getPersona().getNombres()%>" />
 					</label></td>
 				</tr>
 				<tr>
 					<td>Apellido Paterno:</td>
-					<td><label> <input type="text" name="txtApePaterno"
+					<td><label> <input type="text" name="txtApePaterno" maxlength="50"
 							id="txtApePaterno" value="<%=us.getPersona().getPaterno()%>" />
 					</label></td>
 				</tr>
 				<tr>
 					<td>Apellido Materno:</td>
-					<td><label> <input type="text" name="txtApeMaterno"
+					<td><label> <input type="text" name="txtApeMaterno" maxlength="45"
 							id="txtApeMaterno" value="<%=us.getPersona().getMaterno()%>" />
 					</label></td>
 				</tr>
 				<tr>
 					<td>Sexo:</td>
 					<td><label> <select name="ddlSexo" id="ddlSexo"
-							style="width: 120px;">
+							style="width: 174px;">
+							<option value="0" selected="selected">Seleccionar</option>
 								<%
 									GestionCodigos negocioSexo = new GestionCodigos();
 																					Codigo codesSexo = new Codigo();
@@ -143,18 +146,19 @@
 																					if (codigosSexo != null)
 																						for (Codigo c : codigosSexo) {
 								%>
-								<option value="<%=c.getIdCodigo()%>"><%=c.getDescripcionCodigo()%></option>
+								<option value="<%= c.getIdCodigo() %>" <%= (c.getIdCodigo() == us.getPersona().getSexo().getIdCodigo())?"selected":"" %> ><%= c.getDescripcionCodigo() %></option>  
 								<%
 									}
 								%>
 
-						</select> <script>selectInCombo('ddlSexo','<%=us.getPersona().getSexo()%>')</script>
+						</select>
 					</label></td>
 				</tr>
 				<tr>
 					<td>Tipo Documento:</td>
 					<td><label> <select name="ddlTipo" id="ddlTipo"
-							style="width: 120px;">
+							style="width: 174px;">
+							<option value="0">Seleccionar</option>
 								<%
 									GestionCodigos negocioTipo = new GestionCodigos();
 																					Codigo codesTipo = new Codigo();
@@ -164,17 +168,17 @@
 																					if (codigosTipos != null)
 																						for (Codigo c : codigosTipos) {
 								%>
-								<option value="<%=c.getIdCodigo()%>"><%=c.getDescripcionCodigo()%></option>
+								<option value="<%= c.getIdCodigo() %>" <%= (c.getIdCodigo() == us.getPersona().getTipoDocumento().getIdCodigo())?"selected":"" %> ><%= c.getDescripcionCodigo() %></option>
 								<%
 									}
 								%>
-						</select> <script>selectInCombo('ddlTipo','<%=us.getPersona().getTipoDocumento()%>')</script>
+						</select>
 					</label></td>
 				</tr>
 				<tr>
 					<td>Nro. Documento:</td>
-					<td><label> <input type="text" name="txtNroDocumento"
-							id="txtNroDocumento" value="<%=us.getPersona().getNumeroDoc()%>" />
+					<td><label> <input type="text" name="txtNroDocumento" onkeypress="return isNumberKey(this);"
+							id="txtNroDocumento" value="<%=us.getPersona().getNumeroDoc()%>" maxlength="45" />
 					</label></td>
 				</tr>
 				<tr>
@@ -185,27 +189,28 @@
 				</tr>
 				<tr>
 					<td>Celular:</td>
-					<td><label> <input type="text" name="txtCelular"
-							id="txtCelular" value="<%=us.getPersona().getCelular()%>" />
+					<td><label> <input type="text" name="txtCelular" onkeypress="return isNumberKey(this);"
+							id="txtCelular" value="<%=us.getPersona().getCelular()%>" maxlength="100"/>
 					</label></td>
 				</tr>
 				<tr>
 					<td>Contrase&ntilde;a:</td>
 					<td><label> <input type="password" name="txtContrasena"
-							id="txtContrasena" value="<%=us.getPassword()%>" />
+							id="txtContrasena" value="<%=us.getPassword()%>" maxlength="100"/>
 					</label></td>
 				</tr>
 				<tr>
 					<td>Confirmar Contrase&ntilde;a:</td>
 					<td><label> <input type="password" 
-							name="txtContrasenaConfir" id="txtContrasenaConfir"
+							name="txtContrasenaConfir" id="txtContrasenaConfir" maxlength="100"
 							value="<%=us.getPassword()%>" />
 					</label></td>
 				</tr>
 				<tr>
 					<td>Centro Formaci&oacute;n:</td>
 					<td><label> <select name="ddlCentro" id="ddlCentro"
-							style="width: 120px;">
+							style="width: 174px;">
+							<option value="0">Seleccionar</option>
 								<%
 									GestionCentroFormacion negocio = new GestionCentroFormacion();
 																					CentroFormacion ci = new CentroFormacion();
@@ -214,17 +219,18 @@
 																					if (cf != null)
 																						for (CentroFormacion c : cf) {
 								%>
-								<option value="<%=c.getIdCentroInformacion()%>"><%=c.getNombre()%></option>
+								<option value="<%= c.getIdCentroInformacion() %>" <%= (c.getIdCentroInformacion() == us.getPersona().getCentroFormacion().getIdCentroInformacion())?"selected":"" %> ><%= c.getNombre() %></option>
 								<%
 									}
 								%>
-						</select> <script>selectInCombo('ddlCentro','<%=us.getPersona().getCentroFormacion().getIdCentroInformacion()%>')</script>
+						</select>
 					</label></td>
 				</tr>
 				<tr>
 					<td>Rol:</td>
 					<td><label> <select name="ddlRol" id="ddlRol"
-							style="width: 120px;">
+							style="width: 174px;">
+							<option value="0">Seleccionar</option>
 								<%
 									GestionCodigos negocioRol = new GestionCodigos();
 																					Codigo codesRol = new Codigo();
@@ -234,12 +240,11 @@
 																					if (codigosRoles != null)
 																						for (Codigo c : codigosRoles) {
 								%>
-								<option value="<%=c.getIdCodigo()%>"><%=c.getDescripcionCodigo()%></option>
+								<option value="<%= c.getIdCodigo() %>" <%= (c.getIdCodigo() == us.getTipoUsuario().getIdCodigo())?"selected":"" %> ><%= c.getDescripcionCodigo() %></option>
 								<%
 									}
 								%>
-						</select> <script>selectInCombo('ddlRol','<%=us.getTipoUsuario()%>')
-						</script>
+						</select>
 					</label></td>
 				</tr>
 				<tr>
@@ -250,6 +255,11 @@
 			</table>
 			<p>&nbsp;</p>
 		</form>
+		
+		<div style="color: red; text-align: left;">
+			<p> ${message}</p>
+			<c:remove var="message" scope="session" /> 
+		</div>
 
 		<!-- Site footer -->
 		<div class="footer">

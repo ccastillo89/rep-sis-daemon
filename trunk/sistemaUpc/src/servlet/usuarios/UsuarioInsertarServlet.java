@@ -90,16 +90,17 @@ public class UsuarioInsertarServlet extends HttpServlet {
 			perso = negocio.insertar(person, user);
 			
 			if (!perso.equals(null)) {
-				PrintWriter out = response.getWriter();  
-				response.setContentType("text/html");  
-				out.println("<script type=\"text/javascript\">");  
-				out.println("alert('Usuario Registrado Correctamente');");  
-				out.println("</script>");				
+				String message = "Registrado Correctamente";
+				request.getSession().setAttribute("message", message);
+				response.sendRedirect(request.getContextPath()	+ "/UsuariosBuscarServlet");
 			}
-			response.sendRedirect(request.getContextPath()	+ "/UsuariosBuscarServlet");
+			
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			String message = e.getMessage();
+			request.getSession().setAttribute("message", message);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("usuarios_Nuevo.jsp");
 			rd.forward(request, response);
 		}		
 		
