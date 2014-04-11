@@ -37,6 +37,7 @@ public class PublicacionDAO extends BaseDAO {
 			
 			java.sql.Date fechaCreacion = new java.sql.Date(vo.getFechaCreacion().getTime());
 			
+			
             stmt = con.prepareStatement(query);
 			stmt.setString(1, vo.getTitulo());
 			stmt.setString(2, vo.getDescripcion());
@@ -45,7 +46,6 @@ public class PublicacionDAO extends BaseDAO {
 			stmt.setInt(5, vo.getEstado().getIdCodigo());
 			stmt.setDate(6,  fechaCreacion);
 			stmt.setString(7, vo.getPalabraClave());
-					
 			
 			int i = stmt.executeUpdate();
 			if (i != 1) {
@@ -144,7 +144,42 @@ public class PublicacionDAO extends BaseDAO {
 		return encontrado;
 	}
 	
-	
+	public Collection<Publicacion> buscaPubliUsuario(int idUsuario,int estado)
+			throws DAOExcepcion {
+		String query = "select idpublicacion, titulo, descripcion,estado from publicacion where idusuario=?  and estado=?";
+		Collection<Publicacion> lista = new ArrayList<Publicacion>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idUsuario);
+			stmt.setInt(2, estado);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Publicacion vo = new Publicacion();
+				Codigo vu = new Codigo();
+				
+				vu.setIdCodigo(rs.getInt("Estado"));
+				
+				vo.setIdPublicacion(rs.getInt("idpublicacion"));
+				vo.setTitulo(rs.getString("titulo"));
+				vo.setDescripcion(rs.getString("descripcion")); 
+				vo.setEstado(vu);
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
 	
 	public Collection<Publicacion> ReportedePublicaciones(Publicacion pbePublicacion) throws DAOExcepcion {
 		Collection<Publicacion> c = new ArrayList<Publicacion>();
