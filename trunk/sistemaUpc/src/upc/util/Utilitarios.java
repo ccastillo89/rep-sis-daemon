@@ -22,13 +22,13 @@ public class Utilitarios {
 	public  Date ObtnerFecha() throws ParseException {
 		
 		//int hora,minutos,segundos;
-		String fecha;
+		//String fecha;
 		Date fechaCreacion=null;
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		  Calendar cal = Calendar.getInstance();
-		  fecha=dateFormat.format(cal.getTime());
+		 // fecha=dateFormat.format(cal.getTime());
 		 // fecha=DateFormat.getDateInstance();
-		  fechaCreacion= dateFormat.parse(fecha);
+		 // fechaCreacion= dateFormat.parse(fecha);
 		  
 		  /*
 		  hora =cal.get(Calendar.HOUR_OF_DAY);
@@ -37,7 +37,11 @@ public class Utilitarios {
 		  
 		 */
 		  //Date fechaCreacion = cal.getTime();
+		  
+		  
+		   fechaCreacion = cal.getTime();
 		  return fechaCreacion;
+		 
 		  		  
 		 } 
 
