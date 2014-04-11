@@ -64,6 +64,7 @@
     </tr>
   </table> 
   <p>&nbsp;</p>
+  <span style="color: red;">${MENSAJE }</span>
 </form>
 
 
