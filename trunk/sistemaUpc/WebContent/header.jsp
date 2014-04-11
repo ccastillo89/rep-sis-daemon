@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@page import="java.util.*, upc.modelo.Publicacion"%> 
+<% Usuario User= (Usuario) session.getAttribute("USUARIO_ACTUAL"); %>
  <!-- Static navbar -->
 	  <div class="navbar navbar-default navbar-static-top">
 	    <div class="container">
@@ -38,7 +40,7 @@
 	          else{out.print("class='dropdown' >");}
 	        	out.print("<a href='principal.jsp'>Inicio</a></li>"); %>
 	          
-	          
+	            <%if(User.getNombretipoUsuario().equals("Administrador")){ %>
 	          <li  <% if(pageName.equals("centroFormacion_Buscar.jsp") || pageName.equals("usuarios_Buscar.jsp"))
 	          { 
 	            	System.out.println(pageName);
@@ -50,19 +52,22 @@
 	        	  >
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenimientos <b class="caret"></b></a>
 	            <ul class="dropdown-menu" >
-	              <li><a href="roles_buscar.jsp">Roles</a></li>
-	              <li><a href="#">Productos</a></li>
+	            
+	          <!-- <li><a href="roles_buscar.jsp">Roles</a></li>
+	              <li><a href="#">Productos</a></li>-->
+	              
+	            
 	              <li><a href="centroFormacion_Buscar.jsp">Centro de Formacion</a></li>	      
 	              <li><a id="lnkUsuario" href="usuarios_Buscar.jsp">Usuarios</a></li>
+	             
 	            </ul>
 	          </li>
-	          
+	           <%} %>
 	          <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	             <%@page import="java.util.*, upc.modelo.Publicacion"%> 
+	             
 	            <%
-	            Usuario User= (Usuario) session.getAttribute("USUARIO_ACTUAL");
 	            if(User.getNombretipoUsuario().equals("Evaluador de Innovador")){
 	            out.print("<li><a href='publicacion_Evaluar.jsp'>Evaluar Publicacion</a></li>");}
 	            else if("a"=="b"){
