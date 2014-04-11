@@ -47,11 +47,18 @@ public class CentroFormacionBuscarServlet extends HttpServlet {
 
 		System.out.println("Dentro de doPost del servlet centroFormacionBuscarSerlvet");
 		String x = request.getParameter("nombre");
+		
+		if (x == null)
+		{			
+			x = "";
+		}
+		
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
 		CentroFormacion modelo = new CentroFormacion();
 		modelo.setNombre(x);
 		try {
 			Collection<CentroFormacion> lista = negocio.listar(modelo);
+			System.out.println("Dentro de Listado " + modelo.getNombre() + "-");
 			// Guardar en el ambiente de request
 			request.setAttribute("CentroFormaciones", lista);
 			RequestDispatcher rd = request
