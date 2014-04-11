@@ -39,8 +39,7 @@ public class CentroFormacionEliminarServlet extends HttpServlet {
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
 		try {
 			negocio.eliminar(idCentroFormacion);
-			response.sendRedirect(request.getContextPath()
-					+ "/CentroFormacionBuscarServlet");
+			response.sendRedirect(request.getContextPath() + "/CentroFormacionBuscarServlet");
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
