@@ -33,15 +33,17 @@ public class CentroFormacionEditarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String a = request.getParameter("id");
+		String a = request.getParameter("id");		
+		String msj = request.getParameter("mensajeError");			
 		
 		Integer IdCentroFormacion = Integer.parseInt(a);
 		
 		GestionCentroFormacion negocio = new GestionCentroFormacion();
-		
+				
 		try {
 			CentroFormacion vo = negocio.obtener(IdCentroFormacion);
 			request.setAttribute("CentroFormacion", vo);
+			request.setAttribute("MENSAJE", msj);
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
