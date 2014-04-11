@@ -88,11 +88,20 @@ public class UsuarioModificarServlet extends HttpServlet {
 		user.setTipoUsuario(rol);
 		
 		try {
-			negocio.actualizar(person, user);
-			response.sendRedirect(request.getContextPath()	+ "/UsuariosBuscarServlet");
+			Persona perso = new Persona();
+			perso = negocio.actualizar(person, user);
+			
+			if (!perso.equals(null)) {
+				response.sendRedirect(request.getContextPath()	+ "/UsuariosBuscarServlet");
+			}
+			
+			
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			String message = e.getMessage();
+			request.getSession().setAttribute("message", message);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("usuarios_Editar.jsp");
 			rd.forward(request, response);
 		}
 		
