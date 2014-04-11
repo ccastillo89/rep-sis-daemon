@@ -44,6 +44,12 @@ function selectInCombo(combo,val)
 <%
 CentroFormacion cf = (CentroFormacion)request.getAttribute("CentroFormacion");
 String msj = (String)request.getAttribute("MENSAJE");
+
+if(msj==null)
+{
+	msj="";
+}
+
 %>
 
   <table width="300" height="104" border="1" cellpadding="0" cellspacing="0">
