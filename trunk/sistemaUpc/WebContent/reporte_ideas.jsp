@@ -95,10 +95,11 @@ new Picker.Date($$('#datepicker2'), {
 		<div class="table-responsive">
 		<table width="550" height="65" border="1" cellpadding="0" cellspacing="0" class="table table-hover">
 		  <tr class="footergrid">
-		    <th width="49" scope="col">Estado</th>
-		    <th width="192" scope="col">Titulo</th>
-		    <th width="107" scope="col">Descripcion</th>
-		    <th width="192" scope="col">Nombres y Apellidos</th>
+		    <th width="50" scope="col">Estado</th>
+		    <th width="100" scope="col">Titulo</th>
+		    <th width="200" scope="col">Descripcion</th>
+		    <th width="100" scope="col">Nombres</th>
+		    <th width="100" scope="col">Centro</th>
 		  </tr>
 		
 		<%@page import="java.util.*, upc.modelo.Publicacion" %>
@@ -133,6 +134,7 @@ new Picker.Date($$('#datepicker2'), {
 		    <td><% out.print(x.getUsuario().getPersona().getNombreCompleto()); 
 		    
 		     total+=1;%></td>
+		    <td><% out.print(x.getUsuario().getPersona().getCentroFormacion().getNombre()); %></td> 
 		  
 		   
 		  </tr>
