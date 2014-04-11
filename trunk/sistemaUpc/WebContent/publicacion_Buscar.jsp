@@ -69,7 +69,7 @@
 Estado
 			<select name="ddlEstado" id="ddlEstado"
 							style="width: 120px;">
-							<option value="55">TODOS</option>
+							<option value="0">TODOS</option>
 								<%
 									GestionCodigos negocioSexo = new GestionCodigos();
 																					Codigo codesSexo = new Codigo();
@@ -127,7 +127,7 @@ Estado
 		    <td><% out.print(x.getEstado().getDescripcionCodigo()); %></td>
 		    
 		    <td><% out.print(x.getUsuario().getPersona().getNombres().concat(" ").concat(x.getUsuario().getPersona().getPaterno())); %></td>
-		    <td><% out.print(x.getUsuarioAsesor().getPersona().getNombres().concat(" ").concat(x.getUsuarioAsesor().getPersona().getPaterno())  ); %></td>
+		   
 			  </tr>
 		<% }  
 		  } %>
