@@ -131,7 +131,7 @@ public class CentroFormacionDAO extends BaseDAO {
 	}
 	
 	public int buscarPorNombre(CentroFormacion vo) throws DAOExcepcion {
-		String query = "Select count(nombre) as Total From centro_formacion where nombre = ?";
+		String query = "Select count(nombre) as Total From centro_formacion where nombre = ? and idcentro_formacion <> ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -142,6 +142,7 @@ public class CentroFormacionDAO extends BaseDAO {
 			stmt = con.prepareStatement(query);
 	
 			stmt.setString(1, vo.getNombre());
+			stmt.setInt(2, vo.getIdCentroInformacion());
 			
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -166,7 +167,7 @@ public class CentroFormacionDAO extends BaseDAO {
 	
 	
 	public int buscarPorURL(CentroFormacion vo) throws DAOExcepcion {
-		String query = "Select count(url) as Total From centro_formacion where url = ?";
+		String query = "Select count(url) as Total From centro_formacion where url = ? and idcentro_formacion <> ?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -177,6 +178,7 @@ public class CentroFormacionDAO extends BaseDAO {
 			stmt = con.prepareStatement(query);
 	
 			stmt.setString(1, vo.getUrl());
+			stmt.setInt(2, vo.getIdCentroInformacion());
 			
 			rs = stmt.executeQuery();
 			while (rs.next()) {
