@@ -20,9 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import upc.excepcion.DAOExcepcion;
+import upc.modelo.CentroFormacion;
 import upc.modelo.Codigo;
 import upc.modelo.Publicacion;
+import upc.modelo.Usuario;
 import upc.negocio.GestionPublicaciones;
 
 /**
@@ -67,6 +73,7 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 		try {
 		System.out.println("Dentro de doPost del servlet RolBuscarSerlvet");
 		String titulo = (String) request.getParameter("titulo");
+		HttpSession sess = request.getSession(false);
 		Date fechaini =new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechaini"));
 		Date fechafin = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fechafin"));
 		//int estado = Integer.parseInt(request.getParameter("estado")) ;
@@ -85,7 +92,8 @@ public class ReporteIdeasServlet extends javax.servlet.http.HttpServlet implemen
 		    System.out.println(strestados);
 		 
 		pub.setEstadossel(strestados);
-		
+		CentroFormacion cf= (CentroFormacion) sess.getAttribute("CENTRO_FORMACION");
+		pub.setIdcentro_formacion(cf.getIdCentroInformacion());
 		pub.setTitulo(titulo);
 		pub.setFechainicio(fechaini);
 		pub.setFechafin(fechafin);
