@@ -45,24 +45,21 @@ public class PublicacionBuscarPublicadosServlet extends HttpServlet {
 		System.out.println("Dentro de doPost del servlet PublicacionBuscarPublicadosSerlvet");
 		
 		String nombre = request.getParameter("txtDescripcion");
-		String estado = request.getParameter("txtEstado");
 		
+		if (nombre == null)
+		{			
+			nombre = "";
+		}
+				
 		GestionPublicaciones negocio = new GestionPublicaciones();
 
 		try {
-			Collection<Publicacion> lista = negocio.buscar(nombre,Integer.parseInt(estado));
+			Collection<Publicacion> lista = negocio.buscar("",7);
 			
-			request.setAttribute("PUBLICACIONES", lista);
+			request.setAttribute("PUBLICACIONES", lista);			
+			RequestDispatcher rd = request.getRequestDispatcher("publicacion_Evaluar.jsp");
+			rd.forward(request, response);		
 			
-			if(estado == "7")
-			{
-				RequestDispatcher rd = request.getRequestDispatcher("publicacion_Evaluar.jsp");
-				rd.forward(request, response);				
-			}else
-			{
-				RequestDispatcher rd = request.getRequestDispatcher("asesor_Asignar.jsp");
-				rd.forward(request, response);								
-			}
 
 
 		} catch (DAOExcepcion e) {
