@@ -58,10 +58,12 @@ public class CentroFormacionInsertarServlet extends HttpServlet {
 		try {
 			negocio.insertar(modelo);
 			response.sendRedirect(request.getContextPath()	+ "/CentroFormacionBuscarServlet");
+			return;
 		} catch (DAOExcepcion e) {
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-			rd.forward(request, response);
+			request.setAttribute("MENSAJE", e.getMessage());
 		}		
+		RequestDispatcher rd = request.getRequestDispatcher("/centroFormacion_Nuevo.jsp");
+		rd.forward(request, response);
 
 	}
 
