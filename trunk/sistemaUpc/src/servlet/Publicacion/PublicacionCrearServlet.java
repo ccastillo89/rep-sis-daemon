@@ -75,10 +75,10 @@ public class PublicacionCrearServlet extends HttpServlet {
 			  p.setPalabraClave(pclave);
 			  p.setFechaCreacion(fecha.ObtnerFecha());
 			
-			if (opcion =="Nuevo") {
+			if (opcion.equals("nuevo")) {
 				negocio.insertar(p);	
 			}			
-			else if (opcion =="Modificar") {
+			else if (opcion.equals("modificar")) {
 				negocio.insertar(p);	
 			}
 						
