@@ -53,15 +53,18 @@ public class PublicacionAprobarServlet extends HttpServlet {
 		
 		try {
 			negocio.actualizarEstado(modeloPub);
+			//response.sendRedirect(request.getContextPath() + "/PublicacionBuscarPublicadosServlet");
 			//request.setAttribute("PUBLICACIONES", vo);
+			RequestDispatcher rd = request.getRequestDispatcher("publicacion_Evaluar.jsp");
+			rd.forward(request, response);
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("publicacion_Evaluar.jsp");
-		rd.forward(request, response);
+
+		
 
 	}
 
