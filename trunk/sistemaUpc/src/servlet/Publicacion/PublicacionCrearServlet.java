@@ -84,15 +84,14 @@ public class PublicacionCrearServlet extends HttpServlet {
 						
 			//response.sendRedirect(request.getContextPath()	+ "/RolBuscarServlet");
 		} catch (DAOExcepcion | ParseException e) {
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			System.out.println(e.getMessage());
+			String message = e.getMessage();
+			request.getSession().setAttribute("message", message);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("Publicacion_CrearModificar.jsp");
 			rd.forward(request, response);
+			
+	}
 		}
 	
-		RequestDispatcher rd = request.getRequestDispatcher("Publicacion_CrearModificar.jsp");
-		rd.forward(request, response);
-		
-	}
-		
-	
-
 }
