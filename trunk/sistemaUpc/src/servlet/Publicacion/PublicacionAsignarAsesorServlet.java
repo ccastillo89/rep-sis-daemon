@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import upc.excepcion.DAOExcepcion;
 import upc.modelo.CentroFormacion;
+import upc.modelo.Publicacion;
 import upc.negocio.GestionCentroFormacion;
 import upc.negocio.GestionPublicaciones;
 
@@ -37,19 +38,20 @@ public class PublicacionAsignarAsesorServlet extends HttpServlet {
 
 		String a = request.getParameter("id");
 		
+		
 		Integer IdPublicacion = Integer.parseInt(a);
 		
 		GestionPublicaciones negocio = new GestionPublicaciones();
 		
 		try {
-			CentroFormacion vo = negocio.(IdPublicacion);
-			request.setAttribute("CentroFormacion", vo);
+			Publicacion vo = negocio.obtener(IdPublicacion);
+			request.setAttribute("PUBLICACION", vo);
 		} catch (DAOExcepcion e) {
 			System.out.println(e.getMessage());
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("centroFormacion_Editar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("publicacion_Editar.jsp");
 		rd.forward(request, response);
 		
 	}
