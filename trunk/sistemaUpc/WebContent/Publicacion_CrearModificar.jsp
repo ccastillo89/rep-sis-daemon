@@ -1,3 +1,6 @@
+
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
