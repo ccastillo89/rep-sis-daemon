@@ -56,6 +56,11 @@
  			}
          
        }
+       
+       function borracampo(){
+    	   if( document.form1.txtvalue.value == "Introduce tu nombre")
+    	     document.campos.borrado.value = "";
+    	  }
     </script>
 
 
