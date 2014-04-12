@@ -81,10 +81,12 @@ public class PublicacionCrearServlet extends HttpServlet {
 				if (!p2.equals(null)) {
 					String message = "Publicacion Creada Correctamente";
 					request.getSession().setAttribute("message", message);
-					response.sendRedirect(request.getContextPath()	+ "/PublicacionBuscarServlet");
+					//response.sendRedirect(request.getContextPath()	+ "/PublicacionBuscarServlet");
 				}
+				
+				
 			}			
-			else if (opcion.equals("modificar")) {
+		 if (opcion.equals("modificar")) {
 				negocio.insertar(p);	
 			}
 						
