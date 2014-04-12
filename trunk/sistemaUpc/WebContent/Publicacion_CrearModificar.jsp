@@ -50,7 +50,8 @@
              return false;} 
          else if (p1 == p2 || p1 == p3 || p1==p4 || p2==p3|| p2==p4 || p3==p4){
  			alert("Las palabras claves no se pueden repetir.");
- 		} else {
+ 			return false;}
+ 		 else {
  				return true;
  			}
          
