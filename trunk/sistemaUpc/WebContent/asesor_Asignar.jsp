@@ -32,7 +32,7 @@
     
     <script type="text/javascript">
     
-    function SeleccionarPersona(){
+    function validarCampos(){
 		var ddlCalifica = $("#ddlCalifica").val();
 		var txtObservacion = $("#txtObservacion").val();
 		var ddlAlumno = $("#ddlAlumno").val();
@@ -52,6 +52,10 @@
 		}
     }
     
+    function SeleccionarPersona(){
+    	
+    }
+   
     </script>
     
   </head>
@@ -83,11 +87,12 @@
 									CentroFormacion cf = new CentroFormacion();
 									cf.setIdCentroInformacion(0);
 									ps.setCentroFormacion(cf);
+									ps.setNombreCompleto("");
 									Collection<Usuario> listaPersonas = negocio.BuscarUsuariosPorCentroFormacion(ps);
 									if (listaPersonas != null)
 										for (Usuario c : listaPersonas) {
 								%>
-								<option value="<%=c.getPersona().getIdPersona() %>"><%=c.getPersona().getNombreCompleto() %></option>
+								<option value="<%=c.getPersona().getIdPersona() %>"><%=c.getPersona().getNombres() + " " + c.getPersona().getPaterno() + " " + c.getPersona().getMaterno() %></option>
 								<%
 									}
 								%>
