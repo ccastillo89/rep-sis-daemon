@@ -65,11 +65,11 @@
 	
 	<div class="container"> 
 		<p>
-			<strong>Procesos &gt; Asignar asesor</strong>
+			<strong>Procesos &gt; Registrar reuniones</strong>
 		</p>
 
 		<div class="pageTitle">
-			<span>Asignar Asesor</span>
+			<span>Registrar reuniones</span>
 		</div>
 		<br />
 		<form id="form1" name="form1" method="post" action="AsesoriaRegistrarServlet" class="form-horizontal" role="form">
@@ -84,11 +84,10 @@
 								<%
 									GestionUsuarios negocio = new GestionUsuarios();
 									Persona ps = new Persona();
-									CentroFormacion cf = new CentroFormacion();
-									cf.setIdCentroInformacion(0);
-									ps.setCentroFormacion(cf);
-									ps.setNombreCompleto("");
-									Collection<Usuario> listaPersonas = negocio.BuscarUsuariosPorCentroFormacion(ps);
+									Codigo co = new Codigo();
+									co.setIdCodigo(4);
+									
+									Collection<Usuario> listaPersonas = negocio.buscarPorTipoUsuario(co);
 									if (listaPersonas != null)
 										for (Usuario c : listaPersonas) {
 								%>

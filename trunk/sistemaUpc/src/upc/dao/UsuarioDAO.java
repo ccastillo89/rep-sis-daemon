@@ -239,7 +239,7 @@ public class UsuarioDAO extends BaseDAO {
 	}
 	
 	public Collection<Usuario> buscarPorTipoUsuario(Codigo vo) throws DAOExcepcion {
-		String query = "select idusuario,correo,tipo_usuario from usuario where tipo_usuario = ?";
+		String query = "select A.idusuario,A.correo,A.tipo_usuario, B.idPersona, B.nombres, B.paterno, B.materno from usuario A inner join persona B on A.idpersona  = B.idpersona where tipo_usuario = ?";
 		Collection<Usuario> c = new ArrayList<Usuario>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -255,10 +255,17 @@ public class UsuarioDAO extends BaseDAO {
 			while (rs.next()) {
 				
 				Usuario vu = new Usuario();
+				Persona ps = new Persona();
 				
 				vu.setIdUsuario(rs.getInt("idusuario"));
 				vu.setCorreo(rs.getString("correo"));
-									
+				ps.setIdPersona(rs.getInt("idPersona"));
+				ps.setNombres(rs.getString("nombres"));
+				ps.setPaterno(rs.getString("paterno"));
+				ps.setMaterno(rs.getString("materno"));
+				vu.setPersona(ps);				
+				
+				
 				c.add(vu);
 			
 			}
