@@ -47,6 +47,7 @@ public class PublicacionCrearServlet extends HttpServlet {
 		
 		GestionPublicaciones negocio = new GestionPublicaciones();
 		Publicacion p = new Publicacion();
+		Publicacion p2 = new Publicacion();
 		Usuario usu = new Usuario();
 		Codigo cod = new Codigo();
 		Utilitarios fecha = new Utilitarios();	
@@ -76,7 +77,12 @@ public class PublicacionCrearServlet extends HttpServlet {
 			  p.setFechaCreacion(fecha.ObtnerFecha());
 			
 			if (opcion.equals("nuevo")) {
-				negocio.insertar(p);	
+				p2=negocio.insertar(p);
+				if (!p2.equals(null)) {
+					String message = "Publicacion Creada Correctamente";
+					request.getSession().setAttribute("message", message);
+					response.sendRedirect(request.getContextPath()	+ "/PublicacionBuscarServlet");
+				}
 			}			
 			else if (opcion.equals("modificar")) {
 				negocio.insertar(p);	
