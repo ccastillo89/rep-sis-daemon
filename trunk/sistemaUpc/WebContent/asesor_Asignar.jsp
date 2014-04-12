@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="upc.modelo.Publicacion"%>
+<%@page import="upc.negocio.GestionPublicaciones"%>
 <%@page import="upc.modelo.CentroFormacion"%>
 <%@page import="upc.modelo.Persona"%>
 <%@page import="upc.modelo.Usuario"%>
@@ -31,17 +33,31 @@
     <script type="text/javascript">
     
     function SeleccionarPersona(){
+		var ddlCalifica = $("#ddlCalifica").val();
+		var txtObservacion = $("#txtObservacion").val();
+		var ddlAlumno = $("#ddlAlumno").val();
+		var ddlpublicacion = $("#ddlPublicacion").val();
     	
-    	
+		if (ddlCalifica == "0") {
+			alert("Seleccione calificación");
+		} else if (txtObservacion == "") {
+			alert("Ingrese Observacion");
+		} else if (ddlAlumno == "0") {
+			alert("Seleccione alumno");
+		} else if (ddlpublicacion == "0") {
+			alert("Seleccione publicación}");
+		} else {
+			document.form.submit();
+			return true;
+		}
     }
-    </script>>
+    
+    </script>
     
   </head>
 
   <body>
 	<jsp:include page="header.jsp" />
-	
-	
 	
 	<div class="container"> 
 		<p>
@@ -52,9 +68,9 @@
 			<span>Asignar Asesor</span>
 		</div>
 		<br />
-		<form id="form1" name="form1" method="post" action="AsignarAsesorSerlvet" class="form-horizontal" role="form">
+		<form id="form1" name="form1" method="post" action="AsesoriaRegistrarServlet" class="form-horizontal" role="form">
 		  
-		  	  			<table width="420" height="330" border="0" cellpadding="0"
+ 			<table width="420" height="330" border="0" cellpadding="0"
 				cellspacing="0">
 				<tr>
 					<td>Alumno:</td>
@@ -81,19 +97,16 @@
 				</tr>
 				<tr>
 					<td>Idea:</td>
-					<td><label><select name="ddlTipo" id="ddlTipo"
+					<td><label><select name="ddlPublicacion" id="ddlTipo"
 							style="width: 120px;">
 								<option value="0">Seleccionar</option>
 								<%
-									GestionCodigos negocioTipo = new GestionCodigos();
-									Codigo codesTipo = new Codigo();
-									codesTipo.setIdGrupo(4);
-									Collection<Codigo> codigosTipos = negocioTipo
-											.ListarCodigosPorIdGrupo(codesTipo);
-									if (codigosTipos != null)
-										for (Codigo c : codigosTipos) {
+									GestionPublicaciones negociop = new GestionPublicaciones();
+									Collection<Publicacion> listap = negociop.buscarPubliUsuario(1, 6);
+									if (listap != null)
+										for (Publicacion  c : listap) {
 								%>
-								<option value="<%=c.getIdCodigo()%>"><%=c.getDescripcionCodigo()%></option>
+								<option value="<%=c.getIdPublicacion() %>"><%=c.getTitulo()%></option>
 								<%
 									}
 								%>
