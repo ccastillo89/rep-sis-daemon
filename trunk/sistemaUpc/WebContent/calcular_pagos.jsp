@@ -54,7 +54,27 @@ new Picker.Date($$('#datepicker2'), {
 		
 	});
 
+	
 	</SCRIPT>
+
+<script type="text/javascript">
+function validamonto(){
+	if(document.getElementById("descripcion").value==""){
+		alert('Ingrese un Costo por Usuario');
+		return false;
+		
+	}
+	
+	
+	function validar(e) { 
+	    tecla = (document.all) ? e.keyCode : e.which; 
+	    if (tecla==8) return true; //Tecla de retroceso (para poder borrar) 
+	    patron = /d/; //ver nota 
+	    te = String.fromCharCode(tecla); 
+	    return patron.test(te);  
+	}  
+}
+</script>
       
   </head>
 
@@ -74,10 +94,10 @@ new Picker.Date($$('#datepicker2'), {
 		<form id="form1" name="form1" method="post" action="CalcularPagosServlet" class="form-horizontal" role="form">
 		  <p>Costo por Usuario: 
 		    <label>
-		    <input type="text" name="titulo" id="descripcion" />
+		    <input type="text" name="titulo" id="descripcion" onkeypress="return validar(event);" />
 		    </label>
 		    <label>
-		    <input type="submit" name="button" id="button" value="Calcular" />
+		    <input type="submit" name="button" id="button" value="Calcular" onclick="return validamonto();" />
 		    </label>
 		  </p>
 		</form>
