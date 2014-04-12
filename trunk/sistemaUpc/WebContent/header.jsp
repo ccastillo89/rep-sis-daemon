@@ -74,7 +74,7 @@
 	            out.print("<li><a href='publicacion_Evaluar.jsp'>Evaluar Publicacion</a></li>");}
 	            else if("a"=="b"){
 	            out.print("<li><a id='lnkAsesoria' href='asesoria.jsp'>Asesorias</a></li>");}
-	            else if("a"=="b"){
+	            else if(User.getNombretipoUsuario().equals("Asesor")){
 	            out.print("<li><a href='asesor_Asignar.jsp'>Asignar Asesor</a></li>");}
 	            else if(User.getNombretipoUsuario().equals("Estudiante")){
 	            	 out.print("<li><a href='Publicacion_CrearModificar.jsp'>Crear Publicación</a></li>");
