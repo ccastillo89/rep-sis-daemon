@@ -55,6 +55,29 @@ new Picker.Date($$('#datepicker2'), {
 	});
 
 	</SCRIPT>
+	
+	<script type="text/javascript">
+	function validar(){
+		check=false;
+		if(document.getElementById("chk1").checked==true){
+			check=true;
+		}
+		else if(document.getElementById("chk2").checked==true){
+			check=true;
+		}
+		else if(document.getElementById("chk3").checked==true){
+			check=true;
+		}
+		else if(document.getElementById("chk4").checked==true){
+			check=true;
+		}
+		if(check==false){
+			
+			alert('Seleccione un Estado como mínimo}');
+		}
+		return check;
+	}
+	</script>
       
   </head>
 
@@ -77,7 +100,7 @@ new Picker.Date($$('#datepicker2'), {
 		    <input type="text" name="titulo" id="descripcion" />
 		    </label>
 		    <label>
-		    <input type="submit" name="button" id="button" value="Buscar" />
+		    <input type="submit" name="button" id="button" value="Buscar" onclick="return validar();" />
 		    </label>
 		  </p>
 		  <p>Fecha Inicio:
@@ -86,10 +109,10 @@ new Picker.Date($$('#datepicker2'), {
 		 <input type="text" id="datepicker2" name="fechafin" value="01/04/2014"  class='date demo'>
 		  </p>
 		  <p>
-		  <input type="checkbox" name="estado" value="6" checked="checked">Creada
-		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="7">Publicada
-		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="8">Aprobada
-		  &nbsp;&nbsp;&nbsp;<input type="checkbox" name="estado" value="9">Rechazada
+		  <input type="checkbox" id="chk1" name="estado" value="6" checked="checked">Creada
+		  &nbsp;&nbsp;&nbsp;<input id="chk2" type="checkbox" name="estado" value="7">Publicada
+		  &nbsp;&nbsp;&nbsp;<input id="chk3" type="checkbox" name="estado" value="8">Aprobada
+		  &nbsp;&nbsp;&nbsp;<input id="chk4" type="checkbox" name="estado" value="9">Rechazada
 		  </p>
 		</form>
 		<div class="table-responsive">
