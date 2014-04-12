@@ -463,6 +463,42 @@ public class PublicacionDAO extends BaseDAO {
 		}
 		return i;
 	}
+   	
+ 	public Publicacion obtener(Integer IdPublicacion) throws DAOExcepcion {
+		System.out.println("PublicacionDAO: obtener(Int IdPublicacion)");
+		
+		Publicacion vo = new Publicacion();
+		Usuario us = new Usuario();
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "select idpublicacion, titulo, descripcion,usuario_acesor from publicacion where idpublicacion=?";
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, IdPublicacion);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				
+				us.setIdUsuario(rs.getInt(4));
+				
+				vo.setIdPublicacion(rs.getInt(1));
+				vo.setTitulo(rs.getString(2));
+				vo.setDescripcion(rs.getString(3));
+				vo.setUsuarioAsesor(us);
+				
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}
     
 
 }
