@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -64,16 +64,29 @@ function validamonto(){
 		return false;
 		
 	}
+	}
 	
-	
-	function validar(e) { 
-	    tecla = (document.all) ? e.keyCode : e.which; 
-	    if (tecla==8) return true; //Tecla de retroceso (para poder borrar) 
-	    patron = /d/; //ver nota 
-	    te = String.fromCharCode(tecla); 
-	    return patron.test(te);  
-	}  
-}
+	function validarNro(e) {
+		var key;
+		if(window.event) // IE
+			{
+			key = e.keyCode;
+			}
+		else if(e.which) // Netscape/Firefox/Opera
+			{
+			key = e.which;
+			}
+
+		if (key < 48 || key > 57)
+		    {
+		    if(key == 46 || key == 8) // Detectar . (punto) y backspace (retroceso)
+		        { return true; }
+		    else 
+		        { return false; }
+		    }
+		return true;
+		}    
+
 </script>
       
   </head>
@@ -94,7 +107,7 @@ function validamonto(){
 		<form id="form1" name="form1" method="post" action="CalcularPagosServlet" class="form-horizontal" role="form">
 		  <p>Costo por Usuario: 
 		    <label>
-		    <input type="text" name="titulo" id="descripcion" onkeypress="return validar(event);" />
+		    <input type="text" name="titulo" id="descripcion" onkeypress="javascript:return validarNro(event)" />
 		    </label>
 		    <label>
 		    <input type="submit" name="button" id="button" value="Calcular" onclick="return validamonto();" />
