@@ -120,5 +120,12 @@ public class GestionPublicaciones {
      			 
      			
      	}	
+     	
+    	public Publicacion obtener(Integer IdPublicacion) throws DAOExcepcion {
+    		PublicacionDAO dao = new PublicacionDAO();
+
+    		return dao.obtener(IdPublicacion);
+
+    	}
 
 }
