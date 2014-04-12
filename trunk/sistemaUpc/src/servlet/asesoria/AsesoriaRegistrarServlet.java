@@ -80,8 +80,6 @@ public class AsesoriaRegistrarServlet extends HttpServlet {
 			String message = e.getMessage();
 			request.getSession().setAttribute("message", message);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("principal.jsp");
-			rd.forward(request, response);
 		}
 		
 	}
