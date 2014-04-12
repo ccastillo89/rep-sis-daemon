@@ -67,7 +67,7 @@ Estado
 		    <input type="submit" name="button" id="button" value="Buscar" />
 		    </label>
 		    <label>
-		    <input type="button" name="button2" id="button2" value="Nuevo" onclick="window.location='centroFormacion_Nuevo.jsp' "  />
+		   
 		    </label>
 		  </p>
 		</form>
@@ -80,7 +80,7 @@ Estado
 		    <th width="107" scope="col">Fecha Publicacion</th>
 		    <th width="192" scope="col">Estado</th>
 		    <th width="192" scope="col">Creado por</th>
-		    <th width="192" scope="col">Acessor</th>
+		   
 		    
 		    
 		  </tr>

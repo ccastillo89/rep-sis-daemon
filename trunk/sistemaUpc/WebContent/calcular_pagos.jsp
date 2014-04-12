@@ -100,12 +100,12 @@ function validamonto(){
 
 
 		<div class="pageTitle">
-			<span>Calcular Pagos</span>
+			<span>Calcular Pagos del Mes Actual</span>
 		</div>
 		<br>
 		
 		<form id="form1" name="form1" method="post" action="CalcularPagosServlet" class="form-horizontal" role="form">
-		  <p>Costo por Usuario: 
+		  <p>Costo por Usuario Actual: 
 		    <label>
 		    <input type="text" name="titulo" id="descripcion" onkeypress="javascript:return validarNro(event)" />
 		    </label>
