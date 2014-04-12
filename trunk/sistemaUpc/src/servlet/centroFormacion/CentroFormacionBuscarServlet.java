@@ -61,8 +61,7 @@ public class CentroFormacionBuscarServlet extends HttpServlet {
 			System.out.println("Dentro de Listado " + modelo.getNombre() + "-");
 			// Guardar en el ambiente de request
 			request.setAttribute("CentroFormaciones", lista);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("centroFormacion_Buscar.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("centroFormacion_Buscar.jsp");
 			rd.forward(request, response);
 
 		} catch (DAOExcepcion e) {
