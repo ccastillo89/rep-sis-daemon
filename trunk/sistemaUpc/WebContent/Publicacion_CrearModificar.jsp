@@ -114,10 +114,13 @@
 				<strong>* Campos Obligatorios</strong>
 			</p>
 			<input type="submit" value="Guardar" />
-
 		</form>
-
 	</div>
+	<div style="color: red; text-align: left;">
+			<p> ${message}</p>
+			<c:remove var="message" scope="session" /> 
+		</div>
+		
 
 </body>
 </html>
